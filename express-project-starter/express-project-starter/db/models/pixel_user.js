@@ -1,4 +1,7 @@
 'use strict';
+
+const bcrypt = require('bcrypt');
+
 module.exports = (sequelize, DataTypes) => {
   const Pixel_User = sequelize.define('Pixel_User', {
     full_name: DataTypes.STRING,
@@ -6,7 +9,16 @@ module.exports = (sequelize, DataTypes) => {
     email: DataTypes.STRING,
     about: DataTypes.STRING,
     hashedPassword: DataTypes.STRING
-  }, {});
+  }, {
+    instanceMethods: {
+      generateHash(password) {
+        return bcrypt.hash(password, 8);
+      },
+      validPassword(password) {
+        return bcrypt.compare(password, this.hashedPassword);
+      }
+    }
+  });
   Pixel_User.associate = function (models) {
     // associations can be defined here
 
@@ -32,12 +44,12 @@ module.exports = (sequelize, DataTypes) => {
     const commentMap = { // User -> User, through Follow as following
       through: 'Pixel_Comments',
       otherKey: 'pixel_story_id',
-      foreignKey:'pixel_user_id'
+      foreignKey: 'pixel_user_id'
     }
 
     Pixel_User.belongsToMany(models.Pixel_Story, commentMap);
     Pixel_User.belongsToMany(models.Pixel_Story, likeMap)
-    Pixel_User.hasMany(models.Pixel_Story, {foreignKey: "author_id"});
+    Pixel_User.hasMany(models.Pixel_Story, { foreignKey: "author_id" });
     Pixel_User.belongsToMany(models.Pixel_User, columnMappingOne);
     Pixel_User.belongsToMany(models.Pixel_User, columnMappingTwo);
 
