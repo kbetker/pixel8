@@ -11,4 +11,4 @@ genreSelect.addEventListener("change", (e) =>{
 
 
 
-})
+});

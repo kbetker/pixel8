@@ -2,16 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
     return queryInterface.bulkInsert('Pixel_Stories', [
       { title: "Chasm", body: "Chasm is a 2D Action-RPG Platformer. Taking equal inspiration from hack 'n slash dungeon crawlers (procedurally generated dungeons, loot drops, etc) and Metroidvania-style platformers, the game aims to immerse you in its 2D fantasy world full of exciting treasure, deadly enemies, and abundant secrets. Players assume the role of a soldier passing through a remote mining town on their journey home from a long war. The town's miners have recently disappeared after breaching a long-forgotten temple far below the town, and reawakened an ancient slumbering evil. Now trapped in the town by supernatural forces, you're left with no option but to explore the mines below, battle enemies and bosses, and increase your abilities in hopes of finally escaping and returning home.", summary: "This is a summary", author_id: 1, genre: "Platformer", image_url: "xxx", category_id: 1, viewCount: 0, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
       { title: "Here They Lie", body: "Here They Lie is a psychological horror experience that injects you into a frightening, surreal world riddled with strange and malevolent creatures. Horrors lurk around every corner, just out of sight, haunting and infecting your mind. Dare yourself to go deeper down the rabbit hole and confront the meaning of your existence. The game focuses on narrative, and the experience of dread.", summary: "This is a summary", author_id: 2, genre: "Shooter", image_url: "xxx", category_id: 2, viewCount: 0, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
@@ -38,12 +29,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+   return queryInterface.bulkDelete('Pixel_Stories', null, {});
   }
 };
