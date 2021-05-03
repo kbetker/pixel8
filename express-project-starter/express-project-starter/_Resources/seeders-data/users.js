@@ -2,12 +2,12 @@
 const bcrypt = require('bcrypt')
 
 const password = bcrypt.hashSync('password', 8);
-const password2 = bcrypt.hashSync('password', 8);
-(async () => {
-    const check = await bcrypt.compare('password', '$2b$08$0u1C/c5TVSwyqZOFQe8D5OT0ZWUZaWzDzFZ4iZA4yso6/gXreCo7S');
-    console.log(check);
-})()
-console.log(`Password: ${password}, Password2: ${password2}`);
+// const password2 = bcrypt.hashSync('password', 8);
+// (async () => {
+//     const check = await bcrypt.compare('password', '$2b$08$0u1C/c5TVSwyqZOFQe8D5OT0ZWUZaWzDzFZ4iZA4yso6/gXreCo7S');
+//     console.log(check);
+// })()
+// console.log(`Password: ${password}, Password2: ${password2}`);
 
 let kevinsUsers = [
 
