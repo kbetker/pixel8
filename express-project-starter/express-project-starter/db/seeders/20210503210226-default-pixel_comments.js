@@ -9,7 +9,7 @@ module.exports = {
       Example:
 
     */
-    return queryInterface.bulkInsert('People',
+    return queryInterface.bulkInsert('Pixel_Comments',
       [
         { pixel_story_id: 1, pixel_user_id: 1, body: "I like that part where the thing happened.", created_at: "2000-01-01", updated_at: "2000-01-01" },
         { pixel_story_id: 2, pixel_user_id: 2, body: "These comments are so vanilla.", created_at: "2000-01-01", updated_at: "2000-01-01" },
