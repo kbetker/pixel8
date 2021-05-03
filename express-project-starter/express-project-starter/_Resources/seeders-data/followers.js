@@ -134,7 +134,7 @@ const zachFollowers = [
     { pixel_following_id: "45", pixel_follower_id: "43" },
     { pixel_following_id: "45", pixel_follower_id: "44" },
     { pixel_following_id: "45", pixel_follower_id: "46" },
-    { pixel_following_id: "46", pixel_follower_id: "44" },
+    { pixel_following_id: "46", pixel_follower_id: "59" },
     { pixel_following_id: "46", pixel_follower_id: "45" },
     { pixel_following_id: "46", pixel_follower_id: "47" },
     { pixel_following_id: "47", pixel_follower_id: "45" },
