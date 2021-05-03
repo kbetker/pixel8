@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./tests.css">
+    <script src="tests.js"></script>
+    <title>I heart you</title>
+</head>
+<body>
+        <div id="navbar">
+            <img src="./images/pixel8logo.svg" id="logo">
+        </div>
+
+ <div id="form_background">
+
+
+
+        <!-- ================== Like Button ==================== -->
+        <div id="heart_container">
+            <div id="pixel__heart">
+                <div id="pixelHeart-shadow"></div>
+            </div>
+        </div>
+
+
+        <div style="height: 200px;"></div> <!--spacer-->
+
+
+        <!-- ================== Genres Selector ==================== -->
+        <select id="genre_select" name="form_select">
+            <option value="null">-- Select --</option>
+            <option value="Action games">Action games</option>
+            <option value="Action-adventure games">Action-adventure games</option>
+            <option value="Adventure games">Adventure games</option>
+            <option value="Role-playing games">Role-playing games</option>
+            <option value="Simulation games">Simulation games</option>
+            <option value="Strategy games">Strategy games</option>
+            <option value="Sports games">Sports games</option>
+            <option value="Puzzle games">Puzzle games</option>
+            <option value="Idle games">Idle games</option>
+        </select>
+
+        <!-- ================== Sub - Genres Selector ==================== -->
+        <div id="null" class="sub">
+            <select>
+                <option>--Select Main Genre First--</option>
+            </select>
+        </div> <!--Null Selector -->
+
+        <div id="Action games" class="sub sub--hidden">
+            <select id="actionSubGenre" name="form_select">
+                <option value="Platformer">Platformer</option>
+                <option value="Shooter">Shooter</option>
+                <option value="Fighting">Fighting</option>
+                <option value="Beat-em up">Beat-em up</option>
+                <option value="Stealth">Stealth</option>
+                <option value="Survival">Survival</option>
+                <option value="Rhythm">Rhythm</option>
+            </select>
+        </div>
+
+
+         <div id="Action-adventure games" class="sub sub--hidden">
+            <select id="actionAdventureSubGenre" name="form_select">
+                <option value="Survival horror">Survival horror</option>
+                <option value="Metroidvania">Metroidvania</option>
+            </select>
+         </div>
+
+
+         <div id="Adventure games" class="sub sub--hidden">
+            <select id="adventureGames" name="form_select">
+                <option value="Text adventures">Text adventures</option>
+                <option value="Graphic adventures">Graphic adventures</option>
+                <option value="Visual novels">Visual novels</option>
+                <option value="Interactive movie">Interactive movie</option>
+                <option value="Real-time 3D">Real-time 3D</option>
+            </select>
+         </div>
+
+
+         <div id="Role-playing games" class="sub sub--hidden">
+            <select id="role-playingGames" name="form_select">
+                <option value="Action RPG">Action RPG</option>
+                <option value="MMORPG">MMORPG</option>
+                <option value="Rouguelikes">Rouguelikes</option>
+                <option value="Tactical RPG">Tactical RPG</option>
+                <option value="Sandbox RPG">Sandbox RPG</option>
+                <option value="First-person party-based RPG">First-person party-based RPG</option>
+            </select>
+         </div>
+
+
+         <div id="Simulation games" class="sub sub--hidden">
+            <select id="simulationGames" name="form_select">
+                <option value="Construction and management simulation">Construction and management simulation</option>
+                <option value="Life simulation">Life simulation</option>
+                <option value="Vehicle simulation">Vehicle simulation</option>
+            </select>
+         </div>
+
+
+         <div id="Strategy games" class="sub sub--hidden">
+            <select id="strategyGames" name="form_select">
+                <option value="4X">4X</option>
+                <option value="Artillery">Artillery</option>
+                <option value="Real-time strategy (RTS)">Real-time strategy (RTS)</option>
+                <option value="Real-time tactics (RTT)">Real-time tactics (RTT)</option>
+                <option value="Multiplayer online battle arena (MOBA)">Multiplayer online battle arena (MOBA)</option>
+                <option value="Tower defense">Tower defense</option>
+                <option value="Turn-based strategy (TBS)">Turn-based strategy (TBS)</option>
+                <option value="Turn-based tactics (TBT)">Turn-based tactics (TBT)</option>
+                <option value="Wargame">Wargame</option>
+                <option value="Grand strategy wargame">Grand strategy wargame</option>
+            </select>
+         </div>
+
+
+         <div id="Sports games" class="sub sub--hidden">
+            <select id="sportsGames" name="form_select">
+                <option value="Racing">Racing</option>
+                <option value="Team sports">Team sports</option>
+                <option value="Competitive">Competitive</option>
+                <option value="Sports-based fighting">Sports-based fighting</option>
+            </select>
+         </div>
+
+
+         <div id="Puzzle games" class="sub sub--hidden">
+            <select id="puzzleGames" name="form_select">
+                <option value="Logic game">Logic game</option>
+                <option value="Trivia game">Trivia game</option>
+            </select>
+         </div>
+
+
+         <div id="Idle games" class="sub sub--hidden">
+            <select id="Idle games" name="form_select">
+                <option value="Idle gaming">Idle gaming</option>
+                <option value="Casual game">Casual game</option>
+                <option value="Party game">Party game</option>
+                <option value="Programming game">Programming game</option>
+                <option value="Board game/card game">Board game/card game</option>
+                <option value="Massive multiplayer online (MMO)">Massive multiplayer online (MMO)</option>
+                <option value="Advergame">Advergame</option>
+                <option value="Art game">Art game</option>
+                <option value="Educational game">Educational game</option>
+                <option value="Exergame">Exergame</option>
+
+            </select>
+         </div>
+ </div> <!-- End of form -->
+ <div style="margin: 800px 0;">Hi</div>
+</body>
+</html>
