@@ -12,10 +12,10 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     instanceMethods: {
       generateHash(password) {
-        return bcrypt.hash(password, bcrypt.genSaltSync(8));
+        return bcrypt.hash(password, 8);
       },
       validPassword(password) {
-        return bcrypt.compare(password, this.password);
+        return bcrypt.compare(password, this.hashedPassword);
       }
     }
   });
