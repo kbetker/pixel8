@@ -5,13 +5,7 @@ const password = bcrypt.hashSync('password', 8);
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-
-    */
     return queryInterface.bulkInsert('Pixel_Users', [
 
       { full_name: "Nert Bisels", username: "aliceBlue", email: "nert@bisels.com", about: "I like turtles", hashedPassword: password, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
@@ -85,12 +79,7 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
 
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
+   return queryInterface.bulkDelete('Pixel_Users', null, {});
   }
 };
