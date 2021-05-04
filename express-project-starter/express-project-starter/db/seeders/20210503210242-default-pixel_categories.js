@@ -2,31 +2,15 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
       return queryInterface.bulkInsert('Pixel_Categories', [
-        {name: 'Walkthrough', createdAt: new Date(), updatedAt: new Date()},
-        {name: 'Review', createdAt: new Date(), updatedAt: new Date()},
-        {name: 'Opinion', createdAt: new Date(), updatedAt: new Date()},
-        {name: 'News', createdAt: new Date(), updatedAt: new Date()},
-      ], {});
+
+        { name: 'Review',  created_at: "2000-01-01", updated_at: "2000-01-01" },
+        { name: 'Walkthrough',  created_at: "2000-01-01", updated_at: "2000-01-01" },
+        { name: 'Opinion',  created_at: "2000-01-01", updated_at: "2000-01-01" },
+
+    ], {});
   },
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-
-    */
-      return queryInterface.bulkDelete('Pixel_Categories', null, {});
+   return queryInterface.bulkDelete('Pixel_Categories', null, {});
   }
 };
