@@ -37,3 +37,59 @@
     background-size: 100%;
     image-rendering: pixelated;
 }
+
+
+hr {
+    border: 2px solid rgb(114, 114, 114);
+    margin: 35px
+}
+
+.mainContent--container {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    justify-content: center;
+    width: 1038px;
+    margin: 0 auto;
+}
+
+.storiesColumn--container {
+    width: 100%;
+    /* height: 99px; */
+    background-color: seashell;
+}
+
+.discoverMoreColumn--container {
+    width: 100%;
+    background-color: rgb(29, 43, 102);
+
+}
+
+.story--container {
+    width: 100%;
+    background-color: blue;
+    height: 188px;
+    margin: 15px 3px 5px 0;
+}
+
+.discoverMore--container {
+    /* width: 100%; */
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+    /* height: 90px; */
+    background-color: red;
+    margin: 15px 0 5px 13px;
+}
+
+.discoverMore--title {
+    justify-content: center;
+}
+
+.discoverMore--links {
+    justify-content: center;
+}
+.discoverMore--bottom {
+    justify-content: center;
+}
+h2 {
+    color: coral;
+}
