@@ -18,15 +18,18 @@ html(lang="en")
           .nav--element
             a(href="/" class="nav--link") About
           .nav--element--divider |
-          .nav--element
-            a(href="/" class="nav--link") New Post
-          .nav--element--divider |
           if locals.authenticated
+            .nav--element
+              a(href="/" class="nav--link") New Post
+            .nav--element--divider |
             .nav--element
               a(href="/users/logout" class="nav--link") Log Out
           else
             .nav--element
               a(href="/users/login" class="nav--link") Log In
+            .nav--element--divider |
+            .nav--element
+              a(href="/users/register" class="nav--link") Register
 
 
     block content
