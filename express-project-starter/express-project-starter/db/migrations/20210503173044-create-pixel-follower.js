@@ -8,12 +8,12 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pixel_following_id: {
+      pixelFollowingId: {
         type: Sequelize.INTEGER,
         references: {model: "Pixel_Users"},
         allowNull: false
       },
-      pixel_follower_id: {
+      pixelFollowerId: {
         type: Sequelize.INTEGER,
         references: {model: "Pixel_Users"},
         allowNull: false

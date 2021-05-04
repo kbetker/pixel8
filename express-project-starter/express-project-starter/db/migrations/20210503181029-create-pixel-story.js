@@ -14,13 +14,13 @@ module.exports = {
       },
       body: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       summary: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      author_id: {
+      authorId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: "Pixel_Users"}
@@ -29,11 +29,11 @@ module.exports = {
         allowNull: false,
         type: Sequelize.STRING
       },
-      image_url: {
+      imageUrl: {
         allowNull: false,
         type: Sequelize.STRING
       },
-      category_id: {
+      categoryId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {model: "Pixel_Categories"}

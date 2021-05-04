@@ -10,7 +10,6 @@ module.exports = {
 
     ], {});
   },
-
   down: (queryInterface, Sequelize) => {
    return queryInterface.bulkDelete('Pixel_Categories', null, {});
   }
