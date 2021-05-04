@@ -20,8 +20,12 @@ html(lang="en")
           .nav--element
             a(href="/" class="nav--link") New Post
           .nav--element--divider |
-          .nav--element
-            a(href="/users/login" class="nav--link") Log In
+          if locals.authenticated
+            .nav--element
+              a(href="/users/logout" class="nav--link") Log Out
+          else
+            .nav--element
+              a(href="/users/login" class="nav--link") Log In
 
 
     block content
