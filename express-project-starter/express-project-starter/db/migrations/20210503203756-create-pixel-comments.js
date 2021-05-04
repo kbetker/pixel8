@@ -8,15 +8,15 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      pixel_story_id: {
+      pixelStoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Pixel_Stories"}
+        references: {model: 'Pixel_Stories'}
       },
-      pixel_user_id: {
+      pixelUserId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {model: "Pixel_Users"}
+        references: {model: 'Pixel_Users'}
       },
       body: {
         type: Sequelize.TEXT,

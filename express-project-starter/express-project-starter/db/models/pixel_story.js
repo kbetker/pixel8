@@ -4,30 +4,30 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.STRING,
     body: DataTypes.STRING,
     summary: DataTypes.STRING,
-    author_id: DataTypes.INTEGER,
+    authorId: DataTypes.INTEGER,
     genre: DataTypes.STRING,
-    image_url: DataTypes.STRING,
-    category_id: DataTypes.INTEGER,
+    imageUrl: DataTypes.STRING,
+    categoryId: DataTypes.INTEGER,
     viewCount: DataTypes.INTEGER
   }, {});
   Pixel_Story.associate = function(models) {
     // associations can be defined here
     const likeMap = { // User -> User, through Follow as following
       through: 'Pixel_Likes',
-      otherKey: 'pixel_user_id',
-      foreignKey:'pixel_story_id'
+      otherKey: 'pixelUserId',
+      foreignKey:'pixelStoryId'
     }
 
     const commentMap = { // User -> User, through Follow as following
       through: 'Pixel_Comments',
-      otherKey: 'pixel_user_id',
-      foreignKey:'pixel_story_id'
+      otherKey: 'pixelUserId',
+      foreignKey:'pixelStoryId'
     }
 
     Pixel_Story.belongsToMany(models.Pixel_User, likeMap)
     Pixel_Story.belongsToMany(models.Pixel_User, commentMap);
-    Pixel_Story.belongsTo(models.Pixel_Category, {foreignKey: "category_id"});
-    Pixel_Story.belongsTo(models.Pixel_User, {foreignKey: "author_id"});
+    Pixel_Story.belongsTo(models.Pixel_Category, {foreignKey: "categoryId"});
+    Pixel_Story.belongsTo(models.Pixel_User, {foreignKey: "authorId"});
 
   };
   return Pixel_Story;
