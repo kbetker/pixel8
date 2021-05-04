@@ -1,5 +1,8 @@
 'use strict';
 
+//Testing can you see this comment?
+
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
 

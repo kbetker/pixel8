@@ -3,6 +3,9 @@ const bcrypt = require('bcrypt')
 
 const password = bcrypt.hashSync('password', 8);
 
+//Testing can you see this comment?
+
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
 
