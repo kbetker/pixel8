@@ -38,7 +38,8 @@ app.use(session({
   resave: false,
 })
 );
-
+app.use(express.urlencoded({ extended: false }));
+app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
