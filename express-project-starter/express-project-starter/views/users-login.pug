@@ -8,13 +8,21 @@ append head
   script(src="/javascripts/index.js" type="module" defer)
 block content
   .container
-    +validationErrorSummary(errors)
+
     .form--container
+      //- +validationErrorSummary(errors)
       form(action='/users/login' method='post')
         .form--element--container
           input(type='hidden' name='_csrf' value=csrfToken)
           .form--element
-            h1 User Login
+            if errors
+              div(class='alert alert-danger' role='alert')
+                h2 The following error(s) occurred:
+                ul
+                  each error in errors
+                    li= error
+            else
+              h1 User Login
           .form--element
             label(for="username")
               p Username
