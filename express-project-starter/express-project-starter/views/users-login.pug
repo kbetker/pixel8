@@ -10,15 +10,15 @@ block content
   .container
     +validationErrorSummary(errors)
     .form--container
-      form(action='/user/login' method='post')
+      form(action='/users/login' method='post')
         .form--element--container
           input(type='hidden' name='_csrf' value=csrfToken)
           .form--element
             h1 User Login
           .form--element
-            label(for="userName")
+            label(for="username")
               p Username
-            input(type="text" name="userName" id="userName")
+            input(type="text" name="username" id="username")
 
           .form--element
             label(for="password")
@@ -28,4 +28,4 @@ block content
           .form--element
             button(type='submit' class='btn btn-primary') Login
           .form--element
-            p: a(href='/user/register') Don't have an account?
+            p: a(href='/users/register') Don't have an account?
