@@ -1,5 +1,7 @@
 'use strict';
 
+//Testing can you see this comment?
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
@@ -13,17 +15,17 @@ module.exports = {
       }], {});
     */
       return queryInterface.bulkInsert('Pixel_Likes', [
-        { pixelUserId:  1, pixelStoryId: 2 , createdAt: new Date(), updatedAt: new Date()},
-        { pixelUserId: 1, pixelStoryId: 3 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 1, pixelStoryId: 4 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 1, pixelStoryId: 5 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 1, pixelStoryId: 6 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 2, pixelStoryId: 4 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 5, pixelStoryId: 4 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 3, pixelStoryId: 2 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 3, pixelStoryId: 1 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 4, pixelStoryId: 2 , createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 6, pixelStoryId: 5 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId:  1, pixelStoryId: 82 , createdAt: new Date(), updatedAt: new Date()},
+        { pixelUserId: 1, pixelStoryId: 83 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 1, pixelStoryId: 84 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 1, pixelStoryId: 85 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 1, pixelStoryId: 86 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 2, pixelStoryId: 84 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 5, pixelStoryId: 84 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 3, pixelStoryId: 82 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 3, pixelStoryId: 81 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 4, pixelStoryId: 82 , createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 6, pixelStoryId: 85 , createdAt: new Date(), updatedAt: new Date() },
       ], {});
   },
 
