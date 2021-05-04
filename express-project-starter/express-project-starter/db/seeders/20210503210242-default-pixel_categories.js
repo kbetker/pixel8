@@ -7,9 +7,10 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Pixel_Categories', [
 
-        { name: 'Review',  created_at: "2000-01-01", updated_at: "2000-01-01" },
-        { name: 'Walkthrough',  created_at: "2000-01-01", updated_at: "2000-01-01" },
-        { name: 'Opinion',  created_at: "2000-01-01", updated_at: "2000-01-01" },
+        { name: 'Review',  createdAt: "2000-01-01", updatedAt: "2000-01-01" },
+        { name: 'Walkthrough',  createdAt: "2000-01-01", updatedAt: "2000-01-01" },
+        { name: 'Opinion',  createdAt: "2000-01-01", updatedAt: "2000-01-01" },
+        { name: 'News',  createdAt: "2000-01-01", updatedAt: "2000-01-01" },
 
     ], {});
   },
