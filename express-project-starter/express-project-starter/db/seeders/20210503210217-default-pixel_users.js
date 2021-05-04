@@ -7,7 +7,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
 
     return queryInterface.bulkInsert('Pixel_Users', [
-
+      { fullName: "Demo User", username: "demomcdemiface", email: "demo@mcdemiface.com", about: "I'm a demo user!", hashedPassword: password, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
       { fullName: "Nert Bisels", username: "aliceBlue", email: "nert@bisels.com", about: "I like turtles", hashedPassword: password, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
       { fullName: "Kenn Nitvarn", username: "antiqueWhite", email: "kenn@nitvarn.com", about: "I hate about me pages", hashedPassword: password, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
       { fullName: "Fergit Hote", username: "aqua", email: "fergit@hote.com", about: "I walk the streets of Japan, 'til I get lost. Cause it doesn't remind me of anything.", hashedPassword: password, createdAt: "2000-01-01", updatedAt: "2000-01-01" },
@@ -79,6 +79,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-   return queryInterface.bulkDelete('Pixel_Users', null, {});
+    return queryInterface.bulkDelete('Pixel_Users', null, {});
   }
 };
