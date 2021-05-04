@@ -23,8 +23,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 // app.use(restoreUser);
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 const store = new SequelizeStore({ db: sequelize });
 store.sync();
@@ -35,6 +33,9 @@ app.use(session({
   resave: false,
 })
 );
+
+app.use('/', indexRouter);
+app.use('/users', usersRouter);
 
 app.use((req, res, next) => {
   const err = new Error(`The requested page couldn't be found.`);
