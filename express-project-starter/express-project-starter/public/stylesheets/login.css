@@ -65,3 +65,11 @@ h1 {
 p {
     margin: 0;
 }
+h2{
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+li{
+    color: red;
+}
