@@ -1,8 +1,5 @@
 'use strict';
 
-//Testing can you see this comment?
-
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
       return queryInterface.bulkInsert('Pixel_Categories', [

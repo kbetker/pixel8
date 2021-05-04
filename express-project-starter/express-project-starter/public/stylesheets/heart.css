@@ -3,7 +3,7 @@
     width: 25px;
     height: 25px;
     background-size: 25px;
-    background-image: url("./images/heartGrey.svg");
+    background-image: url("../images/heartGrey.svg");
     background-repeat: no-repeat;
 }
 #heart_container:active,.pixel__heart-slidein:active, .pixel__heart-slideout:active{
@@ -23,7 +23,7 @@
 
     animation-fill-mode: forwards;
     background-clip: content-box;
-    background-image: url("./images/heartColor.svg");
+    background-image: url("../images/heartColor.svg");
     background-size: 100%;
     background-repeat: no-repeat;
     box-sizing: border-box;
@@ -41,7 +41,6 @@
     border-radius: 35px;
     animation: shadow 0.3s linear 1.2s 1 normal forwards;
 }
-/* .pixel__heart { display: none; } */
 
 @keyframes slidein {
     from { padding-top: 100%; }

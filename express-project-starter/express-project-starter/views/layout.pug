@@ -5,5 +5,23 @@ html(lang="en")
       meta(charset="UTF-8")
       meta(http-equiv="X-UA-Compatible", content="IE=edge")
       meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      link(rel="stylesheet" href="/stylesheets/header.css")
   body
+    .header
+      .nav--container
+        img(src="../images/pixel8logo.svg", alt="" class="logo")
+        .nav
+          .nav--element
+            a(href="/" class="nav--link") Home
+          .nav--element--divider |
+          .nav--element
+            a(href="/" class="nav--link") About
+          .nav--element--divider |
+          .nav--element
+            a(href="/" class="nav--link") New Post
+          .nav--element--divider |
+          .nav--element
+            a(href="/users/login" class="nav--link") Log In
+
+
     block content
