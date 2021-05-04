@@ -1,11 +1,11 @@
 const db = require('./db/models');
-const pixel_user = require('./db/models/pixel_user');
+// const pixel_user = require('./db/models/pixel_user');
 
 const loginUser = (req, res, user) => {
-    console.log("sessionInfo", req.session);
     req.session.auth = {
-        userId: pixel_user.id, //is this the userId referenced below?
+        userId: user.id, //is this the userId referenced below?
     };
+    console.log("sessionInfo", req.session);
 };
 
 const logoutUser = (req, res) => {
