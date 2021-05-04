@@ -1,1 +1,38 @@
-@import  "./heart.css"
+@import  "./heart.css";
+
+.container {
+    margin-top: -8px;
+    display: grid;
+    grid-template-columns: 1fr 1108px 1fr;
+    z-index: -88;
+}
+.container--empty{
+    /* background-color: darkblue; */
+}
+.container--main{
+    background-color:#888888;
+}
+
+.trending--img {
+    margin: 10px 0 0 35px;
+}
+
+.trending-container {
+    width: 1108px;
+   display: flex;
+   justify-content: center;
+}
+.trending-element-container{
+    margin: 15px 0 15px 0;
+    width: 1038px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.trending--element {
+    width: 195px;
+    height: 176px;
+    background-image: url('../images/animatedBackground3.gif');
+    background-size: 100%;
+    image-rendering: pixelated;
+}

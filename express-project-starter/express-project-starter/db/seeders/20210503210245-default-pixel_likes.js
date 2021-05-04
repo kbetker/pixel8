@@ -1,19 +1,7 @@
 'use strict';
 
-//Testing can you see this comment?
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
       return queryInterface.bulkInsert('Pixel_Likes', [
         { pixelUserId:  1, pixelStoryId: 2 , createdAt: new Date(), updatedAt: new Date()},
         { pixelUserId: 1, pixelStoryId: 3 , createdAt: new Date(), updatedAt: new Date() },
@@ -30,13 +18,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    /*
-      Add reverting commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkDelete('People', null, {});
-    */
       return queryInterface.bulkDelete('Pixel_Likes', null, {});
   }
 };
