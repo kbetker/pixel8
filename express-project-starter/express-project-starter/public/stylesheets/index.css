@@ -55,7 +55,7 @@ hr {
 .storiesColumn--container {
     width: 100%;
     /* height: 99px; */
-    background-color: seashell;
+    /* background-color: seashell; */
 }
 
 .discoverMoreColumn--container {
@@ -66,30 +66,113 @@ hr {
 
 .story--container {
     width: 100%;
-    background-color: blue;
+    background-color: rgb(88, 88, 88);
     height: 188px;
     margin: 15px 3px 5px 0;
+    display: grid;
+    grid-template-columns: 5fr 2fr;
 }
+.story--text{
+    /* background-color: rgb(16, 97, 172); */
+    /* display: grid; */
+    padding: 15px
+}
+
+.storyThumbnail--container{
+    /* width: 60px;
+    height: 60px; */
+    /* background-color: red; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.storyThumbnail {
+    width: 138px;
+    height: 138px;
+    box-shadow: 3px 3px 8px black inset;
+    background-image: url('../images/mariocark.jpg');
+    background-size: 100%;
+}
+.storyThumbnail img {
+    width: 88px;
+    height: 88px;
+}
+.category {
+    font-weight: bold;
+    color: #FFB43D;
+    font-size: 25px;
+    display: inline;
+    margin: 0;
+}
+.title {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 25px;
+    display: inline;
+    margin: 0 0 0 5px;
+}
+.summary {
+
+    color: #ffffff;
+    margin-top: 35px;
+    align-self: baseline;
+}
+
+
 
 .discoverMore--container {
     /* width: 100%; */
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr;
+    grid-template-rows: 1fr 5fr;
     /* height: 90px; */
-    background-color: red;
+    background-color: rgb(88, 88, 88);
+    height: 355px;
     margin: 15px 0 5px 13px;
+    box-shadow: 0 0 5px black;
 }
 
-.discoverMore--title {
+.discoverMoreTitle--container {
     justify-content: center;
+    display: flex;
+    justify-content: center;
+    /* background-color: cornflowerblue; */
 }
 
-.discoverMore--links {
-    justify-content: center;
+.discoverMoreLinks--container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    justify-items: center;
+    column-gap: 5px;
+    row-gap: 5px;
+    /* background-color: darkgreen; */
+    height: 268px;
+
 }
 .discoverMore--bottom {
     justify-content: center;
+    /* background-color: darkred; */
 }
+
+.discoverMoreLinks{
+    width: 84px;
+    height: 84px;
+    background-color: rgb(124, 124, 124);
+    box-shadow: 0 0 5px black inset;
+    color:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0 0 5px black;
+}
+.discoverMoreLinks:hover {
+    background-color: rgb(144, 144, 144);
+}
+
 h2 {
-    color: coral;
+    color: rgb(226, 125, 88);
+}
+
+a.genreSelect:link{
+    text-decoration: none;
 }
