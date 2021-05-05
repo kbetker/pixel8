@@ -5,7 +5,7 @@ const loginUser = (req, res, user) => {
     req.session.auth = {
         userId: user.id, //is this the userId referenced below?
     };
-    // console.log("sessionInfo", req.session);
+    console.log("sessionInfo", req.session);
 };
 
 const logoutUser = (req, res) => {
@@ -22,7 +22,7 @@ const requireAuth = (req, res, next) => {
 const restoreUser = async (req, res, next) => {
     // Log the session object to the console
     // to assist with debugging.
-    // console.log(req.session);
+    console.log(req.session);
 
     if (req.session.auth) {
         const { userId } = req.session.auth;  //check userId
