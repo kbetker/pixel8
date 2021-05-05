@@ -12,8 +12,8 @@ const { restoreUser } = require('./auth');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-// const aboutRouter = require('./routes/about')
-const storiesRouter = require('./routes/stories')
+const aboutRouter = require('./routes/about');
+// const articlesRouter = require('./routes/articles')
 const submitRouter = require('./routes/submit')
 // const signupRouter = require('./routes/signup')
 // const userInfoRouter = require('./routes/user-info')
@@ -42,8 +42,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/about', aboutRouter);
-app.use('/stories', storiesRouter);
+app.use('/about', aboutRouter);
+// app.use('/articles', articlesRouter);
 app.use('/submit', submitRouter);
 // app.use('/signup', signupRouter);
 // app.use('/user-info', userInfoRouter);

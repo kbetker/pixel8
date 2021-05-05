@@ -1,0 +1,57 @@
+extends layout
+
+append head
+	link(rel="stylesheet" href="/stylesheets/index.css")
+
+block content
+	.spacer
+	.container
+		.container--empty
+		.container--empty
+			p
+			| Webpage designed by!{' '}
+			a(href='https://github.com/f-q-a') Felipe Araujo
+			|,!{' '}
+			a(href='https://github.com/kbetker') Kevin Betker
+			| , and!{' '}
+			a(href='https://github.com/zachmyu') Zach Yu
+			| .
+			div
+			p Pixel8 is a full stack application designed for all game-related articles, where you can read reviews, opinions, walkthroughs, and receive news about the latest and greatest in the gaming world. Read all about upcoming games and honest reviews by users that will help you decide if you would like to buy your next game!
+			div
+			p The application is made with a Pug/CSS frontend and all current stories are contributed by the makers of the page. The backend is an Express server with a sequelize database.
+			div
+			p Key Features
+			ul
+				li Read various game related stories and articles contributed by users
+				li Create new users and have user login with authorization
+				li Follow favorite users and game types populate feeds with only related stories
+				li Like and comment on the various articles
+				div
+			p Technologies Used
+			ul Front End
+				li Pug
+				li Javascript
+				li CSS
+			ul Back End
+				li Express
+				li Javascript
+				li sequelize
+				li Heroku deployment
+			div
+			p Frontend Overview
+			div
+			p The frontend is built based off inspiration from the user submitted articles site, Medium.com. All logos, designs, and UI have been designed by one of our team members, Kevin Betker.
+			div
+			p Styling was handled using CSS in JavaScript.
+			div
+			div
+			p Backend Overview
+			div
+			p The Express backend is a collection of RESTful routes serving data to the frontend and an interface with the sequelize database.
+			div
+			p Seed data was hand coded by team effort to flesh out all articles, comments, and user-base. The seed data was of particular importance to this application because we needed a lot of articles and even more users in order to have a good sorting basis.
+			div
+			p Conclusion
+			div
+			p Pixel8 was a lot of fun to make because our team worked very well together to delegate and spread out all tasks as equally as possible, with everyone on the team contributing to every portion of the project together. Every person on the team was able to contribute to every single task to create the website, including seeder data, CSS, front end mapping and design, as well as back end routing.
