@@ -15,7 +15,19 @@ body {
     display: flex;
     justify-content: space-around;
     z-index: 88;
+    position: fixed;
+    width: 100%;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
+.spacer {
+    height: 229px
+}
+
+
+
 .nav--container {
     width: 1108px;
     display: flex;
@@ -30,6 +42,11 @@ body {
     justify-content: space-between;
     align-items: flex-end;
     margin: 0 45px 35px 0;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+
 }
 .nav--element {
     color: #FFB43D;
@@ -39,6 +56,10 @@ body {
 }
 .logo {
     height: 220px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 
 .nav--link:visited, .nav--link:hover, .nav--link:active, .nav--link:link {
@@ -48,3 +69,25 @@ body {
 .nav--link:hover {
     color: #ffffff;
 }
+
+.resizeLogo {
+    /* background-color: green; */
+    height: 128px;
+    margin-left: 22px;
+    object-position: 0 -38px;
+ }
+
+ .resizeHeader {
+    height: 108px;
+
+ }
+ .resizeNav {
+    width: 450px;
+    font-weight: bolder;
+    font-size: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin: 0 45px 25px 0;
+
+ }
