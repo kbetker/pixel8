@@ -32,17 +32,34 @@ const submitValidators = [
 ];
 
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
+    const categories = await db.Pixel_Category.findAll();
     const story = db.Pixel_Story.build();
     res.render('story-new', {
         title: 'Submit',
+        categories,
         story,
         csrfToken: req.csrfToken(),
     });
 }));
 
+router.post('/new', csrfProtection, submitValidators, asyncHandler(async (req, res, next) => {
+    const { title, summary, body, imageUrl, categoryId, genre } = req.body
 
-// router.post('/', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
-
-// }));
+    let errors = [];
+    const validatorErrors = validationResult(req);
+    const newStory = await db.Pixel_Story.build({
+        title, summary, body, imageUrl, categoryId, genre
+    })
+    if (validatorErrors.isEmpty()) {
+        console.log("Hahaha!")
+        await newStory.save();
+        console.log("story submitted!")
+        res.redirect('/');
+    } else {
+        console.log("uhoh....")
+        errors = validatorErrors.array().map((error) => error.msg);
+        res.render('story-new', { title, summary, body, imageUrl, categoryId, genre, errors, csrfToken: req.csrfToken() });
+    }
+}));
 
 module.exports = router;

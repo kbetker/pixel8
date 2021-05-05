@@ -1,10 +1,39 @@
 extends layout
 
 append head
-  script(src="/javascripts/genre-selector.js" type="module" defer)
-  link(rel="stylesheet" href="/stylesheets/genre-selector.css")
+	script(src="/javascripts/genre-selector.js" type="module" defer)
+	link(rel="stylesheet" href="/stylesheets/genre-selector.css")
 block content
 
-  h1= title
-  p New story
-  include genre-selector.pug
+	h1= title
+	p New story
+	include genre-selector.pug
+	body
+	form(action='/submit/new' method='post')
+		input(type='hidden' name='_csrf' value=csrfToken)
+		div
+			if errors
+				div(class='alert alert-danger' role='alert')
+					h2 The following error(s) occurred:
+					ul
+						each error in errors
+							li= error
+			else
+				div
+					label Title
+					input(type='text' name='title')
+				div
+					label Summary
+					input(type='text' name='summary' required)
+				div
+					label Body
+					textarea(name='body' required)
+				div
+					label Image Url
+					input(type='text' name='imageUrl' required)
+				div
+					label Category
+					select(name='categoryId' required)
+						each category in categories
+							option(value=category.id)= category.name
+				button(type='submit' value='Create Story') Submit Story
