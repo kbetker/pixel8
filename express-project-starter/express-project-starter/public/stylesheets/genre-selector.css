@@ -1,0 +1,32 @@
+
+/* ================ Genre Select Stuff ================== */
+.sub {
+    color: red;
+    display: inline;
+}
+.sub--hidden {
+    display: none;
+}
+select {
+
+    background-color: #888888;
+    color: rgb(255, 200, 112);
+    font-family:  Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    font-size: large;
+    border-radius: 4px;
+    border: none;
+    margin: 10px;
+    width: 250px;
+    padding: 3px;
+}
+select:focus  {
+    outline: 0;
+}
+.options  {
+    background-color: #ffbb00;
+}
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+  }
