@@ -70,21 +70,53 @@ hr {
     height: 188px;
     margin: 15px 3px 5px 0;
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 5fr 2fr;
 }
 .story--text{
-    background-color: rgb(16, 97, 172);
+    /* background-color: rgb(16, 97, 172); */
+    /* display: grid; */
+    padding: 15px
 }
 
-.story--thumbnail{
-    width: 60px;
-    height: 60px;
-    background-color: red;
+.storyThumbnail--container{
+    /* width: 60px;
+    height: 60px; */
+    /* background-color: red; */
     display: flex;
     justify-content: center;
     align-items: center;
 }
+.storyThumbnail {
+    width: 138px;
+    height: 138px;
+    box-shadow: 3px 3px 8px black inset;
+    background-image: url('../images/mariocark.jpg');
+    background-size: 100%;
+}
+.storyThumbnail img {
+    width: 88px;
+    height: 88px;
+}
+.category {
+    font-weight: bold;
+    color: #FFB43D;
+    font-size: 25px;
+    display: inline;
+    margin: 0;
+}
+.title {
+    font-weight: bold;
+    color: #ffffff;
+    font-size: 25px;
+    display: inline;
+    margin: 0 0 0 5px;
+}
+.summary {
 
+    color: #ffffff;
+    margin-top: 35px;
+    align-self: baseline;
+}
 
 
 
