@@ -12,3 +12,5 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
 
 }));
+
+module.exports = router;
