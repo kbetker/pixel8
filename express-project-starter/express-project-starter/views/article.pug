@@ -1,0 +1,5 @@
+extends layout.pug
+block content
+    div= story.body
+    each comment in story.Pixel_Comments
+        div= comment.body
