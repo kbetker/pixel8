@@ -1,5 +1,27 @@
-extends layout.pug
+extends layout
 block content
+    .spacer
+
+    body
+    div= user
     div= story.body
-    each comment in story.Pixel_Comments
-        div= comment.body
+    form--container
+      //- +validationErrorSummary(errors)
+      form(action=`/stories/${story.id}/comment-new` method='post')
+        .form--element--container
+          input(type='hidden' name='_csrf' value=csrfToken)
+        .form--element
+            if errors
+                div(class='alert alert-danger' role='alert')
+                    h2 The following error(s) occurred:
+                    ul
+                        each error in errors
+                            li= error
+            else
+                h1 Comments
+        .form--element
+            label(for='body')
+                p Share your comments here
+            textarea(id='body' name='body' class='form-control' rows='5')
+        .form--element
+            button(type='submit' class='btn btn-primary') Submit Comment
