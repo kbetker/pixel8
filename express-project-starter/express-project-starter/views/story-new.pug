@@ -4,7 +4,8 @@ append head
 	script(src="/javascripts/genre-selector.js" type="module" defer)
 	link(rel="stylesheet" href="/stylesheets/genre-selector.css")
 block content
-
+	.spacer
+	.spacer
 	h1= title
 	p New story
 	include genre-selector.pug
@@ -32,8 +33,15 @@ block content
 					label Image Url
 					input(type='text' name='imageUrl' required)
 				div
+					label authorId
+					input(type='text' name='authorId' required)
+				div
+					label viewCount
+					input(type='text' name='viewCount' required)
+				div
 					label Category
 					select(name='categoryId' required)
 						each category in categories
 							option(value=category.id)= category.name
+					input(type="hidden" name="genre" id="genre" value="Null")
 				button(type='submit' value='Create Story') Submit Story
