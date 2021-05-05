@@ -12,7 +12,7 @@ const { restoreUser } = require('./auth');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
-// const aboutRouter = require('./routes/about')
+const aboutRouter = require('./routes/about');
 // const articlesRouter = require('./routes/articles')
 const submitRouter = require('./routes/submit')
 // const signupRouter = require('./routes/signup')
@@ -42,7 +42,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(restoreUser);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-// app.use('/about', aboutRouter);
+app.use('/about', aboutRouter);
 // app.use('/articles', articlesRouter);
 app.use('/submit', submitRouter);
 // app.use('/signup', signupRouter);
