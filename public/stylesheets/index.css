@@ -34,20 +34,69 @@
 .trending--element {
     width: 195px;
     height: 176px;
+    justify-content: center;
+    align-items: center;
+    font-family: Helvetica, Arial, sans-serif;
     display: flex;
+    color: white;
     background-image: url('../images/videoGamePics/battle-axe.jpg');
     background-size: 100%;
+
+    font-size: 22px;
     image-rendering: pixelated;
+    text-shadow: 0 0 4px black;
+    z-index: 4;
 }
-.trending--text {
+.trending--title {
+    display: flex;
     width: 195px;
     height: 176px;
-    font-family: Helvetica, Arial, sans-serif;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 888;
 }
 .trending--overlay{
     width: 195px;
     height: 176px;
-    position: relative;
+    position: absolute;
+    z-index: 6;
+}
+.trending--heart{
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-start;
+    z-index: 8;
+    margin: -8px 0px 0px -80px;
+    text-shadow: 0 0 5px black;
+    background-image: url("../images/heartColor.svg");
+}
+.trending--like {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-start;
+    z-index: 8;
+    font-size: 14px;
+    margin: 0 8px 10px -105px;
+    text-shadow: 0 0 5px black;
+}
+.number {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    align-self: flex-start;
+    justify-self: flex-start;
+    z-index: 8;
+    font-size: 14px;
+    margin: 8px 8px 10px -145px;
+    text-shadow: 0 0 5px black;
+    font-size: 28px;
+    color: #FFB43D;
+
 }
 
 
