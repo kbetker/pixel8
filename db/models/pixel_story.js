@@ -15,9 +15,10 @@ module.exports = (sequelize, DataTypes) => {
     const likeMap = { // User -> User, through Follow as following
       through: 'Pixel_Likes',
       otherKey: 'pixelUserId',
-      foreignKey:'pixelStoryId'
+      foreignKey:'pixelStoryId',
+      as: "likes"
     }
-    
+
     Pixel_Story.belongsToMany(models.Pixel_User, likeMap)
     Pixel_Story.hasMany(models.Pixel_Comment, {foreignKey: 'pixelStoryId'});
     Pixel_Story.belongsTo(models.Pixel_Category, {foreignKey: "categoryId"});
