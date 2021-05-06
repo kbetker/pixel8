@@ -11,13 +11,23 @@ router.get('/', function(req, res) {
 router.get('/homepage-stories', async (req, res) => {
   const pixel_stories = await Pixel_Story.findAll( {
     include: [Pixel_Category, Pixel_User],
-
     limit: 10,
   } )
 
+  res.send(pixel_stories);
+});
+
+
+router.get('/storiesByGenre/:id', async (req, res) => {
+  const genre = req.params.id
+  const pixel_stories = await Pixel_Story.findAll( {
+    where: { genre: genre },
+    include: [Pixel_Category, Pixel_User],
+    limit: 10,
+
+  } )
 
   res.send(pixel_stories);
-
 })
 
 
