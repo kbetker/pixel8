@@ -72,17 +72,30 @@ hr {
     margin: 15px 3px 5px 0;
     display: grid;
     grid-template-columns: 5fr 2fr;
+    -webkit-transition: all 0.35s linear;
+    -moz-transition: all 0.35s linear;
+    -o-transition: all 0.35s linear;
+    transition: all 0.35s linear;
+
+}
+.story--container:hover{
+    background-color: rgb(110, 110, 110);
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+
+}
+
+a {
+    text-decoration: none;
 }
 .story--text{
-    /* background-color: rgb(16, 97, 172); */
-    /* display: grid; */
-    padding: 15px
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .storyThumbnail--container{
-    /* width: 60px;
-    height: 60px; */
-    /* background-color: red; */
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,19 +104,25 @@ hr {
     width: 138px;
     height: 138px;
     box-shadow: 3px 3px 8px black inset;
-    background-image: url('../images/mariocark.jpg');
+    /* background-image: url('../images/mariocark.jpg'); */
     background-size: 100%;
+    image-rendering: pixelated;
 }
 .storyThumbnail img {
     width: 88px;
     height: 88px;
 }
+.title_category {
+
+}
 .category {
     font-weight: bold;
     color: #FFB43D;
     font-size: 25px;
-    display: inline;
-    margin: 0;
+    display: inline-block;
+    /* margin: 0 0 45px 0; */
+    /* height: 95px; */
+    /* background-color: aqua; */
 }
 .title {
     font-weight: bold;
@@ -118,11 +137,17 @@ hr {
     margin-top: 35px;
     align-self: baseline;
 }
+.author {
+    color: #ffffff;
+    font-size: 12px;
+    align-self: baseline;
+    display: block;
+}
 
 
 
 .discoverMore--container {
-    /* width: 100%; */
+    width: 400px;
     display: grid;
     grid-template-rows: 1fr 5fr;
     /* height: 90px; */
@@ -130,6 +155,12 @@ hr {
     height: 355px;
     margin: 15px 0 5px 13px;
     box-shadow: 0 0 5px black;
+
+    position: -webkit-sticky;
+    position: sticky;
+    top: 125px;
+
+    font-size: 20px;
 }
 
 .discoverMoreTitle--container {
@@ -165,6 +196,7 @@ hr {
     justify-content: center;
     align-items: center;
     text-shadow: 0 0 5px black;
+    font-size: 14px;
 }
 .discoverMoreLinks:hover {
     background-color: rgb(144, 144, 144);
