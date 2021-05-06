@@ -1,0 +1,41 @@
+.form--element--container {
+  display: flex;
+  justify-content: center;
+  width: auto;
+  height: auto;
+}
+
+th {
+  border: 1px solid black;
+  padding: 0.5rem;
+  width: auto;
+  background-color: rgba(58, 58, 58, 0.88);
+  color: #ffb43d;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: left;
+}
+
+td {
+  border: 1px solid black;
+  padding: 0.5rem;
+  width: auto;
+  background-color: rgba(108, 108, 108, 0.88);
+  color: black;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: rgba(228, 228, 228, 0.88);
+}
+
+a {
+  text-decoration: none;
+  color: #ffbc50;
+}
+
+a:hover {
+  text-decoration: underline;
+}
