@@ -5,7 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     pixelStoryId: DataTypes.INTEGER
   }, {});
   Pixel_Like.associate = function(models) {
-    // associations can be defined here
+  Pixel_Like.belongsTo(models.Pixel_User, { foreignKey: "pixelUserId" })
+  Pixel_Like.belongsTo(models.Pixel_Story, { foreignKey: "pixelStoryId" })
 
   };
   return Pixel_Like;
