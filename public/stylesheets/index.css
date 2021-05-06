@@ -20,7 +20,7 @@
 }
 
 .trending-container {
-    width: 1108px;
+   width: 1108px;
    display: flex;
    justify-content: center;
 }
@@ -34,9 +34,20 @@
 .trending--element {
     width: 195px;
     height: 176px;
-    background-image: url('../images/animatedBackground3.gif');
+    display: flex;
+    background-image: url('../images/videoGamePics/battle-axe.jpg');
     background-size: 100%;
     image-rendering: pixelated;
+}
+.trending--text {
+    width: 195px;
+    height: 176px;
+    font-family: Helvetica, Arial, sans-serif;
+}
+.trending--overlay{
+    width: 195px;
+    height: 176px;
+    position: relative;
 }
 
 
