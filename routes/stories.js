@@ -2,19 +2,23 @@ const express = require('express');
 const router = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
-const { Pixel_Like, Pixel_Comment, Pixel_Story, Pixel_User } = require('../db/models');
-const pixel_user = require('../db/models/pixel_user.js');
+const db = require('../db/models');
 const { requireAuth } = require('../auth');
 
 router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
     const storyId = parseInt(req.params.id, 10);
-    const story = await Pixel_Story.findByPk(storyId, {
-        include: Pixel_Comment
+    const story = await db.Pixel_Story.findByPk(storyId, {
+        include: [
+        {model: db.Pixel_Comment,
+          include: db.Pixel_User
+        },
+        {model: db.Pixel_User}
+      ],
     });
-    const user = await Pixel_User.findByPk(story.authorId);
-    const comments = story.Pixel_Comments;
+    // const comments = await Pixel_Story
+    // console.log(Pixel_Comment);
     console.log(story);
-    res.render('stories', {user, story, csrfToken: req.csrfToken()});
+    res.render('stories', {story, csrfToken: req.csrfToken()});
 }));
 
 
