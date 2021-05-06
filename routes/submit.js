@@ -21,8 +21,8 @@ const submitValidators = [
     check('imageUrl')
         .exists({ checkFalsy: true })
         .withMessage('Please link an image for your story'),
-        // .isURL({ protocols: ['http', 'https', 'ftp'] })
-        // .withMessage('image can only be submitted via a url link'),
+    // .isURL({ protocols: ['http', 'https', 'ftp'] })
+    // .withMessage('image can only be submitted via a url link'),
     check('genre')
         .exists({ checkFalsy: true })
         .withMessage('Please select a genre for your article'),
@@ -35,7 +35,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     const categories = await db.Pixel_Category.findAll();
     const story = db.Pixel_Story.build();
     res.render('story-new', {
-        title: 'Submit',
+        title: 'Submit New Story',
         categories,
         story,
         csrfToken: req.csrfToken(),
