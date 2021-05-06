@@ -1,9 +1,38 @@
 extends layout
 
-append head
-	script(src="/javascripts/genre-selector.js" type="module" defer)
-	link(rel="stylesheet" href="/stylesheets/genre-selector.css")
 block content
 	.spacer
-	h1= title
-	p New user
+	body
+	if locals.authenticated
+		h1 You are already logged in!
+	else
+		h1 New user
+		form(action='/signup/new' method='post')
+			input(type='hidden' name='_csrf' value=csrfToken)
+			div
+				if errors
+					div(class='alert alert-danger' role='alert')
+						h2 The following error(s) occurred:
+						ul
+							each error in errors
+								li= error
+				else
+					div
+						label Full Name
+						input(type='text' name='fullName')
+					div
+						label Username
+						input(type='text' name='username')
+					div
+						label Email Address
+						input(type='text' name='email')
+					div
+						label About
+						textarea(name='about')
+					div
+						label Password
+						input(type='password' name='hashedPassword' required)
+					div
+						label confirmPassword
+						input(type='password' name='confirmPassword' required)
+					button(type='submit' value='Create User') Register!

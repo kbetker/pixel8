@@ -15,7 +15,7 @@ const usersRouter = require('./routes/users');
 const aboutRouter = require('./routes/about');
 // const articlesRouter = require('./routes/articles')
 const submitRouter = require('./routes/submit')
-// const signupRouter = require('./routes/signup')
+const signupRouter = require('./routes/signup')
 // const userInfoRouter = require('./routes/user-info')
 
 const app = express();
@@ -45,7 +45,7 @@ app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 // app.use('/articles', articlesRouter);
 app.use('/submit', submitRouter);
-// app.use('/signup', signupRouter);
+app.use('/signup', signupRouter);
 // app.use('/user-info', userInfoRouter);
 
 app.use((req, res, next) => {

@@ -9,38 +9,46 @@ block content
 	p New story
 	include genre-selector.pug
 	body
-	form(action='/submit/new' method='post')
-		input(type='hidden' name='_csrf' value=csrfToken)
-		div
-			if errors
-				div(class='alert alert-danger' role='alert')
-					h2 The following error(s) occurred:
-					ul
-						each error in errors
-							li= error
-			else
-				div
-					label Title
-					input(type='text' name='title')
-				div
-					label Summary
-					input(type='text' name='summary' required)
-				div
-					label Body
-					textarea(name='body' required)
-				div
-					label Image Url
-					input(type='text' name='imageUrl' required)
-				div
-					label authorId
-					input(type='text' name='authorId' required)
-				div
-					label viewCount
-					input(type='text' name='viewCount' required)
-				div
-					label Category
-					select(name='categoryId' required)
-						each category in categories
-							option(value=category.id)= category.name
-					input(type="hidden" name="genre" id="genre" value="Null")
-				button(type='submit' value='Create Story') Submit Story
+	if locals.authenticated
+		form(action='/submit/new' method='post')
+			input(type='hidden' name='_csrf' value=csrfToken)
+			div
+				if errors
+					div(class='alert alert-danger' role='alert')
+						h2 The following error(s) occurred:
+						ul
+							each error in errors
+								li= error
+				else
+					div
+						label Title
+						input(type='text' name='title')
+					div
+						label Summary
+						input(type='text' name='summary')
+					div
+						label Body
+						textarea(name='body')
+					div
+						label Image Url
+						input(type='text' name='imageUrl')
+					div
+						label authorId
+						input(type='text' name='authorId' required)
+					div
+						label viewCount
+						input(type='text' name='viewCount' required)
+					div
+						label Category
+						select(name='categoryId' required)
+							each category in categories
+								option(value=category.id)= category.name
+						input(type="hidden" name="genre" id="genre" value="Null")
+					button(type='submit' value='Create Story') Submit Story
+	else
+		p
+		| Please!{' '}
+		a(href="/users/login" class="nav--link") Log In
+		|!{' '}or!{' '}
+		a(href="/users/register" class="nav--link") Register
+		|!{' '}to submit a story!
