@@ -42,7 +42,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
   if (res.locals.user) {
     const sessionUserId = res.locals.user.dataValues.id;
-    // const following = user.followings
     res.render('user', { user, sessionUserId, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
@@ -50,6 +49,19 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
 }));
 
+/* GET user edit page. */
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = await db.Pixel_User.findByPk(userId);
+  if (res.locals.user) {
+    const sessionUserId = res.locals.user.dataValues.id;
+    res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
+  } else {
+    res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
+  }
+}));
+
+/* POST user edit page. */
 router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
   if (req.body.action && req.body.action === "edit") {
     res.render('user-edit', { user, csrfToken: req.csrfToken() });
