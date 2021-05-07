@@ -1,38 +1,57 @@
 extends layout
 
+append head
+	link(rel="stylesheet" href="/stylesheets/users-signup.css")
 block content
 	.spacer
-	body
-	if locals.authenticated
-		h1 You are already logged in!
-	else
-		h1 New user
-		form(action='/signup/new' method='post')
-			input(type='hidden' name='_csrf' value=csrfToken)
-			div
-				if errors
-					div(class='alert alert-danger' role='alert')
-						h2 The following error(s) occurred:
-						ul
-							each error in errors
-								li= error
-				else
-					div
-						label Full Name
-						input(type='text' name='fullName')
-					div
-						label Username
-						input(type='text' name='username')
-					div
-						label Email Address
-						input(type='text' name='email')
-					div
-						label About
-						textarea(name='about')
-					div
-						label Password
-						input(type='password' name='hashedPassword' required)
-					div
-						label confirmPassword
-						input(type='password' name='confirmPassword' required)
-					button(type='submit' value='Create User') Register!
+	.container
+		.form--container
+			if locals.authenticated
+				h1 You are already logged in!
+			else
+				form(action='/signup/new' method='post')
+					.form--element--container
+						input(type='hidden' name='_csrf' value=csrfToken)
+						div
+						.form--element
+							if errors
+								div(class='alert alert-danger' role='alert')
+									h2 The following error(s) occurred:
+									ul
+										each error in errors
+											li= error
+							else
+								h1 New user
+								div
+						.form--element
+							label(for="fullName")
+								p Full Name
+							input(type='text' name='fullName')
+
+						.form--element
+							label(for="username")
+								p Username
+							input(type='text' name='username')
+
+						.form--element
+							label(for="email")
+								p Email Address
+							input(type='text' name='email')
+
+						.form--element
+							label(for="about")
+								p About
+							textarea(name='about')
+
+						.form--element
+							label(for="Password")
+								p Password
+							input(type='password' name='hashedPassword' required)
+
+						.form--element
+							label(for="confirmPassword")
+								p confirmPassword
+							input(type='password' name='confirmPassword' required)
+
+						.form--element
+							button(type='submit' value='Create User') Register!
