@@ -11,13 +11,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     include: [
       {
         model: db.Pixel_Comment,
-        include: db.Pixel_User
+        include: [db.Pixel_User],
       },
-      { model: db.Pixel_User }
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
     ],
   });
-  // const comments = await Pixel_Story
-  // console.log(Pixel_Comment);
+  console.log(story.Pixel_Likes.length);
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
@@ -82,6 +82,21 @@ router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection
     // });
     //
 
+  }));
+
+  router.post('/articles/:id/likes', requireAuth, csrfProtection,
+  asyncHandler(async (req, res) => {
+    const story = await db.Pixel_Story.findByPk(storyId, {
+      include: [
+        {
+          model: db.Pixel_Like,
+          include: db.Pixel_User
+        },
+        { model: db.Pixel_User }
+      ],
+    });
+    const storyId = parseInt(req.params.id, 10);
+    console.log(storyId);
   }));
 
 module.exports = router;

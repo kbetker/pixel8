@@ -5,9 +5,11 @@ append head
 block content
     .spacer
     body
+
         div(id="heart_container")
             div(id="pixel__heart")
                 div(id="pixelHeart-shadow")
+        p= `Like(s): ${story.Pixel_Likes.length}`
         each Pixel_Comment in story.Pixel_Comments
             div= Pixel_Comment.Pixel_User.username
             div= Pixel_Comment.body
