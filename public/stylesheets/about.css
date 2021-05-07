@@ -4,9 +4,7 @@
     grid-template-columns: 1fr 1108px 1fr;
     z-index: -88;
 }
-.container--empty{
-    /* background-color: darkblue; */
-}
+
 .container--main{
     background-color:#888888;
     padding: 10px 38px;
