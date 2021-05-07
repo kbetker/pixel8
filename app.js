@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-// const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const { sequelize } = require('./db/models');
 const { environment, sessionSecret } = require('./config');
@@ -16,7 +16,6 @@ const aboutRouter = require('./routes/about');
 const storiesRouter = require('./routes/stories')
 const submitRouter = require('./routes/submit')
 const signupRouter = require('./routes/signup')
-// const userInfoRouter = require('./routes/user-info')
 
 const app = express();
 
@@ -25,28 +24,25 @@ app.set('view engine', 'pug');
 app.use(morgan('dev'));
 app.use(cookieParser(sessionSecret));
 app.use(express.json());
-// app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-// app.use(restoreUser);
+app.use(express.urlencoded({ extended: false }));
 
-// const store = new SequelizeStore({ db: sequelize });
-// store.sync();
+const store = new SequelizeStore({ db: sequelize });
 app.use(session({
   secret: sessionSecret,
-  // store,
+  store,
   saveUninitialized: false,
   resave: false,
-})
-);
-app.use(express.urlencoded({ extended: false }));
+}));
+
 app.use(restoreUser);
+store.sync();
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);
 app.use('/stories', storiesRouter);
 app.use('/submit', submitRouter);
 app.use('/signup', signupRouter);
-// app.use('/user-info', userInfoRouter);
 
 app.use((req, res, next) => {
   const err = new Error(`The requested page couldn't be found.`);

@@ -13,7 +13,9 @@ block content
             if locals.authenticated && user.id === sessionUserId
                 .form--container
                     form(action= `/users/${user.id}/edit` method='post')
-                        button(type='submit' class='btn') Edit your profile!
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        form--element
+                            button(class='btn' name='action' value= 'edit' type='submit') Edit User Info
             div= `Stories Posted:`
                 each Pixel_Story in user.Pixel_Stories
                     div
@@ -27,5 +29,13 @@ block content
                     each following in user.followings
                         div
                         a(href=`/users/${following.id}` class="nav--link")= `${following.username}`
-            else
-                button(type='submit' class='btn') Follow this user!
+            else if locals.authenticated && user.id !== sessionUserId && !following
+                form(action=`/users/${user.id}/follow` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(class='btn' name='action' value= 'subscribe' type='submit') Follow this user!
+            else if locals.authenticated && user.id !== sessionUserId && following
+                form(action=`/users/${user.id}/follow` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(class='btn' name='action' value= 'subscribe' type='submit') Unfollow this user!

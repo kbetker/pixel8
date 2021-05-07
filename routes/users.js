@@ -36,27 +36,39 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Comment },
     ]
   });
+  const following = user.followers.some(element => {
+    return element.id === res.locals.user.id
+  })
+
   if (res.locals.user) {
     const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user', { user, sessionUserId, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+    // const following = user.followings
+    res.render('user', { user, sessionUserId, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   }
 
 }));
 
-/* PATCH update to user page. */
-router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const user = await db.Pixel_User.findByPk(userId, {
-    include: [
-      { model: db.Pixel_Story },
-      { model: db.Pixel_Follower },
-      { model: db.Pixel_Comment },
-      { model: db.Pixel_Like }
-    ]
+router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+  if (req.body.action && req.body.action === "edit") {
+    res.render('user-edit', { user, csrfToken: req.csrfToken() });
+  }
+}));
+
+/* PATCH follow page. */
+router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
+  const pixelFollowingId = parseInt(req.params.id, 10);
+  const pixelFollowerId = res.locals.user.id;
+  const follow = await db.Pixel_Follower.findOne({
+    where: { pixelFollowingId, pixelFollowerId },
   });
-  res.render('user', { user, csrfToken: req.csrfToken() });
+  if (follow) {
+    await follow.destroy();
+  } else {
+    await db.Pixel_Follower.create({ pixelFollowingId, pixelFollowerId });
+  }
+  res.redirect("back")
 }));
 
 /* GET login page. */
@@ -71,10 +83,8 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     password,
   } = req.body;
 
-
   let errors = [];
   const validatorErrors = validationResult(req);
-
 
   if (validatorErrors.isEmpty()) {
     const user = await db.Pixel_User.findOne({ where: { username } });
@@ -90,9 +100,7 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     errors.push('Login failed for the provided username and password');
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
-
   }
-
   res.render('users-login', { username, errors, csrfToken: req.csrfToken() });
 }));
 
