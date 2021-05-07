@@ -2,58 +2,78 @@ extends layout
 
 append head
 	link(rel="stylesheet" href="/stylesheets/about.css")
+
 block content
 	.spacer
 	.container
-		.container--text
-			.text--element
-				.text--intro
-					p
-					| Webpage designed by!{' '}
-					a(href='https://github.com/f-q-a') Felipe Araujo
-					|,!{' '}
-					a(href='https://github.com/kbetker') Kevin Betker
-					| , and!{' '}
-					a(href='https://github.com/zachmyu') Zach Yu
-					| .
-				.text--body
-					p Pixel8 is a full stack application designed for all game-related articles, where you can read reviews, opinions, walkthroughs, and receive news about the latest and greatest in the gaming world. Read all about upcoming games and honest reviews by users that will help you decide if you would like to buy your next game!
+		.container--empty
+		.container--main
+			h1 Pixel8 was designed and developed by:
+			.developerContainer
+				.developer
+					img(src="/images/about-felipe.png", alt="")
+					.developer--content
+						.name Felipe Araujo
+						a(href="https://github.com/f-q-a" target="_blank" rel="noopener noreferrer")
+							img(src="../images/gitHubLogo.png" class="about-githubLogo")
+						a(href="https://www.linkedin.com/in/felipe-q-araujo/" target="_blank" rel="noopener noreferrer")
+							img(src="../images/linkedin.png" class="about-linkedIn")
+				.developer
+					img(src="/images/about-zach.png", alt="")
+					.developer--content
+						.name Zach Yu
+						a(href="https://github.com/zachmyu" target="_blank" rel="noopener noreferrer")
+							img(src="../images/gitHubLogo.png" class="about-githubLogo")
+						a(href="https://www.linkedin.com/in/zach-yu-9b86ab1b/" target="_blank" rel="noopener noreferrer")
+							img(src="../images/linkedin.png" class="about-linkedIn")
+				.developer
+					img(src="/images/about-kevin.png", alt="")
+					.developer--content
+						.name Kevin Betker
+						a(href="https://github.com/kbetker" target="_blank" rel="noopener noreferrer")
+							img(src="../images/gitHubLogo.png" class="about-githubLogo")
+						a(href="https://www.linkedin.com/in/kevin-betker-878505128/" target="_blank" rel="noopener noreferrer")
+							img(src="../images/linkedin.png" class="about-linkedIn")
+
+			.text
+				h1 What is Pixel8?
+				p Pixel8 is a full stack application designed for all game-related articles, where you can read reviews, opinions, walkthroughs, and receive news about the latest and greatest in the gaming world. Read all about upcoming games and honest reviews by users that will help you decide if you would like to buy your next game!
+				div
+				p The application is made with a Pug/CSS frontend and all current stories are contributed by the makers of the page. The backend is an Express server with a sequelize database.
+				div
+				h1 Key Features
+				ul
+					li Read various game related stories and articles contributed by users
+					li Create new users and have user login with authorization
+					li Follow favorite users and game types populate feeds with only related stories
+					li Like and comment on the various articles
 					div
-					p The application is made with a Pug/CSS frontend and all current stories are contributed by the makers of the page. The backend is an Express server with a sequelize database.
-					div
-					h2 Key Features
-					ul
-						li Read various game related stories and articles contributed by users
-						li Create new users and have user login with authorization
-						li Follow favorite users and game types populate feeds with only related stories
-						li Like and comment on the various articles
-						div
-					h2 Technologies Used
-					ul
-						h3 Front End
-						li Pug
-						li Javascript
-						li CSS
-					ul
-						h3 Back End
-						li Express
-						li Javascript
-						li sequelize
-						li Heroku deployment
-					div
-					h2 Frontend Overview
-					div
-					p The frontend is built based off inspiration from the user submitted articles site, Medium.com. All logos, designs, and UI have been designed by one of our team members, Kevin Betker.
-					div
-					p Styling was handled using CSS in JavaScript.
-					div
-					div
-					h2 Backend Overview
-					div
-					p The Express backend is a collection of RESTful routes serving data to the frontend and an interface with the sequelize database.
-					div
-					p Seed data was hand coded by team effort to flesh out all articles, comments, and user-base. The seed data was of particular importance to this application because we needed a lot of articles and even more users in order to have a good sorting basis.
-					div
-					h2 Conclusion
-					div
-					p Pixel8 was a lot of fun to make because our team worked very well together to delegate and spread out all tasks as equally as possible, with everyone on the team contributing to every portion of the project together. Every person on the team was able to contribute to every single task to create the website, including seeder data, CSS, front end mapping and design, as well as back end routing.
+				h1 Technologies Used
+				ul
+					h2 Front End
+					li Pug
+					li Javascript
+					li CSS
+				ul
+					h2 Back End
+					li Express
+					li Javascript
+					li sequelize
+					li Heroku deployment
+				div
+				h1 Frontend Overview
+				div
+				p The frontend is built based off inspiration from the user submitted articles site, Medium.com. All logos, designs, and UI have been designed by one of our team members, Kevin Betker.
+				div
+				p Styling was handled using CSS in JavaScript.
+				div
+				div
+				h1 Backend Overview
+				div
+				p The Express backend is a collection of RESTful routes serving data to the frontend and an interface with the sequelize database.
+				div
+				p Seed data was hand coded by team effort to flesh out all articles, comments, and user-base. The seed data was of particular importance to this application because we needed a lot of articles and even more users in order to have a good sorting basis.
+				div
+				h1 Conclusion
+				div
+				p Pixel8 was a lot of fun to make because our team worked very well together to delegate and spread out all tasks as equally as possible, with everyone on the team contributing to every portion of the project together. Every person on the team was able to contribute to every single task to create the website, including seeder data, CSS, front end mapping and design, as well as back end routing.

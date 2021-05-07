@@ -2,8 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Pixel_Story = sequelize.define('Pixel_Story', {
     title: DataTypes.STRING,
-    body: DataTypes.STRING,
-    summary: DataTypes.STRING,
+    body: DataTypes.TEXT,
+    summary: DataTypes.TEXT,
     authorId: DataTypes.INTEGER,
     genre: DataTypes.STRING,
     imageUrl: DataTypes.STRING,

@@ -1,59 +1,90 @@
 .container {
-  margin-top: -8px;
-  z-index: -88;
-  background-image: url("../images/animatedBackground3.gif");
-  image-rendering: pixelated;
-  background-size: 100%;
-  background-position-y: -388px;
-  height: 1688px;
-  width: 100%;
-  padding-top: 88px;
+    margin-top: -8px;
+    display: grid;
+    grid-template-columns: 1fr 1108px 1fr;
+    z-index: -88;
+}
+.container--empty{
+    /* background-color: darkblue; */
+}
+.container--main{
+    background-color:#888888;
+    padding: 10px 38px;
+    box-shadow:  0px 5px 3px inset rgba(0, 0, 0, 0.4);
 }
 
-.container--text {
-  background-color: rgba(0, 0, 0, 0.85);
-  width: 100%;
-  height: auto;
-  color: white;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: normal;
-  display: flex;
-  justify-content: center;
-  /* padding: 28px 88px; */
+.developerContainer {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    /* background-color: red; */
 }
 
-.text--intro {
-  font-weight: bold;
-  padding: 20px 188px;
-  width: auto;
-  height: auto;
-  text-align: center;
+.developer {
+    display: flex;
+    flex-direction: column;
+    width: 325px;
+    padding-top: 20px;
+    /* background-color: aqua; */
+}
+.developer--content {
+    display: flex;
+    padding-top: 10px;
+    height: 40px;
+    justify-content: space-evenly;
+    /* background-color: rgb(29, 29, 29); */
+}
+.name {
+    color: #FFB43D;
+    font-weight: bold;
+    font-size: 20px;
+    /* padding-top: 2px; */
+    /* opacity: .6; */
+    /* background-color: red; */
 }
 
-.text--body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: 20px 288px;
-  width: auto;
-  height: auto;
+.about-linkedIn{
+    height:22px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
-
+.about-githubLogo{
+    height: 25px;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.about-linkedIn:hover{
+    height: 28px;
+}
+.about-githubLogo:hover{
+    height: 30px;
+}
+h1 {
+    color: #FFB43D;
+    font-size: 25px;
+    font-style: italic;
+    justify-self: center;
+}
 h2 {
-  color: #ffb43d;
+    color: #FFB43D;
+    font-size: 20px;
+    font-style: italic;
+    justify-self: center;
+    margin: 0 -20px;
 }
-
-h3 {
-  text-decoration: underline;
+li {
+    margin: 0;
 }
-
-a:visited,
-a:active,
-a:link {
-  color: #ffb43d;
-  text-decoration: none;
+.tech-used--li {
+    color: #ffffff;
+    font-size: 18px;
 }
-
-a:hover {
-  text-decoration: underline;
+.text {
+    color: white;
+    font-size: 18px;
+    margin: 64px 64px;
 }

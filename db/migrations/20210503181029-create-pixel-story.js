@@ -18,7 +18,7 @@ module.exports = {
       },
       summary: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       authorId: {
         allowNull: false,
