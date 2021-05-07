@@ -1,0 +1,59 @@
+.container {
+  margin-top: -8px;
+  z-index: -88;
+  background-image: url("../images/animatedBackground3.gif");
+  image-rendering: pixelated;
+  background-size: 100%;
+  background-position-y: -388px;
+  height: 1688px;
+  width: 100%;
+  padding-top: 88px;
+}
+
+.container--text {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  height: auto;
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  display: flex;
+  justify-content: center;
+  /* padding: 28px 88px; */
+}
+
+.text--intro {
+  font-weight: bold;
+  padding: 20px 188px;
+  width: auto;
+  height: auto;
+  text-align: center;
+}
+
+.text--body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 288px;
+  width: auto;
+  height: auto;
+}
+
+h2 {
+  color: #ffb43d;
+}
+
+h3 {
+  text-decoration: underline;
+}
+
+a:visited,
+a:active,
+a:link {
+  color: #ffb43d;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
