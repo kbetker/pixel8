@@ -61,28 +61,29 @@ const userValidators = [
         }),
 ];
 
-router.get('/signup', csrfProtection, asyncHandler(async (req, res, next) => {
-    res.send('user-signup', {title: 'Sign-up', csrfToken: req.csrfToken()});
+router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
+    const user = db.Pixel_User.build();
+    res.render('users-signup', { title: 'Sign-up', user, csrfToken: req.csrfToken() });
 }));
 
 
-router.post('/signup', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
+router.post('/new', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
     const { fullName, email, password, username } = req.body;
-    const user = db.Pixel_User.create({
-        fullName,
-        email,
-        username
-    });
 
+    let errors = [];
     const validatorErrors = validationResult(req);
+    const newUser = await db.Pixel_User.build({
+        fullName, email, username
+    })
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 8);
         user.hashedPassword = hashedPassword;
+        await newUser.save();
         loginUser(req, res, user);
         res.redirect('/')
-    }else{
+    } else {
         const errors = validatorErrors.array.map((error) => error.msg);
-        res.render('users-signup', {title: 'Sign-up', user, errors, csrfToken: req.csrfToken()});
+        res.render('users-signup', { user, errors, csrfToken: req.csrfToken() });
     }
 }));
 
