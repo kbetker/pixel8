@@ -5,11 +5,24 @@ append head
 block content
     .spacer
     body
-
+        div= story.body
+        if locals.authenticated
+            if story.authorId !== locals.user.id
+                .form--container
+                        form(action=`/stories/${story.id}/likes` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            .form--element
+                                button(class='btn' type='submit')= `Like`
+            if story.authorId === locals.user.id
+                .form--container
+                        form(action=`/stories/${story.id}/likes` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            .form--element
+                                button(class='btn' type='submit')= `Like`
+        p= `Like(s) ${story.Pixel_Likes.length}`
         div(id="heart_container")
             div(id="pixel__heart")
                 div(id="pixelHeart-shadow")
-        p= `Like(s): ${story.Pixel_Likes.length}`
         each Pixel_Comment in story.Pixel_Comments
             div= Pixel_Comment.Pixel_User.username
             div= Pixel_Comment.body
