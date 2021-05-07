@@ -8,6 +8,25 @@ block content
         div= story.body
         if locals.authenticated
             if story.authorId !== locals.user.id
+
+            .form--container
+                    form(action=`/stories/${story.id}/likes` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(class='btn' type='submit')= `Like`
+            if story.authorId === locals.user.id
+                .form--container
+                    form(action=`/stories/${story.id}/edit/` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(type='submit' class='btn btn-primary') Edit Story
+            if story.authorId === locals.user.id
+                .form--container
+                    form(action=`/stories/${story.id}/delete/` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(type='submit' class='btn btn-primary') Delete Story
+
                 .form--container
                         form(action=`/stories/${story.id}/likes` method='post')
                             input(type='hidden' name='_csrf' value=csrfToken)
@@ -19,6 +38,7 @@ block content
                             input(type='hidden' name='_csrf' value=csrfToken)
                             .form--element
                                 button(class='btn' type='submit')= `Like`
+
         p= `Like(s) ${story.Pixel_Likes.length}`
         div(id="heart_container")
             div(id="pixel__heart")
@@ -27,12 +47,20 @@ block content
             div= Pixel_Comment.Pixel_User.username
             div= Pixel_Comment.body
             if locals.authenticated && Pixel_Comment.Pixel_User.id === locals.user.id
+                if story.authorId === locals.user.id
+                div
                 .form--container
-                    form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        .form--element
-                            button(class='btn' name='action' value= 'delete' type='submit') Delete Comment
-                            button(class='btn' name='action' value= 'edit' type='submit') Edit Comment
+                        form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/` method='post')
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            .form--element
+                                button(type='submit' class='btn btn-primary') Edit Comment
+                if story.authorId === locals.user.id
+                div
+                    .form--container
+                            form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/delete/` method='post')
+                                input(type='hidden' name='_csrf' value=csrfToken)
+                                .form--element
+                                    button(type='submit' class='btn btn-primary') Delete Comment
         .form--container
         //- +validationErrorSummary(errors)
         form(action=`/stories/${story.id}/comment-new` method='post')

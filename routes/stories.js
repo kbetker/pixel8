@@ -20,6 +20,36 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, next) => {
+  const storyId = parseInt(req.params.id, 10);
+  const story = await db.Pixel_Story.findByPk(storyId, {
+    include: [
+      {
+        model: db.Pixel_Comment,
+        include: [db.Pixel_User],
+      },
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
+    ],
+  });
+  res.render('stories', { story, csrfToken: req.csrfToken() });
+}));
+
+router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+  const storyId = parseInt(req.params.id, 10);
+  const story = await db.Pixel_Story.findByPk(storyId, {
+    include: [
+      {
+        model: db.Pixel_Comment,
+        include: [db.Pixel_User],
+      },
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
+    ],
+  });
+  res.render('edit-story', { story, csrfToken: req.csrfToken() });
+}));
+
 
 
 
@@ -39,26 +69,15 @@ router.post('/:id(\\d+)/comment-new', requireAuth, csrfProtection,
 
   }));
 
-
-// router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
-
-// }));
-
 router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
 
     const storyId = parseInt(req.params.id, 10);
     const commentId = parseInt(req.params.comment_id, 10);
     const comment = await db.Pixel_Comment.findByPk(commentId);
+    console.log(`Is this the correct comment id? ${comment.id}`)
+    res.render('edit-comment', {comment, csrfToken: req.csrfToken()});
 
-    if (req.body.action && req.body.action == "delete") {
-      await comment.destroy();
-      res.redirect(`/stories/${storyId}`)
-    }
-    else if (req.body.action && req.body.action === "edit") {
-      console.log(`Is this the correct comment id? ${comment.id}`)
-      res.render('edit-comment', {comment, csrfToken: req.csrfToken()});
-    }
 
   }));
 
@@ -67,21 +86,26 @@ router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection
     const commentId = parseInt(req.params.comment_id, 10);
     const commentToUpdate = await db.Pixel_Comment.findByPk(commentId);
     const {body} = req.body;
-    console.log(commentToUpdate);
-    await commentToUpdate.update({pixelStoryId: commentToUpdate.pixelStoryId, pixelUserId:commentToUpdate.pixelUserId, body});
-    console.log(commentToUpdate.body);
-    res.redirect(`/stories/${commentToUpdate.pixelStoryId}`);
-    // const storyId = parseInt(req.params.id, 10);
-    // const currStory = await db.Pixel_Story.findByPk(storyId);
 
-    // const comment = await db.Pixel_Comment.create({
-    //   pixelStoryId: storyId,
-    //   pixelUserId: res.locals.user.id,
-    //   body
-    // });
-    //
+    await commentToUpdate.update({pixelStoryId: commentToUpdate.pixelStoryId, pixelUserId:commentToUpdate.pixelUserId, body});
+    res.redirect(`/stories/${commentToUpdate.pixelStoryId}`);
+
 
   }));
+
+
+
+  router.post('/:id(\\d+)/comments/:comment_id(\\d+)/delete', requireAuth, csrfProtection,
+  asyncHandler(async (req, res) => {
+    const storyId = parseInt(req.params.id, 10);
+    const commentId = parseInt(req.params.comment_id, 10);
+    const comment = await db.Pixel_Comment.findByPk(commentId);
+    const {body} = req.body;
+    await comment.destroy();
+    res.redirect(`/stories/${storyId}`)
+  }));
+
+
 
   router.post('/:id(\\d+)/likes', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
