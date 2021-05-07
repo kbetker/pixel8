@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 const db = require('../db/models');
 
 const loginValidators = [
@@ -20,20 +20,51 @@ const loginValidators = [
 ];
 
 /* GET users listing. */
-router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
-  res.send('respond with a resource');
+router.get('/', asyncHandler(async (req, res, next) => {
+  const users = await db.Pixel_User.findAll();
+  res.render('users-list', { users });
 }));
 
+/* GET user page. */
+router.get('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = await db.Pixel_User.findByPk(userId, {
+    include: [
+      { model: db.Pixel_Story },
+      { model: db.Pixel_User, as: "followings" },
+      { model: db.Pixel_User, as: "followers" },
+      { model: db.Pixel_Comment },
+    ]
+  });
+  res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+}));
+
+/* PATCH update to user page. */
+router.patch('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = await db.Pixel_User.findByPk(userId, {
+    include: [
+      { model: db.Pixel_Story },
+      { model: db.Pixel_Follower },
+      { model: db.Pixel_Comment },
+      { model: db.Pixel_Like }
+    ]
+  });
+  res.render('user', { user, csrfToken: req.csrfToken() });
+}));
+
+/* GET login page. */
 router.get('/login', csrfProtection, asyncHandler(async (req, res, next) => {
   res.render('users-login', { csrfToken: req.csrfToken() });
 }));
 
+/* POST login info. */
 router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, res, next) => {
   const {
     username,
     password,
   } = req.body;
-  console.log("user", username, password)
+
 
   let errors = [];
   const validatorErrors = validationResult(req);
@@ -51,17 +82,15 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
     }
 
     errors.push('Login failed for the provided username and password');
-    console.log("err-if", errors)
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
-    console.log("err-else", errors)
+
   }
 
   res.render('users-login', { username, errors, csrfToken: req.csrfToken() });
 }));
 
-
-
+/* GET logout page. */
 router.get('/logout', (req, res) => {
   logoutUser(req, res);
   res.redirect('/');
