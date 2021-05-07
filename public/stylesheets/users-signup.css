@@ -42,14 +42,29 @@ textarea {
   width: 500px;
   height: 200px;
 }
-button {
+.login__button{
   width: 233px;
   color: white;
   border-radius: 10px;
-  background-color: #ffb43d;
+  background-color: #FFB43D;
   height: 40px;
   font-size: large;
   font-weight: bold;
+}
+.login__button:hover{
+  background-color: #ffcc79;
+}
+.demo__button{
+  width: 233px;
+  color: #FFB43D;
+  border-radius: 10px;
+  background-color: #2e2e2e;
+  height: 40px;
+  font-size: large;
+  font-weight: bold;
+}
+.demo__button:hover{
+  background-color: #424242;
 }
 
 h1 {
