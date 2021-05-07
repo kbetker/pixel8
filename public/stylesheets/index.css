@@ -12,7 +12,7 @@
 }
 .container--main{
     background-color:#888888;
-    box-shadow:  0px 5px 5px inset rgba(0, 0, 0, 0.4);
+    box-shadow:  0px 5px 3px inset rgba(0, 0, 0, 0.4);
 }
 
 .trending--img {
@@ -20,7 +20,7 @@
 }
 
 .trending-container {
-    width: 1108px;
+   width: 1108px;
    display: flex;
    justify-content: center;
 }
@@ -34,15 +34,79 @@
 .trending--element {
     width: 195px;
     height: 176px;
-    background-image: url('../images/animatedBackground3.gif');
+    justify-content: center;
+    align-items: center;
+    font-family: Helvetica, Arial, sans-serif;
+    display: flex;
+    color: white;
+    background-image: url('../images/videoGamePics/battle-axe.jpg');
     background-size: 100%;
+
+    font-size: 22px;
     image-rendering: pixelated;
+    text-shadow: 0 0 4px black;
+    z-index: 4;
+}
+.trending--element:hover {
+    box-shadow: 0 0 10px black;
+    /* opacity: 0.7; */
+}
+.trending--title {
+    display: flex;
+    width: 195px;
+    height: 176px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 88;
+}
+.trending--overlay{
+    width: 195px;
+    height: 176px;
+    position: absolute;
+    z-index: 6;
+}
+.trending--heart{
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-start;
+    z-index: 8;
+    margin: -8px 0px 0px -80px;
+    text-shadow: 0 0 5px black;
+    background-image: url("../images/heartColor.svg");
+}
+.trending--like {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    align-self: flex-end;
+    justify-self: flex-start;
+    z-index: 8;
+    font-size: 14px;
+    margin: 0 8px 10px -105px;
+    text-shadow: 0 0 5px black;
+}
+.number {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    align-self: flex-start;
+    justify-self: flex-start;
+    z-index: 8;
+    font-size: 14px;
+    margin: 8px 8px 10px -145px;
+    text-shadow: 0 0 5px black;
+    font-size: 28px;
+    color: #FFB43D;
+
 }
 
 
 hr {
     border: 2px solid rgb(114, 114, 114);
-    margin: 35px
+    margin: 15px
 }
 
 .mainContent--container {
@@ -62,7 +126,7 @@ hr {
 .discoverMoreColumn--container {
     width: 100%;
     /* background-color: rgb(29, 43, 102); */
-    height: 2000px;
+    height: 2080px;
 
 }
 

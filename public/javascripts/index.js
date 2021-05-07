@@ -1,29 +1,4 @@
 window.addEventListener("load", (event)=>{
-    //===================  Heart Button ===============================================
-    let pixelHeartContainer = document.getElementById("heart_container");
-    let pixelHeart =  document.getElementById("pixel__heart");
-    let pixelHeartShadow = document.getElementById("pixelHeart-shadow");
-    let isHearted = false;
-
-    function checkHeart(){
-        if(isHearted){
-            pixelHeart.classList.remove("pixel__heart-slideout");
-            pixelHeart.classList.add("pixel__heart-slidein")
-            pixelHeartShadow.classList.add("pixelHeart-shadow")
-        } else {
-            pixelHeart.classList.add("pixel__heart-slideout");
-            pixelHeart.classList.remove("pixel__heart-slidein")
-            pixelHeartShadow.classList.remove("pixelHeart-shadow")
-        }
-    }
-    pixelHeartContainer.addEventListener("click", event => {
-        isHearted ? isHearted = false : isHearted = true;
-        checkHeart();
-    })
-    const heartInit = () => isHearted ? checkHeart() : console.log('not hearted')
-    heartInit();
-
-
 
     // const storyContainer = document.querySelector('.storiesColumn--container')
     const storiesColumn = document.querySelector('.storiesColumn--container')
@@ -54,6 +29,43 @@ window.addEventListener("load", (event)=>{
      await storiesFadeIn()
     }
 
+    //=================== Fill in Trending ========================================
+    const trendingContainer = document.querySelector('.trending-element-container')
+    const trending = async () => {
+        const trendFetch = await fetch('/stories/trending');
+        const trending = await trendFetch.json();
+        let sortedList = []
+        console.log("sortThisArray")
+
+        for(let i = 0; i < trending.length; i++){
+            let title = trending[i].title
+            let likes = trending[i].Pixel_Likes.length
+            let imageUrl = trending[i].imageUrl
+            let id = trending[i].id
+            sortedList.push({"title": title, "likes": likes, "imageUrl": imageUrl, "id": id})
+        }
+        sortedList.sort((a,b) => (a.likes > b.likes) ? -1 : 1)
+
+        for(let i = 0; i < 5; i++){
+              let title = sortedList[i].title
+              let likes = sortedList[i].likes
+              let imageUrl = sortedList[i].imageUrl
+              let id = sortedList[i].id
+            let trendingStory = document.createElement('div');
+            trendingStory.innerHTML = `
+            <a href="/stories/${id}">
+            <div class="trending--element" style="background-image: url('${imageUrl}')">
+                 <div class="number">${i + 1}</div>
+                 <div class="trending--title">${title}</div>
+                 <div class="trending--like">${likes}</div>
+                 <img src="../images/trendingStoriesOverlay.png" class="trending--overlay" >
+                 <img src="../images/heartColor23x23.png" class="trending--heart">
+            </div>  </a>   `
+            trendingContainer.appendChild(trendingStory)
+
+        }
+    };
+
 
     //=================== Main page stories ===========================================
     const homestories = async () => {
@@ -70,16 +82,10 @@ window.addEventListener("load", (event)=>{
     for(let i = 0; i < discoverLink.length; i++){
         discoverLink[i].addEventListener("click", async (e) => {
             let id = e.target.id
-
-            //fade out effect
             await storiesFadeOut();
-            //remove innerhtml of stories column
             storiesColumn.innerHTML = '';
-            // fetch with target id -- storiesByCategory and await response
             const storiesByGenre = await fetch(`/storiesByGenre/${id}`);
-            //json the response
             const json = await storiesByGenre.json();
-            // append stories to storiesColumn
             fillInStories(json)
 
         });
@@ -122,7 +128,7 @@ window.addEventListener("load", (event)=>{
 
 
 
-
+    trending()
     homestories()
     // .then((e) => {
     //     storiesFadeIn()
