@@ -34,8 +34,19 @@ router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async
       { model: db.Pixel_Like}
     ],
   });
-  await db.Pixel_
-  res.render('stories', { sessionUserId, story, csrfToken: req.csrfToken() });
+  await db.Pixel_Comment.destroy({where: {
+    pixelStoryId: storyId
+  }})
+  await db.Pixel_Like.destroy({where: {
+    pixelStoryId: storyId
+  }})
+  await db.Pixel_Story.destroy({where: {
+    id: storyId
+  }})
+
+
+
+  res.redirect('/');
 }));
 
 router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
