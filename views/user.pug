@@ -18,7 +18,7 @@ block content
                 each Pixel_Story in user.Pixel_Stories
                     div
                     a(href=`/stories/${Pixel_Story.id}` class="nav--link")= `${Pixel_Story.title}`
-            if locals.authenticated && locals.id === user.id
+            if locals.authenticated && user.id === sessionUserId
                 div= `Users who follow you:`
                     each follower in user.followers
                         div

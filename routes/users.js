@@ -36,8 +36,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Comment },
     ]
   });
-  const sessionUserId = res.locals.user.dataValues.id;
-  res.render('user', { user, sessionUserId, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+  if (res.locals.user) {
+    const sessionUserId = res.locals.user.dataValues.id;
+    res.render('user', { user, sessionUserId, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+  } else {
+    res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+  }
+
 }));
 
 /* PATCH update to user page. */
