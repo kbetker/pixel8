@@ -2,8 +2,6 @@ extends layout
 block content
     .spacer
     body
-        div= comment.body
-        div= comment.pixelUserId
         .form--container
             //- +validationErrorSummary(errors)
             form(action=`/stories/${comment.pixelStoryId}/comments/${comment.id}/edit` method='post')
