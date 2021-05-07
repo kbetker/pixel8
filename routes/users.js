@@ -26,7 +26,7 @@ router.get('/', asyncHandler(async (req, res, next) => {
 }));
 
 /* GET user page. */
-router.get('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, res, next) => {
+router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
   const user = await db.Pixel_User.findByPk(userId, {
     include: [
@@ -36,7 +36,8 @@ router.get('/:id(\\d+)', csrfProtection, requireAuth, asyncHandler(async (req, r
       { model: db.Pixel_Comment },
     ]
   });
-  res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+  const sessionUserId = res.locals.user.dataValues.id;
+  res.render('user', { user, sessionUserId, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
 }));
 
 /* PATCH update to user page. */

@@ -4,7 +4,7 @@ const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
 const db = require('../db/models');
 
-const userId = locals.id
+
 router.get(`/${userId}`, csrfProtection, asyncHandler(async (req, res, next) => {
     res.render('respond with a resource');
 }));
