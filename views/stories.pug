@@ -6,20 +6,23 @@ block content
     .spacer
     body
         div= story.body
-        if locals.authenticated
-            if story.authorId !== locals.user.id
+        if locals.authenticated && story.authorId !== locals.user.id
+            div
             .form--container
                     form(action=`/stories/${story.id}/likes` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         .form--element
                             button(class='btn' type='submit')= `Like`
+        if locals.authenticated && story.authorId === locals.user.id
             if story.authorId === locals.user.id
+                div
                 .form--container
                     form(action=`/stories/${story.id}/edit/` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         .form--element
                             button(type='submit' class='btn btn-primary') Edit Story
             if story.authorId === locals.user.id
+                div
                 .form--container
                     form(action=`/stories/${story.id}/delete/` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)

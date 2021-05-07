@@ -17,11 +17,13 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Like}
     ],
   });
+  console.log(story);
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
-router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
+  const sessionUserId = res.locals.user.dataValues.id;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
@@ -32,11 +34,12 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, n
       { model: db.Pixel_Like}
     ],
   });
-  res.render('stories', { story, csrfToken: req.csrfToken() });
+  res.render('stories', { sessionUserId, story, csrfToken: req.csrfToken() });
 }));
 
-router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
+  const sessionUserId = res.locals.user.dataValues.id;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
@@ -47,7 +50,7 @@ router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, nex
       { model: db.Pixel_Like}
     ],
   });
-  res.render('edit-story', { story, csrfToken: req.csrfToken() });
+  res.render('edit-story', {sessionUserId, story, csrfToken: req.csrfToken() });
 }));
 
 
