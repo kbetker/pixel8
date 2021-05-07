@@ -8,7 +8,6 @@ block content
         div= story.body
         if locals.authenticated
             if story.authorId !== locals.user.id
-
             .form--container
                     form(action=`/stories/${story.id}/likes` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
@@ -26,19 +25,6 @@ block content
                         input(type='hidden' name='_csrf' value=csrfToken)
                         .form--element
                             button(type='submit' class='btn btn-primary') Delete Story
-
-                .form--container
-                        form(action=`/stories/${story.id}/likes` method='post')
-                            input(type='hidden' name='_csrf' value=csrfToken)
-                            .form--element
-                                button(class='btn' type='submit')= `Like`
-            if story.authorId === locals.user.id
-                .form--container
-                        form(action=`/stories/${story.id}/likes` method='post')
-                            input(type='hidden' name='_csrf' value=csrfToken)
-                            .form--element
-                                button(class='btn' type='submit')= `Like`
-
         p= `Like(s) ${story.Pixel_Likes.length}`
         div(id="heart_container")
             div(id="pixel__heart")
@@ -73,8 +59,6 @@ block content
                         ul
                             each error in errors
                                 li= error
-
-
                 h1 Comments
             .form--element
                 label(for='body')
