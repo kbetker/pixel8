@@ -20,6 +20,36 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, next) => {
+  const storyId = parseInt(req.params.id, 10);
+  const story = await db.Pixel_Story.findByPk(storyId, {
+    include: [
+      {
+        model: db.Pixel_Comment,
+        include: [db.Pixel_User],
+      },
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
+    ],
+  });
+  res.render('stories', { story, csrfToken: req.csrfToken() });
+}));
+
+router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+  const storyId = parseInt(req.params.id, 10);
+  const story = await db.Pixel_Story.findByPk(storyId, {
+    include: [
+      {
+        model: db.Pixel_Comment,
+        include: [db.Pixel_User],
+      },
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
+    ],
+  });
+  res.render('edit-story', { story, csrfToken: req.csrfToken() });
+}));
+
 
 
 
