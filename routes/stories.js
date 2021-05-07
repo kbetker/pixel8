@@ -43,9 +43,6 @@ router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async
   await db.Pixel_Story.destroy({where: {
     id: storyId
   }})
-
-
-
   res.redirect('/');
 }));
 
