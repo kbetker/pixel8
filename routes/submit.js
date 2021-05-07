@@ -21,8 +21,8 @@ const submitValidators = [
     check('imageUrl')
         .exists({ checkFalsy: true })
         .withMessage('Please link an image for your story'),
-        // .isURL({ protocols: ['http', 'https', 'ftp'] })
-        // .withMessage('image can only be submitted via a url link'),
+    // .isURL({ protocols: ['http', 'https', 'ftp'] })
+    // .withMessage('image can only be submitted via a url link'),
     check('genre')
         .exists({ checkFalsy: true })
         .withMessage('Please select a genre for your article'),
@@ -35,7 +35,7 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     const categories = await db.Pixel_Category.findAll();
     const story = db.Pixel_Story.build();
     res.render('story-new', {
-        title: 'Submit',
+        title: 'Submit New Story',
         categories,
         story,
         csrfToken: req.csrfToken(),
@@ -51,12 +51,9 @@ router.post('/new', csrfProtection, submitValidators, asyncHandler(async (req, r
         title, summary, body, imageUrl, categoryId, genre, authorId, viewCount
     })
     if (validatorErrors.isEmpty()) {
-        console.log("Hahaha!")
         await newStory.save();
-        console.log("story submitted!")
         res.redirect('/');
     } else {
-        console.log("uhoh....")
         errors = validatorErrors.array().map((error) => error.msg);
         res.render('story-new', { title, summary, body, imageUrl, categoryId, genre, errors, authorId, viewCount, csrfToken: req.csrfToken() });
     }
