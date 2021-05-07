@@ -17,7 +17,12 @@ window.addEventListener("load", (event)=>{
         }
     }
     pixelHeartContainer.addEventListener("click", event => {
-        isHearted ? isHearted = false : isHearted = true;
+        fetch('stories/:id(\\d+)/clicked', {method: 'POST'})
+        if(isHearted){
+            isHearted = false;
+        }else{
+            isHearted = true;
+        }
         checkHeart();
     })
     const heartInit = () => isHearted ? checkHeart() : console.log('not hearted')
