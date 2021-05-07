@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize');
 const { Pixel_Story, Pixel_Category, Pixel_User, Pixel_Like } = require('../db/models')
-
+const express = require('express');
+const router = express.Router();
 
 /* GET home page. */
 router.get('/', function (req, res) {
@@ -35,11 +36,6 @@ router.get('/stories/trending', async (req, res) => {
 })
 res.send(pixel_stories)
 })
-
-
-
-
-
 
 
 module.exports = router;
