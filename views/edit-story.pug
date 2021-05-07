@@ -14,7 +14,7 @@ block content
 			body
 		.form--container
 			if locals.authenticated
-				form(action=`stories/${story.id}/edited-story` method='post')
+				form(action=`/stories/${story.id}/edited-story` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
 						div
