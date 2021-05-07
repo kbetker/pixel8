@@ -14,7 +14,7 @@ body {
     height: 229px;
     display: flex;
     justify-content: space-around;
-    z-index: 88;
+    z-index: 888;
     position: fixed;
     width: 100%;
     -webkit-transition: all 0.5s ease-in-out;
@@ -91,3 +91,102 @@ body {
     margin: 0 45px 25px 0;
 
  }
+
+ .footer--container {
+     height: 38px;
+     background-color: #252525;
+     width: 100%;
+     position: fixed;
+     bottom: 0px;
+     -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+
+ }
+ .footer--container:hover{
+     height: 75px;
+     padding-top: 14px;
+ }
+
+.footer {
+    width: 1108px;
+    height: 38px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    opacity: 0.4;
+    padding-top: 4px;
+    -webkit-transition: all 0.5s ease-in-out;
+     -moz-transition: all 0.5s ease-in-out;
+     -o-transition: all 0.5s ease-in-out;
+     transition: all 0.5s ease-in-out;
+}
+.footer:hover{
+    height: 75px;
+    opacity: 1;
+}
+
+.site {
+    width: 150px;
+    height: 38px;
+    vertical-align: top;
+    display: inline-block;
+}
+
+.zach {
+    width: 275px;
+    height: 38px;
+    display: inline-block;
+    /* background-color: rgb(0, 225, 255); */
+}
+.felipe {
+    width: 305px;
+    height: 38px;
+    display: inline-block;
+    /* background-color: rgb(183, 32, 197); */
+}
+.kevin {
+    width: 260px;
+    height: 38px;
+    display: inline-block;
+    /* background-color: red; */
+}
+
+.githubLogo{
+    height: 25px;
+    display: inline-block;
+    margin: 0 7px;
+    opacity: 0.5;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+.linkedIn{
+    height: 22px;
+    display: inline-block;
+    margin: 0 7px;
+    opacity: 0.5;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.githubLogo:hover{
+    opacity: 1;
+}
+.linkedIn:hover{
+    opacity: 1;
+}
+
+.footerFont{
+    height: 38px;
+    display: inline-block;
+    margin-top: 7px;
+    vertical-align: top;
+    opacity: 0.5;
+}

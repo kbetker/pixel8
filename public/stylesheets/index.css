@@ -12,7 +12,7 @@
 }
 .container--main{
     background-color:#888888;
-    box-shadow:  0px 5px 5px inset rgba(0, 0, 0, 0.4);
+    box-shadow:  0px 5px 3px inset rgba(0, 0, 0, 0.4);
 }
 
 .trending--img {
@@ -47,6 +47,10 @@
     text-shadow: 0 0 4px black;
     z-index: 4;
 }
+.trending--element:hover {
+    box-shadow: 0 0 10px black;
+    /* opacity: 0.7; */
+}
 .trending--title {
     display: flex;
     width: 195px;
@@ -54,7 +58,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    z-index: 888;
+    z-index: 88;
 }
 .trending--overlay{
     width: 195px;
@@ -102,7 +106,7 @@
 
 hr {
     border: 2px solid rgb(114, 114, 114);
-    margin: 35px
+    margin: 15px
 }
 
 .mainContent--container {
@@ -122,7 +126,7 @@ hr {
 .discoverMoreColumn--container {
     width: 100%;
     /* background-color: rgb(29, 43, 102); */
-    height: 2000px;
+    height: 2080px;
 
 }
 
