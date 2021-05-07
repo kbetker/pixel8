@@ -17,7 +17,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Like}
     ],
   });
-  console.log(story.Pixel_Likes.length);
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
@@ -84,19 +83,23 @@ router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection
 
   }));
 
-  router.post('/articles/:id/likes', requireAuth, csrfProtection,
+  router.post('/:id(\\d+)/likes', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
-    const story = await db.Pixel_Story.findByPk(storyId, {
-      include: [
-        {
-          model: db.Pixel_Like,
-          include: db.Pixel_User
-        },
-        { model: db.Pixel_User }
-      ],
-    });
     const storyId = parseInt(req.params.id, 10);
-    console.log(storyId);
+    const sessionUserId = res.locals.user.dataValues.id;
+    const userLikesStory = await db.Pixel_Like.findOne( {where: {
+      pixelUserId: sessionUserId,
+      pixelStoryId: storyId
+    }});
+    if(userLikesStory){
+      await userLikesStory.destroy();
+    }else{
+      const like = await db.Pixel_Like.create({
+        pixelUserId: sessionUserId,
+        pixelStoryId: storyId
+      });
+    }
+    res.redirect(`/stories/${storyId}`)
   }));
 
 module.exports = router;

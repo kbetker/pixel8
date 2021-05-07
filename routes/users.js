@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
-const { loginUser, logoutUser, requireAuth } = require('../auth');
+const { loginUser, logoutUser} = require('../auth');
 const db = require('../db/models');
 
 const loginValidators = [
@@ -36,6 +36,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Comment },
     ]
   });
+
   const following = user.followers.some(element => {
     return element.id === res.locals.user.id
   })
@@ -46,7 +47,6 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   }
-
 }));
 
 /* GET user edit page. */
