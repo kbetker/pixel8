@@ -1,5 +1,7 @@
 var express = require('express');
 var router = express.Router();
+const { Sequelize } = require('sequelize');
+
 const {Pixel_Story, Pixel_Category, Pixel_User, Pixel_Like} = require('../db/models')
 
 /* GET home page. */
@@ -26,9 +28,20 @@ router.get('/storiesByGenre/:id', async (req, res) => {
     limit: 10,
 
   } )
-
   res.send(pixel_stories);
 })
+
+
+router.get('/stories/trending', async (req, res) => {
+  const pixel_stories = await Pixel_Story.findAll( {
+    include: [Pixel_Like, Pixel_User],
+})
+res.send(pixel_stories)
+})
+
+
+
+
 
 
 
