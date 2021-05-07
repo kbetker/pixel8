@@ -66,7 +66,8 @@ window.addEventListener("load", (event)=>{
             let title = trending[i].title
             let likes = trending[i].Pixel_Likes.length
             let imageUrl = trending[i].imageUrl
-            sortedList.push({"title": title, "likes": likes, "imageUrl": imageUrl})
+            let id = trending[i].id
+            sortedList.push({"title": title, "likes": likes, "imageUrl": imageUrl, "id": id})
         }
         sortedList.sort((a,b) => (a.likes > b.likes) ? -1 : 1)
 
@@ -74,15 +75,17 @@ window.addEventListener("load", (event)=>{
               let title = sortedList[i].title
               let likes = sortedList[i].likes
               let imageUrl = sortedList[i].imageUrl
+              let id = sortedList[i].id
             let trendingStory = document.createElement('div');
             trendingStory.innerHTML = `
+            <a href="/stories/${id}">
             <div class="trending--element" style="background-image: url('${imageUrl}')">
                  <div class="number">${i + 1}</div>
                  <div class="trending--title">${title}</div>
                  <div class="trending--like">${likes}</div>
                  <img src="../images/trendingStoriesOverlay.png" class="trending--overlay" >
                  <img src="../images/heartColor23x23.png" class="trending--heart">
-            </div>     `
+            </div>  </a>   `
             trendingContainer.appendChild(trendingStory)
 
         }
