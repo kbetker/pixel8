@@ -24,25 +24,25 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
   const sessionUserId = res.locals.user.dataValues.id;
-
-  await db.Pixel_Comment.destroy({
-    where: {
-      pixelStoryId: storyId
-    }
-  })
-  await db.Pixel_Like.destroy({
-    where: {
-      pixelStoryId: storyId
-    }
-  })
-  await db.Pixel_Story.destroy({
-    where: {
-      id: storyId
-    }
-  })
-
-
-
+  const story = await db.Pixel_Story.findByPk(storyId, {
+    include: [
+      {
+        model: db.Pixel_Comment,
+        include: [db.Pixel_User],
+      },
+      { model: db.Pixel_User},
+      { model: db.Pixel_Like}
+    ],
+  });
+  await db.Pixel_Comment.destroy({where: {
+    pixelStoryId: storyId
+  }})
+  await db.Pixel_Like.destroy({where: {
+    pixelStoryId: storyId
+  }})
+  await db.Pixel_Story.destroy({where: {
+    id: storyId
+  }})
   res.redirect('/');
 }));
 
