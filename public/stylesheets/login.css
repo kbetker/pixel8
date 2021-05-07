@@ -39,7 +39,7 @@ input {
     width: 226px;
     height: 20px;
 }
-button{
+.login__button{
     width: 233px;
     color: white;
     border-radius: 10px;
@@ -47,6 +47,21 @@ button{
     height: 40px;
     font-size: large;
     font-weight: bold;
+}
+.login__button:hover{
+    background-color: #ffcc79;
+}
+.demo__button{
+    width: 233px;
+    color: #FFB43D;
+    border-radius: 10px;
+    background-color: #2e2e2e;
+    height: 40px;
+    font-size: large;
+    font-weight: bold;
+}
+.demo__button:hover{
+    background-color: #424242;
 }
 
 a:visited, a:hover, a:active, a:link {

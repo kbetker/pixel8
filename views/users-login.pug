@@ -5,14 +5,14 @@ append head
   //- add page specific styles by appending to the head
   link(rel="stylesheet" href="/stylesheets/login.css")
   //- add page specific js
-  script(src="/javascripts/index.js" type="module" defer)
+  script(src="/javascripts/login.js" type="module" defer)
 block content
   .spacer
   .container
 
     .form--container
       //- +validationErrorSummary(errors)
-      form(action='/users/login' method='post')
+      form(action='/users/login' method='post' id="userLoginForm")
         .form--element--container
           input(type='hidden' name='_csrf' value=csrfToken)
           .form--element
@@ -35,6 +35,7 @@ block content
             input(type="text" name="password" id="password")
 
           .form--element
-            button(type='submit' class='btn btn-primary') Login
+            button(type='submit' class='login__button') Login
           .form--element
-            p: a(href='/users/register') Don't have an account?
+            button(type='submit' id="demo-btn" class='demo__button') Demo Login
+            //- p: a(href='/users/register') Don't have an account?
