@@ -34,6 +34,7 @@ router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async
       { model: db.Pixel_Like}
     ],
   });
+  await db.Pixel_
   res.render('stories', { sessionUserId, story, csrfToken: req.csrfToken() });
 }));
 
@@ -47,10 +48,12 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (
         include: [db.Pixel_User],
       },
       { model: db.Pixel_User},
-      { model: db.Pixel_Like}
+      { model: db.Pixel_Like},
+      { model: db.Pixel_Category}
     ],
   });
-  res.render('edit-story', {sessionUserId, story, csrfToken: req.csrfToken() });
+  const categories = await db.Pixel_Category.findAll();
+  res.render('edit-story', {sessionUserId, categories, story, csrfToken: req.csrfToken()});
 }));
 
 

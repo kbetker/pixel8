@@ -14,7 +14,7 @@ block content
 			body
 		.form--container
 			if locals.authenticated
-				form(action=`/${storyId}/edit` method='post')
+				form(action=`stories/${story.id}/edited-story` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
 						div
@@ -29,12 +29,12 @@ block content
 							.form--element
 								label(for="title")
 									p Story Title
-								input(type='text' name='title')
+								input(type='text' name='title' value= `${story.title}`)
 
 							.form--element
 								label(for="summary")
 									p Story Summary
-								input(type='text' name='summary')
+								input(type='text' name='summary' value= `${story.summary}`)
 
 							.form--element
 								label(for="body")
@@ -44,14 +44,17 @@ block content
 							.form--element
 								label(for="imageUrl")
 									p Image Url
-								input(type='text' name='imageUrl')
+								input(type='text' name='imageUrl' value= `${story.imageUrl}`)
 
 							.form--element
 								label(for="categoryId")
 									p Category of Story Type
 								select(name='categoryId' required)
 										each category in categories
-											option(value=category.id)= category.name
+											if category.id === story.categoryId
+												option(value=category.id selected="selected")= story.Pixel_Category.name
+											else
+												option(value=category.id)= category.name
 								input(type='hidden' name='authorId' value=locals.id)
 								input(type='hidden' name='viewCount' value=0)
 								input(type="hidden" name="genre" id="genre" value="Null")
