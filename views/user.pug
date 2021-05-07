@@ -1,0 +1,31 @@
+extends layout
+
+append head
+    link(rel="stylesheet" href="/stylesheets/users.css")
+block content
+    .spacer
+    .container
+        h1= title
+        .body--container
+            div= `Username: ${user.username}`
+            div= `Joined on: ${user.createdAt}`
+            div= `About: ${user.about}`
+            if locals.authenticated && user.id === sessionUserId
+                .form--container
+                    form(action= `/users/${user.id}/edit` method='post')
+                        button(type='submit' class='btn') Edit your profile!
+            div= `Stories Posted:`
+                each Pixel_Story in user.Pixel_Stories
+                    div
+                    a(href=`/stories/${Pixel_Story.id}` class="nav--link")= `${Pixel_Story.title}`
+            if locals.authenticated && locals.id === user.id
+                div= `Users who follow you:`
+                    each follower in user.followers
+                        div
+                        a(href=`/users/${follower.id}` class="nav--link")= `${follower.username}`
+                div= `Users you follow:`
+                    each following in user.followings
+                        div
+                        a(href=`/users/${following.id}` class="nav--link")= `${following.username}`
+            else
+                button(type='submit' class='btn') Follow this user!

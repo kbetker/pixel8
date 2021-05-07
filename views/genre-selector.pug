@@ -1,112 +1,115 @@
-select(id="genre_select" name="form_select")
-  option(value="null") -- Select --
-  option(value="Action games") Action games
-  option(value="Action-adventure games") Action-adventure games
-  option(value="Adventure games") Adventure games
-  option(value="Role-playing games") Role-playing games
-  option(value="Simulation games") Simulation games
-  option(value="Strategy games") Strategy games
-  option(value="Sports games") Sports games
-  option(value="Puzzle games") Puzzle games
-  option(value="Idle games") Idle games
+if locals.authenticated
+  select(id="genre_select" name="form_select")
+    option(value="null") -- Select --
+    option(value="Action games") Action games
+    option(value="Action-adventure games") Action-adventure games
+    option(value="Adventure games") Adventure games
+    option(value="Role-playing games") Role-playing games
+    option(value="Simulation games") Simulation games
+    option(value="Strategy games") Strategy games
+    option(value="Sports games") Sports games
+    option(value="Puzzle games") Puzzle games
+    option(value="Idle games") Idle games
 
-  //- ================== Null Selector ================================================
-div(id="null" class="sub")
-  select
-    option --Select Main Genre First--
-    option What? Seriously.
-    option Select Main Genre First!
+    //- ================== Null Selector ================================================
+  div(id="null" class="sub")
+    select
+      option --Select Main Genre First--
+      option What? Seriously.
+      option Select Main Genre First!
 
-  //- ================== Action games =================================================
-div(id="Action games" class="sub sub--hidden")
-  select(id="actionSubGenre" name="form_select")
-    option -- Select --
-    option(value="Platformer") Platformer
-    option(value="Shooter") Shooter
-    option(value="Fighting") Fighting
-    option(value="Beat-em up") Beat-em up
-    option(value="Stealth") Stealth
-    option(value="Survival") Survival
-    option(value="Rhythm") Rhythm
+    //- ================== Action games =================================================
+  div(id="Action games" class="sub sub--hidden")
+    select(id="actionSubGenre" name="form_select")
+      option -- Select --
+      option(value="Platformer") Platformer
+      option(value="Shooter") Shooter
+      option(value="Fighting") Fighting
+      option(value="Beat-em up") Beat-em up
+      option(value="Stealth") Stealth
+      option(value="Survival") Survival
+      option(value="Rhythm") Rhythm
 
-  //- ================== Action-adventure games =======================================
-div(id="Action-adventure games" class="sub sub--hidden")
-  select(id="actionAdventureSubGenre" name="form_select")
-    option -- Select --
-    option(value="Survival horror") Survival horror
-    option(value="Metroidvania") Metroidvania
+    //- ================== Action-adventure games =======================================
+  div(id="Action-adventure games" class="sub sub--hidden")
+    select(id="actionAdventureSubGenre" name="form_select")
+      option -- Select --
+      option(value="Survival horror") Survival horror
+      option(value="Metroidvania") Metroidvania
 
-  //- ================== Adventure games ==============================================
-div(id="Adventure games" class="sub sub--hidden")
-  select(id="adventureGames" name="form_select")
-    option -- Select --
-    option(value="Text adventures") Text adventures
-    option(value="Graphic adventures") Graphic adventures
-    option(value="Visual novels") Visual novels
-    option(value="Interactive movie") Interactive movie
-    option(value="Real-time 3D") Real-time 3D
+    //- ================== Adventure games ==============================================
+  div(id="Adventure games" class="sub sub--hidden")
+    select(id="adventureGames" name="form_select")
+      option -- Select --
+      option(value="Text adventures") Text adventures
+      option(value="Graphic adventures") Graphic adventures
+      option(value="Visual novels") Visual novels
+      option(value="Interactive movie") Interactive movie
+      option(value="Real-time 3D") Real-time 3D
 
-  //- ================== Role-playing games ===========================================
-div(id="Role-playing games" class="sub sub--hidden")
-  select(id="role-playingGames" name="form_select")
-    option -- Select --
-    option(value="Action RPG") Action RPG
-    option(value="MMORPG") MMORPG
-    option(value="Rouguelikes") Rouguelikes
-    option(value="Tactical RPG") Tactical RPG
-    option(value="Sandbox RPG") Sandbox RPG
-    option(value="First-person party-based RPG") First-person party-based RPG
+    //- ================== Role-playing games ===========================================
+  div(id="Role-playing games" class="sub sub--hidden")
+    select(id="role-playingGames" name="form_select")
+      option -- Select --
+      option(value="Action RPG") Action RPG
+      option(value="MMORPG") MMORPG
+      option(value="Rouguelikes") Rouguelikes
+      option(value="Tactical RPG") Tactical RPG
+      option(value="Sandbox RPG") Sandbox RPG
+      option(value="First-person party-based RPG") First-person party-based RPG
 
-  //- ================== Simulation games =============================================
-div(id="Simulation games" class="sub sub--hidden")
-  select(id="simulationGames" name="form_select")
-    option -- Select --
-    option(value="Construction and management simulation") Construction and management simulation
-    option(value="Life simulation") Life simulation
-    option(value="Vehicle simulation") Vehicle simulation
+    //- ================== Simulation games =============================================
+  div(id="Simulation games" class="sub sub--hidden")
+    select(id="simulationGames" name="form_select")
+      option -- Select --
+      option(value="Construction and management simulation") Construction and management simulation
+      option(value="Life simulation") Life simulation
+      option(value="Vehicle simulation") Vehicle simulation
 
-  //- ================== Strategy games ===============================================
-div(id="Strategy games" class="sub sub--hidden")
-  select(id="strategyGames" name="form_select")
-    option -- Select --
-    option(value="4X") 4X
-    option(value="Artillery") Artillery
-    option(value="Real-time strategy (RTS)") Real-time strategy (RTS)
-    option(value="Real-time tactics (RTT)") Real-time tactics (RTT)
-    option(value="Multiplayer online battle arena (MOBA)") Multiplayer online battle arena (MOBA)
-    option(value="Tower defense") Tower defense
-    option(value="Turn-based strategy (TBS)") Turn-based strategy (TBS)
-    option(value="Turn-based tactics (TBT)") Turn-based tactics (TBT)
-    option(value="Wargame") Wargame
-    option(value="Grand strategy wargame") Grand strategy wargame
+    //- ================== Strategy games ===============================================
+  div(id="Strategy games" class="sub sub--hidden")
+    select(id="strategyGames" name="form_select")
+      option -- Select --
+      option(value="4X") 4X
+      option(value="Artillery") Artillery
+      option(value="Real-time strategy (RTS)") Real-time strategy (RTS)
+      option(value="Real-time tactics (RTT)") Real-time tactics (RTT)
+      option(value="Multiplayer online battle arena (MOBA)") Multiplayer online battle arena (MOBA)
+      option(value="Tower defense") Tower defense
+      option(value="Turn-based strategy (TBS)") Turn-based strategy (TBS)
+      option(value="Turn-based tactics (TBT)") Turn-based tactics (TBT)
+      option(value="Wargame") Wargame
+      option(value="Grand strategy wargame") Grand strategy wargame
 
-  //- ================== Sports games =================================================
-div(id="Sports games" class="sub sub--hidden")
-  select(id="sportsGames" name="form_select")
-    option -- Select --
-    option(value="Racing") Racing
-    option(value="Team sports") Team sports
-    option(value="Competitive") Competitive
-    option(value="Sports-based fighting") Sports-based fighting
+    //- ================== Sports games =================================================
+  div(id="Sports games" class="sub sub--hidden")
+    select(id="sportsGames" name="form_select")
+      option -- Select --
+      option(value="Racing") Racing
+      option(value="Team sports") Team sports
+      option(value="Competitive") Competitive
+      option(value="Sports-based fighting") Sports-based fighting
 
-  //- ================== Puzzle games =================================================
-div(id="Puzzle games" class="sub sub--hidden")
-  select(id="puzzleGames" name="form_select")
-    option -- Select --
-    option(value="Logic game") Logic game
-    option(value="Trivia game") Trivia game
+    //- ================== Puzzle games =================================================
+  div(id="Puzzle games" class="sub sub--hidden")
+    select(id="puzzleGames" name="form_select")
+      option -- Select --
+      option(value="Logic game") Logic game
+      option(value="Trivia game") Trivia game
 
-  //- ================== Idle games ===================================================
-div(id="Idle games" class="sub sub--hidden")
-  select(id="Idle games" name="form_select")
-    option -- Select --
-    option(value="Idle gaming") Idle gaming
-    option(value="Casual game") Casual game
-    option(value="Party game") Party game
-    option(value="Programming game") Programming game
-    option(value="Board game/card game") Board game/card game
-    option(value="Massive multiplayer online (MMO)") Massive multiplayer online (MMO)
-    option(value="Advergame") Advergame
-    option(value="Art game") Art game
-    option(value="Educational game") Educational game
-    option(value="Exergame") Exergame
+    //- ================== Idle games ===================================================
+  div(id="Idle games" class="sub sub--hidden")
+    select(id="Idle games" name="form_select")
+      option -- Select --
+      option(value="Idle gaming") Idle gaming
+      option(value="Casual game") Casual game
+      option(value="Party game") Party game
+      option(value="Programming game") Programming game
+      option(value="Board game/card game") Board game/card game
+      option(value="Massive multiplayer online (MMO)") Massive multiplayer online (MMO)
+      option(value="Advergame") Advergame
+      option(value="Art game") Art game
+      option(value="Educational game") Educational game
+      option(value="Exergame") Exergame
+else
+  body

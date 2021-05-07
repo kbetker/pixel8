@@ -1,8 +1,13 @@
 extends layout
+append head
+    link(rel= 'stylesheet' href= '/stylesheets/heart.css')
+    script(src='/javascripts/heart.js' type= 'module' defer)
 block content
     .spacer
     body
-    div= story.body
+        div(id="heart_container")
+            div(id="pixel__heart")
+                div(id="pixelHeart-shadow")
         each Pixel_Comment in story.Pixel_Comments
             div= Pixel_Comment.Pixel_User.username
             div= Pixel_Comment.body

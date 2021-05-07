@@ -1,46 +1,67 @@
 extends layout
 
 append head
+
 	script(src="/javascripts/genre-selector.js" type="module" defer)
 	link(rel="stylesheet" href="/stylesheets/genre-selector.css")
+	link(rel="stylesheet" href="/stylesheets/story-new.css")
 block content
 	.spacer
-	h1= title
-	p New story
-	include genre-selector.pug
-	body
-	form(action='/submit/new' method='post')
-		input(type='hidden' name='_csrf' value=csrfToken)
-		div
-			if errors
-				div(class='alert alert-danger' role='alert')
-					h2 The following error(s) occurred:
-					ul
-						each error in errors
-							li= error
+	.container
+		.title--container
+			h1= title
+			include genre-selector.pug
+			body
+		.form--container
+			if locals.authenticated
+				form(action='/submit/new' method='post')
+					.form--element--container
+						input(type='hidden' name='_csrf' value=csrfToken)
+						div
+							.form--element
+								if errors
+									div(class='alert alert-danger' role='alert')
+										h2 The following error(s) occurred:
+										ul
+											each error in errors
+												li= error
+								else
+							.form--element
+								label(for="title")
+									p Story Title
+								input(type='text' name='title')
+
+							.form--element
+								label(for="summary")
+									p Story Summary
+								input(type='text' name='summary')
+
+							.form--element
+								label(for="body")
+									p Tell us your story
+								textarea(name='body')
+
+							.form--element
+								label(for="imageUrl")
+									p Image Url
+								input(type='text' name='imageUrl')
+
+							.form--element
+								label(for="categoryId")
+									p Category of Story Type
+								select(name='categoryId' required)
+										each category in categories
+											option(value=category.id)= category.name
+								input(type='hidden' name='authorId' value=locals.id)
+								input(type='hidden' name='viewCount' value=0)
+								input(type="hidden" name="genre" id="genre" value="Null")
+
+							.form--element
+								button(type='submit' value='Create Story') Submit Story
 			else
-				div
-					label Title
-					input(type='text' name='title')
-				div
-					label Summary
-					input(type='text' name='summary' required)
-				div
-					label Body
-					textarea(name='body' required)
-				div
-					label Image Url
-					input(type='text' name='imageUrl' required)
-				div
-					label authorId
-					input(type='text' name='authorId' required)
-				div
-					label viewCount
-					input(type='text' name='viewCount' required)
-				div
-					label Category
-					select(name='categoryId' required)
-						each category in categories
-							option(value=category.id)= category.name
-					input(type="hidden" name="genre" id="genre" value="Null")
-				button(type='submit' value='Create Story') Submit Story
+				p
+				| Please!{' '}
+				a(href="/users/login" class="nav--link") Log In
+				|!{' '}or!{' '}
+				a(href="/users/register" class="nav--link") Register
+				|!{' '}to submit a story!
