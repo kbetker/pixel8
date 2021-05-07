@@ -10,8 +10,14 @@ html(lang="en")
       title= title
   body
     .header
+      if locals.authenticated
+        .user--link
+          .username= user.username
+          img(src="../images/avatar.png", alt="")
+
       .nav--container
-        img(src="../images/pixel8logo.svg", alt="" class="logo")
+        a(href="/")
+          img(src="../images/pixel8logo.svg", alt="" class="logo")
         .nav
           .nav--element
             a(href="/" class="nav--link") Home

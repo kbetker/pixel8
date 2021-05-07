@@ -21,7 +21,7 @@ const userValidators = [
         .isEmail()
         .withMessage('Email Address is not a valid email')
         .custom((value) => {
-            return db.Pixel_User.findOne({ where: { emailAddress: value } })
+            return db.Pixel_User.findOne({ where: { email: value } })
                 .then((Pixel_User) => {
                     if (Pixel_User) {
                         return Promise.reject('The provided Email Address is already in use by another account');
@@ -68,22 +68,22 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 
 
 router.post('/new', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
-    const { fullName, email, password, username } = req.body;
+    const { fullName, email, password, username, about } = req.body;
 
     let errors = [];
     const validatorErrors = validationResult(req);
     const newUser = await db.Pixel_User.build({
-        fullName, email, username
+        fullName, email, username, about
     })
     if (validatorErrors.isEmpty()) {
         const hashedPassword = await bcrypt.hash(password, 8);
-        user.hashedPassword = hashedPassword;
+        newUser.hashedPassword = hashedPassword;
         await newUser.save();
-        loginUser(req, res, user);
+        loginUser(req, res, newUser);
         res.redirect('/')
     } else {
-        const errors = validatorErrors.array.map((error) => error.msg);
-        res.render('users-signup', { user, errors, csrfToken: req.csrfToken() });
+        errors = validatorErrors.array().map((error) => error.msg);
+        res.render('users-signup', { newUser, errors, csrfToken: req.csrfToken() });
     }
 }));
 

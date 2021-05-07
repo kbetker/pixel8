@@ -54,6 +54,16 @@ body {
 .nav--element--divider {
     color: white;
 }
+
+.user--link{
+    position: absolute;
+    display: flex;
+}
+.username {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
 .logo {
     height: 220px;
     -webkit-transition: all 0.5s ease-in-out;

@@ -3,6 +3,8 @@ window.addEventListener("load", (event)=>{
     // const storyContainer = document.querySelector('.storiesColumn--container')
     const storiesColumn = document.querySelector('.storiesColumn--container')
      //=================== Fill in the stories ========================================
+     const mainContainer = document.querySelector('.discoverMoreColumn--container ')
+
 
     async function fillInStories(array) {
      for(let i = 0; i < array.length; i++){
@@ -17,7 +19,7 @@ window.addEventListener("load", (event)=>{
                           <div class="title">${array[i].title}<div class="author">${array[i].Pixel_User.username}</div></div>
                       </div>
 
-                      <div class="summary">${array[i].genre}</div>
+                      <div class="summary">${array[i].summary}</div>
                  </div>
                   <div class="storyThumbnail--container">
                       <div class="storyThumbnail" style="background-image: url(${array[i].imageUrl})">
@@ -26,6 +28,7 @@ window.addEventListener("load", (event)=>{
              `
      storiesColumn.appendChild(story)
      }
+     mainContainer.style.height = `${218 * array.length}px`;
      await storiesFadeIn()
     }
 
