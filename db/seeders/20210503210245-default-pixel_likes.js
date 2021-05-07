@@ -37,12 +37,12 @@ module.exports = {
         { pixelUserId: 7, pixelStoryId: 45, createdAt: new Date(), updatedAt: new Date() },
         { pixelUserId: 8, pixelStoryId: 45, createdAt: new Date(), updatedAt: new Date() },
 
-        { pixelUserId: 1, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 2, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 3, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 4, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 5, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
-        { pixelUserId: 6, pixelStoryId: 22, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 1, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 2, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 3, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 4, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 5, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
+        { pixelUserId: 6, pixelStoryId: 28, createdAt: new Date(), updatedAt: new Date() },
 
         { pixelUserId: 1, pixelStoryId: 15, createdAt: new Date(), updatedAt: new Date() },
         { pixelUserId: 2, pixelStoryId: 15, createdAt: new Date(), updatedAt: new Date() },
