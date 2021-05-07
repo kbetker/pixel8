@@ -2,8 +2,10 @@ extends layout
 
 append head
   //- add page specific styles by appending to the head
+  link(rel="stylesheet" href="/stylesheets/heart.css")
   link(rel="stylesheet" href="/stylesheets/index.css")
   //- add page specific js
+  script(src="/javascripts/heart.js" type="module" defer)
   script(src="/javascripts/index.js" type="module" defer)
 
 block content
@@ -16,6 +18,9 @@ block content
       .trending-container
         .trending-element-container
 
+        div(id="heart_container")
+          div(id="pixel__heart")
+            div(id="pixelHeart-shadow")
           //- .trending--element
           //-   .number 1
           //-   .trending--title Super Mario 3D
@@ -62,7 +67,8 @@ block content
               div(class="discoverMoreLinks" id="Racing") Racing
               div(class="discoverMoreLinks" id="Wargame") Wargame
               div(class="discoverMoreLinks" id="Artillery") Artillery
-              div(class="discoverMoreLinks" id="Trivia") Trivia
+              //- change to RPG
+              div(class="discoverMoreLinks" id="4X") 4X
 
 
             //- .discoverMore--bottom
@@ -73,9 +79,6 @@ block content
 
 
 
-      div(id="heart_container")
-        div(id="pixel__heart")
-          div(id="pixelHeart-shadow")
 
 
 
