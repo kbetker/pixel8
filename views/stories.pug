@@ -3,26 +3,34 @@ block content
     .spacer
     body
     div= story.body
-    form--container
-      //- +validationErrorSummary(errors)
-      form(action=`/stories/${story.id}/comment-new` method='post')
-        .form--element--container
-          input(type='hidden' name='_csrf' value=csrfToken)
-        .form--element
-            if errors
-                div(class='alert alert-danger' role='alert')
-                    h2 The following error(s) occurred:
-                    ul
-                        each error in errors
-                            li= error
-            else
-            each Pixel_Comment in story.Pixel_Comments
-                div= Pixel_Comment.Pixel_User.username
-                div= Pixel_Comment.body
-            h1 Comments
-        .form--element
-            label(for='body')
-                p Share your comments here
-            textarea(id='body' name='body' class='form-control' rows='5')
-        .form--element
-            button(type='submit' class='btn btn-primary') Submit Comment
+        each Pixel_Comment in story.Pixel_Comments
+            div= Pixel_Comment.Pixel_User.username
+            div= Pixel_Comment.body
+            if locals.authenticated && Pixel_Comment.Pixel_User.id === locals.user.id
+                .form--container
+                    form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(class='btn' name='action' value= 'delete' type='submit') Delete Comment
+                            button(class='btn' name='action' value= 'edit' type='submit') Edit Comment
+        .form--container
+        //- +validationErrorSummary(errors)
+        form(action=`/stories/${story.id}/comment-new` method='post')
+            .form--element--container
+            input(type='hidden' name='_csrf' value=csrfToken)
+            .form--element
+                if errors
+                    div(class='alert alert-danger' role='alert')
+                        h2 The following error(s) occurred:
+                        ul
+                            each error in errors
+                                li= error
+
+
+                h1 Comments
+            .form--element
+                label(for='body')
+                    p Share your comments here
+                textarea(id='body' name='body' class='form-control' rows='5')
+            .form--element
+                button(type='submit' class='btn btn-primary') Submit Comment

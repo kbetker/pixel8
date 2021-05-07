@@ -1,0 +1,21 @@
+extends layout
+block content
+    .spacer
+    body
+        div= comment.body
+        div= comment.pixelUserId
+        .form--container
+            //- +validationErrorSummary(errors)
+            form(action=`/stories/${comment.pixelStoryId}/comments/${comment.id}/edit` method='post')
+                input(type='hidden' name='_csrf' value=csrfToken)
+                .form--element
+                    if errors
+                        div(class='alert alert-danger' role='alert')
+                            h2 The following error(s) occurred:
+                            ul
+                                each error in errors
+                                    li= error
+                label(for='body') Edit Comment
+                textarea(id='body' name='body' class='form-control' rows='5') #{comment.body}
+                .form--element
+                button(type='submit' class='btn') Submit Changes
