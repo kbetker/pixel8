@@ -14,7 +14,7 @@ router.get('/', asyncHandler(async(req, res) => {
   if(res.locals.user){
   // const userId = parseInt(req.params.id, 10);
   const user = await db.Pixel_User.findByPk(res.locals.user.id)
-  console.log(user)
+
   res.render('index', { user, title: 'Pixel8: Your source for the latest Game info!' });
   } else {
     res.render('index', { title: 'Pixel8: Your source for the latest Game info!' });

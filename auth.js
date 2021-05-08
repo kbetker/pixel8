@@ -5,7 +5,6 @@ const loginUser = (req, res, user) => {
     req.session.auth = {
         userId: user.id, //is this the userId referenced below?
     };
-    console.log("sessionInfo", req.session);
 };
 
 const logoutUser = (req, res) => {

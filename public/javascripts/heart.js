@@ -4,7 +4,7 @@ window.addEventListener("load", (event) => {
     let pixelHeart = document.getElementById("pixel__heart");
     let pixelHeartShadow = document.getElementById("pixelHeart-shadow");
     let isHearted = false;
-    console.log('Is this working?');
+
     function checkHeart() {
         if (isHearted) {
             pixelHeart.classList.remove("pixel__heart-slideout");
@@ -20,7 +20,7 @@ window.addEventListener("load", (event) => {
         fetch('stories/:id(\\d+)/likes', { method: 'POST' })
             .then((res) => {
                 if (res.ok) {
-                    console.log('Story liked!');
+
                     if (isHearted) {
                         isHearted = false;
                     } else {
@@ -32,13 +32,18 @@ window.addEventListener("load", (event) => {
                 throw new Error('Error: Story Like could not be processed.');
             })
             .catch((error) => {
-                console.log(error);
+
             });
 
         checkHeart();
     })
 
-    const heartInit = () => isHearted ? checkHeart() : console.log('not hearted')
+    const heartInit = () =>{
+        if(isHearted){
+            checkHeart();
+           }
+
+    }
     heartInit();
 
 });
