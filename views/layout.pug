@@ -25,9 +25,9 @@ html(lang="en")
           .userLink--container
             if locals.authenticated
               .user--link
-                a(href=`/users/${user.id}` class="usernameLink")
-                  .username= user.username
-                a(href=`/users/${user.id}` class="usernameLink")
+                a(href=`/users/${sessionUser.id}` class="usernameLink")
+                  .username= sessionUser.username
+                a(href=`/users/${sessionUser.id}` class="usernameLink")
                   img(src="../images/avatar.png", class="userAvatar")
           .nav
             .nav--element
