@@ -164,8 +164,8 @@ router.post('/login', csrfProtection, loginValidators, asyncHandler(async (req, 
 
 /* GET logout page. */
 router.get('/logout', (req, res) => {
-  logoutUser(req, res);
-  res.redirect('/');
+  logoutUser(req, res); //
+  res.redirect('/'); // I think the redirect sometimes takes place before deleting req.session.auth resulting in the user appearing to still be logged in.
 });
 
 module.exports = router;
