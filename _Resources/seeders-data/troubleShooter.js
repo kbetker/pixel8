@@ -103,9 +103,9 @@ for(let i = 0; i < newStories.length; i++){
     let categoryIds = newStories[i].categoryId;
     let viewCounts = newStories[i].viewCount;
 
-    console.log(titles.length)
+
     if(titles.length >= 255){
-        console.log(titles)
+
     }
 
 

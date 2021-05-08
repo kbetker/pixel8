@@ -38,7 +38,7 @@ window.addEventListener("load", (event)=>{
         const trendFetch = await fetch('/stories/trending');
         const trending = await trendFetch.json();
         let sortedList = []
-        console.log("sortThisArray")
+
 
         for(let i = 0; i < trending.length; i++){
             let title = trending[i].title

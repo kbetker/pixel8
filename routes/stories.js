@@ -17,7 +17,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Like }
     ],
   });
-  console.log(story);
+
   res.render('stories', { story, csrfToken: req.csrfToken() });
 }));
 
@@ -89,7 +89,7 @@ router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection
     const storyId = parseInt(req.params.id, 10);
     const commentId = parseInt(req.params.comment_id, 10);
     const comment = await db.Pixel_Comment.findByPk(commentId);
-    console.log(`Is this the correct comment id? ${comment.id}`)
+
     res.render('edit-comment', { comment, csrfToken: req.csrfToken() });
 
 

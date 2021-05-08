@@ -19,9 +19,12 @@ window.addEventListener("DOMContentLoaded", () => {
         isHearted ? isHearted = false : isHearted = true;
         checkHeart();
     })
-    const heartInit = () => isHearted ? checkHeart() : console.log('not hearted')
-    heartInit();
-
+    const heartInit = () =>{
+        if(isHearted){
+            checkHeart();
+           }
+        }
+        heartInit();
 
 
 let genreSelect = document.getElementById("genre_select")

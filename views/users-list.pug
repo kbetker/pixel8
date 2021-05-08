@@ -2,6 +2,8 @@ extends layout
 
 append head
     link(rel="stylesheet" href="/stylesheets/users-list.css")
+    link(rel="stylesheet" href="/stylesheets/heart.css")
+    script(src="/javascripts/heart.js" type="module" defer)
 block content
     .spacer
     .form--element--container
@@ -11,6 +13,9 @@ block content
                     th(scope='col') Name
                     th(scope='col') Username
                     th(scope='col') About
+                        div(id="heart_container")
+                            div(id="pixel__heart")
+                                div(id="pixelHeart-shadow")
             tbody(class='tbody-light')
                 each user in users
                     tr
