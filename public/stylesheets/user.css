@@ -1,0 +1,93 @@
+.container {
+  margin-top: -8px;
+  z-index: -88;
+  background-image: url("../images/animatedBackground3.gif");
+  image-rendering: pixelated;
+  background-size: 100%;
+  background-position-y: -388px;
+  height: 1000px;
+  width: 100%;
+  padding-top: 88px;
+}
+
+.body--container {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: 100%;
+  height: auto;
+  color: #ffb43d;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bolder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px, 20px;
+}
+
+.form--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 333px;
+  height: 333px;
+  /* background-color: red; */
+}
+
+.form--element {
+  width: 333px;
+}
+input {
+  width: 226px;
+  height: 20px;
+}
+.login__button {
+  width: 233px;
+  color: white;
+  border-radius: 10px;
+  background-color: #ffb43d;
+  height: 40px;
+  font-size: large;
+  font-weight: bold;
+}
+.login__button:hover {
+  background-color: #ffcc79;
+}
+.demo__button {
+  width: 233px;
+  color: #ffb43d;
+  border-radius: 10px;
+  background-color: #2e2e2e;
+  height: 40px;
+  font-size: large;
+  font-weight: bold;
+}
+.demo__button:hover {
+  background-color: #424242;
+}
+
+a:visited,
+a:hover,
+a:active,
+a:link {
+  color: #ffb43d;
+  text-decoration: none;
+}
+a:hover {
+  color: #ffffff;
+}
+
+h1 {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+p {
+  margin: 0;
+}
+h2 {
+  color: white;
+  font-size: 24px;
+  margin: 0;
+}
+li {
+  color: red;
+}
