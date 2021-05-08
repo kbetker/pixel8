@@ -5,41 +5,66 @@
   image-rendering: pixelated;
   background-size: 100%;
   background-position-y: -388px;
-  height: 1000px;
+  height: auto;
   width: 100%;
-  padding-top: 88px;
+  padding: 88px 0px 108px;
 }
 
 .body--container {
   background-color: rgba(0, 0, 0, 0.85);
-  width: 100%;
+  width: auto;
   height: auto;
-  color: #ffb43d;
+  color: white;
   font-family: Helvetica, Arial, sans-serif;
-  font-weight: bolder;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px, 20px;
-}
-
-.form--container {
+  font-weight: bold;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  width: 333px;
-  height: 333px;
-  /* background-color: red; */
+  justify-content: center;
+  align-items: center;
+  padding: 88px;
 }
 
-.form--element {
-  width: 333px;
+a:visited,
+a:active,
+a:link {
+  color: #ffb43d;
+  text-decoration: none;
 }
-input {
-  width: 226px;
-  height: 20px;
+a:hover {
+  color: #fcc266;
 }
-.login__button {
+
+h1 {
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+th {
+  border: 4px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  width: 200px;
+  background-color: rgba(58, 58, 58, 0.88);
+  color: #ffb43d;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: left;
+}
+
+td {
+  border: 4px solid black;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px;
+  background-color: rgba(108, 108, 108, 0.88);
+  color: white;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  text-align: left;
+}
+
+.btn {
   width: 233px;
   color: white;
   border-radius: 10px;
@@ -48,46 +73,7 @@ input {
   font-size: large;
   font-weight: bold;
 }
-.login__button:hover {
+
+.btn:hover {
   background-color: #ffcc79;
-}
-.demo__button {
-  width: 233px;
-  color: #ffb43d;
-  border-radius: 10px;
-  background-color: #2e2e2e;
-  height: 40px;
-  font-size: large;
-  font-weight: bold;
-}
-.demo__button:hover {
-  background-color: #424242;
-}
-
-a:visited,
-a:hover,
-a:active,
-a:link {
-  color: #ffb43d;
-  text-decoration: none;
-}
-a:hover {
-  color: #ffffff;
-}
-
-h1 {
-  color: white;
-  font-weight: bold;
-  margin: 0;
-}
-p {
-  margin: 0;
-}
-h2 {
-  color: white;
-  font-size: 24px;
-  margin: 0;
-}
-li {
-  color: red;
 }
