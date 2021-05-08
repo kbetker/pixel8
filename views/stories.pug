@@ -22,7 +22,8 @@ block content
                         else
                             #heartLogIn
                         .likeCount #{story.Pixel_Likes.length}
-                    h3 By #{story.Pixel_User.username}
+                    a(href=`/users/${story.Pixel_User.id}`)
+                        h3 By #{story.Pixel_User.username}
 
                     .story--text #{story.body}
 
@@ -46,11 +47,20 @@ block content
                 .comment--header
                     .newComment Comments
                     if locals.authenticated && story.authorId !== locals.user.id
-                        #newCommentBtn
+                        #newCommentBtn +
                     else
-                        #newCommentLogIn
+                        #newCommentLogIn +
+                if locals.authenticated && story.authorId !== locals.user.id
+                    .comment--inputContainer
 
-                .comment--inputContainer
+                        form(action=`/stories/${story.id}/comment-new` method='post' class="newCommentForm")
+                            input(type='hidden' name='_csrf' value=csrfToken)
+                            div
+                                textarea(id='body' name='body' class='newCommentTextArea' rows='5')
+                            button(type='submit' class='newCommentFormButton') Submit Comment
+
+                else
+                    .comment--inputContainer
 
 
                 each Pixel_Comment in story.Pixel_Comments
@@ -84,24 +94,6 @@ block content
             //-     div(id="pixel__heart")
             //-         div(id="pixelHeart-shadow")
 
-            .form--container
-            //- +validationErrorSummary(errors)
-            form(action=`/stories/${story.id}/comment-new` method='post')
-                .form--element--container
-                input(type='hidden' name='_csrf' value=csrfToken)
-                .form--element
-                    if errors
-                        div(class='alert alert-danger' role='alert')
-                            h2 The following error(s) occurred:
-                            ul
-                                each error in errors
-                                    li= error
-                    h1 Comments
-                .form--element
-                    label(for='body')
-                        p Share your comments here
-                    textarea(id='body' name='body' class='form-control' rows='5')
-                .form--element
-                    button(type='submit' class='btn btn-primary') Submit Comment
+
 
             .container--empty

@@ -1,31 +1,28 @@
 document.addEventListener("DOMContentLoaded", ()=> {
-    // window.addEventListener("click", (e)=> {
-        // console.log(e.target)
+    let commentInput = document.querySelector('.comment--inputContainer ');
+    let newCommentBtn = document.getElementById('newCommentBtn');
+    let mustLogin = document.getElementById('newCommentLogIn');
+    let heartLogInBtn = document.getElementById('heartLogIn');
 
 
-             let newCommentBtn = document.getElementById('newCommentBtn');
-             console.log("WTFWTFWTFW", newCommentBtn)
              if(newCommentBtn !== null){
-                 newCommentBtn.addEventListener("click", (e)=>{
-                    console.log("you must be logged in to coment")
+                newCommentBtn.addEventListener("click", async (e)=>{
+                    commentInput.classList.add("commentInput--resize")
+                    newCommentBtn.innerText = "-"
+
+                 })
+             }
+
+            if(mustLogin !== null){
+                mustLogin.addEventListener("click", (e)=>{
+                    alert("You must be logged in to like this page")
                 })
             }
 
-
-            let mustLogin = document.getElementById('newCommentLogIn');
-
-            if(mustLogin !== null){
-            mustLogin.addEventListener("click", (e)=>{
-                alert("You must be logged in to like this page")
-            })
+            if(heartLogInBtn !== null){
+                heartLogInBtn.addEventListener("click", (e)=>{
+                    alert("You must be logged in to like this page")
+                })
             }
 
-            let heartLogInBtn = document.getElementById('heartLogIn');
-            if(heartLogInBtn !== null){
-            heartLogInBtn.addEventListener("click", (e)=>{
-                alert("You must be logged in to like this page")
-            })
-        }
-// })
-
-})
+});

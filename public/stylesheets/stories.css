@@ -174,42 +174,65 @@ h3 {
     background-color: rgb(207, 207, 207);
     box-shadow: inset 5px 5px 5px rgba(0, 0, 0, 0.6);
     width: 100%;
-    height: 65px;
+    height: 0;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
     color: white;
     font-size: 28px;
     font-weight: bold;
+    -webkit-transition: all 0.35s linear;
+    -moz-transition: all 0.35s linear;
+    -o-transition: all 0.35s linear;
+    transition: all 0.35s linear;
+    overflow: hidden;
 }
+.newCommentForm{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    flex-direction: row;
+}
+
+.commentInput--resize {
+    height: 65px;
+}
+
+.newCommentTextArea {
+    height: 30px;
+    width: 950px;
+    border-radius: 4px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    background-color: rgb(179, 179, 179);
+    box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.6);
+
+}
+.newCommentFormButton {
+    height: 38px;
+    border-radius: 4px;
+    margin-left: 15px;
+    background-color:  #FFB43D;
+
+
+}
+
+
+
+
 .newComment{
     display: inline-block;
 }
-#newCommentBtn{
-    /* background-image: url('../images/heartColor.svg'); */
-    width: 25px;
-    height: 25px;
-    background-size: cover;
-    padding: 0;
-    display: inline-block;
-    border: none;
-    margin: 0 5px 0 0;
-    background-color: salmon;
-}
-#newCommentBtn:hover{
+
+#newCommentLogIn:hover,#newCommentBtn:hover{
     color: #FFB43D;
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
-#newCommentLogIn{
-    /* background-image: url('../images/heartColor.svg'); */
-    width: 25px;
-    height: 25px;
-    background-size: cover;
-    padding: 0;
+#newCommentLogIn,#newCommentBtn{
+    margin-left: 5px;
     display: inline-block;
-    border: none;
-    margin: 0 5px 0 0;
-    background-color: rgb(131, 33, 115);
-    z-index: 999999;
-}
-#newCommentLogIn:hover{
-    background-color: red;
+    cursor: pointer;
+    width: 55px;
+    height: 35px;
+    /* background-color: red; */
 }
