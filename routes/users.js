@@ -25,6 +25,13 @@ const userValidators = [
     .withMessage('Please provide a value for your full name.')
     .isLength({ max: 255 })
     .withMessage('Full name must not be more than 255 characters long'),
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address')
+    .isLength({ max: 255 })
+    .withMessage('Email Address must not be more than 255 characters long')
+    .isEmail()
+    .withMessage('Email Address is not a valid email'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Password')
