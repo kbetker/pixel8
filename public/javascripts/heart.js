@@ -16,27 +16,27 @@ window.addEventListener("load", (event) => {
             pixelHeartShadow.classList.remove("pixelHeart-shadow")
         }
     }
-    pixelHeartContainer.addEventListener("click", event => {
-        fetch('stories/:id(\\d+)/likes', { method: 'POST' })
-            .then((res) => {
-                if (res.ok) {
+    // pixelHeartContainer.addEventListener("click", event => {
+    //     fetch('stories/:id(\\d+)/likes', { method: 'POST' })
+    //         .then((res) => {
+    //             if (res.ok) {
 
-                    if (isHearted) {
-                        isHearted = false;
-                    } else {
-                        isHearted = true;
-                    }
-                    checkHeart();
-                    return;
-                }
-                throw new Error('Error: Story Like could not be processed.');
-            })
-            .catch((error) => {
+    //                 if (isHearted) {
+    //                     isHearted = false;
+    //                 } else {
+    //                     isHearted = true;
+    //                 }
+    //                 checkHeart();
+    //                 return;
+    //             }
+    //             throw new Error('Error: Story Like could not be processed.');
+    //         })
+    //         .catch((error) => {
 
-            });
+    //         });
 
-        checkHeart();
-    })
+    //     checkHeart();
+    // })
 
     const heartInit = () =>{
         if(isHearted){

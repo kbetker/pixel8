@@ -5,9 +5,8 @@
     z-index: -88;
     background-size: 288%;
     image-rendering: pixelated;
-    /* min-height: 1000px; */
-    background-repeat: no-repeat;
-    /* background-size: 30%; */
+    background-repeat: repeat;
+    min-height: 78vh;
     animation-name: MOVE-BG;
     animation-duration: 488s;
     animation-timing-function: linear;
