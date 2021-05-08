@@ -55,7 +55,7 @@ block content
 												option(value=category.id selected="selected")= story.Pixel_Category.name
 											else
 												option(value=category.id)= category.name
-								input(type='hidden' name='authorId' value=locals.id)
+								input(type='hidden' name='authorId' value=locals.user.id)
 								input(type='hidden' name='viewCount' value=0)
 								input(type="hidden" name="genre" id="genre" value="Null")
 
