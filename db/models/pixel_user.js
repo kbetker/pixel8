@@ -43,9 +43,9 @@ module.exports = (sequelize, DataTypes) => {
     // }
 
     // Pixel_User.belongsToMany(models.Pixel_Story, likeMap)
-    Pixel_User.hasMany(models.Pixel_Comment, { foreignKey: 'pixelUserId' });
-    Pixel_User.hasMany(models.Pixel_Like, {foreignKey: 'pixelUserId'});
-    Pixel_User.hasMany(models.Pixel_Story, { foreignKey: 'authorId' });
+    Pixel_User.hasMany(models.Pixel_Comment, { foreignKey: 'pixelUserId', onDelete: 'CASCADE', hooks: 'true' });
+    Pixel_User.hasMany(models.Pixel_Like, { foreignKey: 'pixelUserId', onDelete: 'CASCADE', hooks: 'true' });
+    Pixel_User.hasMany(models.Pixel_Story, { foreignKey: 'authorId', onDelete: 'CASCADE', hooks: 'true' });
     Pixel_User.belongsToMany(models.Pixel_User, columnMappingOne);
     Pixel_User.belongsToMany(models.Pixel_User, columnMappingTwo);
 

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     categoryId: DataTypes.INTEGER,
     viewCount: DataTypes.INTEGER
   }, {});
-  Pixel_Story.associate = function(models) {
+  Pixel_Story.associate = function (models) {
     // associations can be defined here
     // const likeMap = { // User -> User, through Follow as following
     //   through: 'Pixel_Likes',
@@ -20,10 +20,10 @@ module.exports = (sequelize, DataTypes) => {
     // }
 
     // Pixel_Story.belongsToMany(models.Pixel_User, likeMap)
-    Pixel_Story.hasMany(models.Pixel_Comment, {foreignKey: 'pixelStoryId'});
-    Pixel_Story.hasMany(models.Pixel_Like, {foreignKey: 'pixelStoryId'});
-    Pixel_Story.belongsTo(models.Pixel_Category, {foreignKey: "categoryId"});
-    Pixel_Story.belongsTo(models.Pixel_User, {foreignKey: "authorId"});
+    Pixel_Story.hasMany(models.Pixel_Comment, { foreignKey: 'pixelStoryId', onDelete: 'CASCADE', hooks: 'true' });
+    Pixel_Story.hasMany(models.Pixel_Like, { foreignKey: 'pixelStoryId', onDelete: 'CASCADE', hooks: 'true' });
+    Pixel_Story.belongsTo(models.Pixel_Category, { foreignKey: "categoryId" });
+    Pixel_Story.belongsTo(models.Pixel_User, { foreignKey: "authorId" });
 
   };
   return Pixel_Story;
