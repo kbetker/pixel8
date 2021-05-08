@@ -10,7 +10,7 @@ block content
 	.container
 		.title--container
 			h1= title
-			include genre-selector.pug
+
 			body
 		.form--container
 			if locals.authenticated
@@ -45,6 +45,10 @@ block content
 								label(for="imageUrl")
 									p Image Url
 								input(type='text' name='imageUrl' value= `${story.imageUrl}`)
+
+							.form--element
+								.form--genre
+									include genre-selector.pug
 
 							.form--element
 								label(for="categoryId")
