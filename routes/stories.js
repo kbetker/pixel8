@@ -18,38 +18,51 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Category }
     ],
   });
+  if (res.locals.user) {
+    // const userId = parseInt(req.params.id, 10);
+    const sessionUser = res.locals.user;
 
-  res.render('stories', { story, csrfToken: req.csrfToken() });
+    res.render('stories', { story, sessionUser, csrfToken: req.csrfToken() });
+  } else {
+    res.render('stories', { story, csrfToken: req.csrfToken() });
+  }
+
 }));
 
 router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
-  const sessionUserId = res.locals.user.dataValues.id;
+  const sessionUser = res.locals.user.dataValues.id;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
         model: db.Pixel_Comment,
         include: [db.Pixel_User],
       },
-      { model: db.Pixel_User},
-      { model: db.Pixel_Like}
+      { model: db.Pixel_User },
+      { model: db.Pixel_Like }
     ],
   });
-  await db.Pixel_Comment.destroy({where: {
-    pixelStoryId: storyId
-  }})
-  await db.Pixel_Like.destroy({where: {
-    pixelStoryId: storyId
-  }})
-  await db.Pixel_Story.destroy({where: {
-    id: storyId
-  }})
+  await db.Pixel_Comment.destroy({
+    where: {
+      pixelStoryId: storyId
+    }
+  })
+  await db.Pixel_Like.destroy({
+    where: {
+      pixelStoryId: storyId
+    }
+  })
+  await db.Pixel_Story.destroy({
+    where: {
+      id: storyId
+    }
+  })
   res.redirect('/');
 }));
 
 router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
-  const sessionUserId = res.locals.user.dataValues.id;
+  const sessionUser = res.locals.user;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
@@ -62,7 +75,7 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (
     ],
   });
   const categories = await db.Pixel_Category.findAll();
-  res.render('edit-story', { sessionUserId, categories, story, csrfToken: req.csrfToken() });
+    res.render('edit-story', {story, sessionUser, categories, csrfToken: req.csrfToken()});
 }));
 
 

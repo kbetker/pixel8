@@ -66,8 +66,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
   })
 
   if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user', { user, sessionUserId, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+    const sessionUser = res.locals.user;
+    res.render('user', { user, sessionUser, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   }
