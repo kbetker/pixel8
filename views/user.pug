@@ -1,7 +1,7 @@
 extends layout
 
 append head
-    link(rel="stylesheet" href="/stylesheets/users.css")
+    link(rel="stylesheet" href="/stylesheets/user.css")
 block content
     .spacer
     .container
@@ -11,9 +11,9 @@ block content
             div= `Joined on: ${user.createdAt}`
             div= `About: ${user.about}`
             if locals.authenticated && user.id === sessionUserId
-                .form--container
-                    a(href=`/users/${user.id}/edit`)
-                        button(class='btn' name='action' value='edit' type='submit') Edit User Info
+                //- .form--container
+                //-     a(href=`/users/${user.id}/edit`)
+                //-         button(class='btn' name='action' value='edit' type='submit') Edit User Info
             div= `Stories Posted:`
                 each Pixel_Story in user.Pixel_Stories
                     div
