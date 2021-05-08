@@ -61,13 +61,12 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     ]
   });
 
-  const following = user.followers.some(element => {
-    return element.id === res.locals.user.id
-  })
-
   if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user', { user, sessionUserId, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+    const sessionUser = res.locals.user;
+    const following = user.followers.some(element => {
+      return element.id === res.locals.user.id
+    })
+    res.render('user', { user, sessionUser, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   }
@@ -78,8 +77,8 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
   const userId = parseInt(req.params.id, 10);
   const user = await db.Pixel_User.findByPk(userId);
   if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
+    const sessionUser = res.locals.user;
+    res.render('user-edit', { user, sessionUser, title: `Update your info`, csrfToken: req.csrfToken() });
   } else {
     res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
   }
@@ -88,7 +87,7 @@ router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next
 // /* POST user edit page. */
 router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
-  const sessionUserId = res.locals.user.dataValues.id;
+  const sessionUser = res.locals.user;
   const userToEdit = await db.Pixel_User.findByPk(userId);
   const { fullName, about } = req.body;
   const updatedUserInfo = { fullName, about };
@@ -101,7 +100,7 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
     res.redirect(`/users/${userId}`);
   } else {
     errors = validatorErrors.array().map((error) => error.msg);
-    res.render('user-edit', { updatedUserInfo, errors, sessionUserId, csrfToken: req.csrfToken() });
+    res.render('user-edit', { updatedUserInfo, errors, sessionUser, csrfToken: req.csrfToken() });
   }
 }));
 

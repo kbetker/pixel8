@@ -7,7 +7,7 @@ block content
 	.container
 		h1= title
 		.body--container
-			if locals.authenticated && user.id === sessionUserId
+			if locals.authenticated && user.id === sessionUser.id
 				form(action=`/users/${user.id}/edit` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
