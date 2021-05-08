@@ -26,13 +26,32 @@ body {
     height: 229px
 }
 
-
+.usernameLink{
+    color: white;
+}
 
 .nav--container {
     width: 1108px;
     display: flex;
     justify-content: space-between;
     /* background-color: rgb(56, 56, 56); */
+}
+
+.navvier{
+    width: 500px;
+    /* font-weight: bolder; */
+    /* font-size: 25px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    /* margin: 0 45px 35px 0; */
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+    /* background-color: rgb(0, 255, 85); */
+
 }
 .nav {
     width: 500px;
@@ -46,26 +65,42 @@ body {
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
+    /* background-color: blue; */
 
 }
 .nav--element {
-    color: #FFB43D;
+    /* color: #FFB43D; */
+    /* margin: 0 12px 0 12px; */
 }
 .nav--element--divider {
     color: white;
 }
-
-.user--link{
-    position: absolute;
-    display: flex;
+.userAvatar{
+    width: 35px;
+    height: 35px;
 }
+.userLink--container {
+    margin: 10px 45px 0px 0;
+}
+.user--link{
+    display: flex;
+    justify-content: space-between;
+    /* background-color: saddlebrown; */
+}
+.user--link:hover{
+    text-shadow: 0 0 10px white;
+}
+
 .username {
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    font-size: 12px;
+    /* color: white; */
+    margin-top: 11px;
 }
 
 .logo {
     height: 220px;
+    /* background-color: red; */
     -webkit-transition: all 0.5s ease-in-out;
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
