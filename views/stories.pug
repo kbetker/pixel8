@@ -3,11 +3,13 @@ append head
     link(rel= 'stylesheet' href= '/stylesheets/heart.css')
     link(rel= 'stylesheet' href= '/stylesheets/stories.css')
     script(src='/javascripts/heart.js' type= 'module' defer)
+    script(src='/javascripts/stories.js' type= 'module' defer)
 block content
     .spacer
     .container(style=`background-image: url(${story.imageUrl})`)
         .container--empty
         .container--main
+
             .story--body
                 .text--column
                     h1 #{story.Pixel_Category.name} |
@@ -17,12 +19,12 @@ block content
                             form(action=`/stories/${story.id}/likes` method='post' class="heartForm")
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 button(class='heartBtn' type='submit')
+                        else
+                            #heartLogIn
                         .likeCount #{story.Pixel_Likes.length}
                     h3 By #{story.Pixel_User.username}
 
                     .story--text #{story.body}
-
-
 
 
 
@@ -41,7 +43,16 @@ block content
 
 
             .comment--container
-                .comment--header Comments
+                .comment--header
+                    .newComment Comments
+                    if locals.authenticated && story.authorId !== locals.user.id
+                        #newCommentBtn
+                    else
+                        #newCommentLogIn
+
+                .comment--inputContainer
+
+
                 each Pixel_Comment in story.Pixel_Comments
                     .comment
                         .by #{Pixel_Comment.Pixel_User.username}
