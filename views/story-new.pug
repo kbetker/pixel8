@@ -52,7 +52,7 @@ block content
 								select(name='categoryId' required)
 										each category in categories
 											option(value=category.id)= category.name
-								input(type='hidden' name='authorId' value=locals.id)
+								input(type='hidden' name='authorId' value=locals.user.id)
 								input(type='hidden' name='viewCount' value=0)
 								input(type="hidden" name="genre" id="genre" value="Null")
 
