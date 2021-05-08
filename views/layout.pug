@@ -10,33 +10,44 @@ html(lang="en")
       title= title
   body
     .header
-      if locals.authenticated
-        .user--link
-          .username= user.username
-          img(src="../images/avatar.png", alt="")
 
+      //- .userLink--container
+      //-   if locals.authenticated
+      //-     .user--link
+      //-       a(href=`/users/${user.id}`)
+      //-         .username= user.username
+      //-       img(src="../images/avatar.png", class="userAvatar")
       .nav--container
+
         a(href="/")
           img(src="../images/pixel8logo.svg", alt="" class="logo")
-        .nav
-          .nav--element
-            a(href="/" class="nav--link") Home
-          .nav--element--divider |
-          .nav--element
-            a(href="/about" class="nav--link") About
-          .nav--element--divider |
-          if locals.authenticated
+        .navvier
+          .userLink--container
+            if locals.authenticated
+              .user--link
+                a(href=`/users/${user.id}` class="usernameLink")
+                  .username= user.username
+                a(href=`/users/${user.id}` class="usernameLink")
+                  img(src="../images/avatar.png", class="userAvatar")
+          .nav
             .nav--element
-              a(href="/submit" class="nav--link") New Post
+              a(href="/" class="nav--link") Home
             .nav--element--divider |
             .nav--element
-              a(href="/users/logout" class="nav--link") Log Out
-          else
-            .nav--element
-              a(href="/users/login" class="nav--link") Log In
+              a(href="/about" class="nav--link") About
             .nav--element--divider |
-            .nav--element
-              a(href="/signup" class="nav--link") Register
+            if locals.authenticated
+              .nav--element
+                a(href="/submit" class="nav--link") New Post
+              .nav--element--divider |
+              .nav--element
+                a(href="/users/logout" class="nav--link") Log Out
+            else
+              .nav--element
+                a(href="/users/login" class="nav--link") Log In
+              .nav--element--divider |
+              .nav--element
+                a(href="/signup" class="nav--link") Register
 
 
     block content
