@@ -1,71 +1,96 @@
 extends layout
 append head
     link(rel= 'stylesheet' href= '/stylesheets/heart.css')
+    link(rel= 'stylesheet' href= '/stylesheets/stories.css')
     script(src='/javascripts/heart.js' type= 'module' defer)
 block content
     .spacer
-    body
-        div= story.body
-        if locals.authenticated && story.authorId !== locals.user.id
-            div
-            .form--container
-                    form(action=`/stories/${story.id}/likes` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        .form--element
-                            button(class='btn' type='submit')= `Like`
-        if locals.authenticated && story.authorId === locals.user.id
-            if story.authorId === locals.user.id
-                div
-                .form--container
-                    form(action=`/stories/${story.id}/edit/` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        .form--element
-                            button(type='submit' class='btn btn-primary') Edit Story
-            if story.authorId === locals.user.id
-                div
-                .form--container
-                    form(action=`/stories/${story.id}/delete/` method='post')
-                        input(type='hidden' name='_csrf' value=csrfToken)
-                        .form--element
-                            button(type='submit' class='btn btn-primary') Delete Story
-        p= `Like(s) ${story.Pixel_Likes.length}`
-        div(id="heart_container")
-            div(id="pixel__heart")
-                div(id="pixelHeart-shadow")
-        each Pixel_Comment in story.Pixel_Comments
-            div= Pixel_Comment.Pixel_User.username
-            div= Pixel_Comment.body
-            if locals.authenticated && Pixel_Comment.Pixel_User.id === locals.user.id
-                if story.authorId === locals.user.id
-                div
-                .form--container
-                        form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/` method='post')
-                            input(type='hidden' name='_csrf' value=csrfToken)
-                            .form--element
-                                button(type='submit' class='btn btn-primary') Edit Comment
-                if story.authorId === locals.user.id
-                div
-                    .form--container
-                            form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/delete/` method='post')
+    .container(style=`background-image: url(${story.imageUrl})`)
+        .container--empty
+        .container--main
+            .story--body
+                .text--column
+                    h1 #{story.Pixel_Category.name} |
+                    h2 #{story.title}
+                    .heartButtonContainer
+                        if locals.authenticated && story.authorId !== locals.user.id
+                            form(action=`/stories/${story.id}/likes` method='post' class="heartForm")
                                 input(type='hidden' name='_csrf' value=csrfToken)
-                                .form--element
-                                    button(type='submit' class='btn btn-primary') Delete Comment
-        .form--container
-        //- +validationErrorSummary(errors)
-        form(action=`/stories/${story.id}/comment-new` method='post')
-            .form--element--container
-            input(type='hidden' name='_csrf' value=csrfToken)
-            .form--element
-                if errors
-                    div(class='alert alert-danger' role='alert')
-                        h2 The following error(s) occurred:
-                        ul
-                            each error in errors
-                                li= error
-                h1 Comments
-            .form--element
-                label(for='body')
-                    p Share your comments here
-                textarea(id='body' name='body' class='form-control' rows='5')
-            .form--element
-                button(type='submit' class='btn btn-primary') Submit Comment
+                                button(class='heartBtn' type='submit')
+                        .likeCount #{story.Pixel_Likes.length}
+                    h3 By #{story.Pixel_User.username}
+
+                    .story--text #{story.body}
+
+
+
+
+
+
+                .image--column
+                    .story--image--container(style=`background-image: url(${story.imageUrl})`)
+                    if locals.authenticated && story.authorId === locals.user.id
+                        if story.authorId === locals.user.id
+                                form(action=`/stories/${story.id}/edit/` method='post' class="edit--delete--form")
+                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                    button(type='submit' class='story--edit--button') Edit Story
+                        if story.authorId === locals.user.id
+                                form(action=`/stories/${story.id}/delete/` method='post' class="edit--delete--form")
+                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                    button(type='submit' class='story--delete--button') Delete Story
+
+
+            .comment--container
+                .comment--header Comments
+                each Pixel_Comment in story.Pixel_Comments
+                    .comment
+                        .by #{Pixel_Comment.Pixel_User.username}
+                        .what -- "#{Pixel_Comment.body}"
+
+                    if locals.authenticated && Pixel_Comment.Pixel_User.id === locals.user.id
+                        if story.authorId === locals.user.id
+                        div
+                        .form--container
+                                form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/` method='post')
+                                    input(type='hidden' name='_csrf' value=csrfToken)
+                                    .form--element
+                                        button(type='submit' class='btn btn-primary') Edit Comment
+                        if story.authorId === locals.user.id
+                        div
+                            .form--container
+                                    form(action=`/stories/${story.id}/comments/${Pixel_Comment.id}/delete/` method='post')
+                                        input(type='hidden' name='_csrf' value=csrfToken)
+                                        .form--element
+                                            button(type='submit' class='btn btn-primary') Delete Comment
+
+
+
+
+
+
+
+            //- div(id="heart_container")
+            //-     div(id="pixel__heart")
+            //-         div(id="pixelHeart-shadow")
+
+            .form--container
+            //- +validationErrorSummary(errors)
+            form(action=`/stories/${story.id}/comment-new` method='post')
+                .form--element--container
+                input(type='hidden' name='_csrf' value=csrfToken)
+                .form--element
+                    if errors
+                        div(class='alert alert-danger' role='alert')
+                            h2 The following error(s) occurred:
+                            ul
+                                each error in errors
+                                    li= error
+                    h1 Comments
+                .form--element
+                    label(for='body')
+                        p Share your comments here
+                    textarea(id='body' name='body' class='form-control' rows='5')
+                .form--element
+                    button(type='submit' class='btn btn-primary') Submit Comment
+
+            .container--empty

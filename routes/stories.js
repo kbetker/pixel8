@@ -14,7 +14,8 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
         include: [db.Pixel_User],
       },
       { model: db.Pixel_User },
-      { model: db.Pixel_Like }
+      { model: db.Pixel_Like },
+      { model: db.Pixel_Category }
     ],
   });
 
