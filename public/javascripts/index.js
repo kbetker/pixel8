@@ -15,8 +15,8 @@ window.addEventListener("load", (event)=>{
               <a href="/stories/${array[i].id}">
                   <div class="story--text">
                       <div class="title_category">
-                          <div class="category">${array[i].Pixel_Category.name}</div>
-                          <div class="title">${array[i].title}<div class="author">${array[i].Pixel_User.username}</div></div>
+                          <div class="category">${array[i].Pixel_Category.name} | </div>
+                          <div class="title">${array[i].title}<div class="author">By ${array[i].Pixel_User.username}</div></div>
                       </div>
 
                       <div class="summary">${array[i].summary}</div>
