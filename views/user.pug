@@ -24,14 +24,17 @@ block content
                             each Pixel_Story in user.Pixel_Stories
                                 div
                                 a(href=`/stories/${Pixel_Story.id}` class="nav--link")= `${Pixel_Story.title}`
-                //- if locals.authenticated && user.id === sessionUserId
-                //-     .form--container
-                //-         a(href=`/users/${user.id}/edit`)
-                //-             button(class='btn' name='action' value='edit' type='submit') Edit User Info
-                //- div= ``
-                //-     each Pixel_Story in user.Pixel_Stories
-                //-         div
-                //-         a(href=`/stories/${Pixel_Story.id}` class="nav--link")= `${Pixel_Story.title}`
+                if locals.authenticated && user.id === sessionUserId
+                    .button--container
+                        a(href=`/users/${user.id}/edit`)
+                            button(class='btn' name='action' value='edit' type='submit') Edit User Info
+                    .button--container
+                        a(href=`/users/${user.id}/delete`)
+                            button(class='btn' name='action' value='delete' type='submit') Delete your account
+                div= ``
+                    each Pixel_Story in user.Pixel_Stories
+                        div
+                        a(href=`/stories/${Pixel_Story.id}` class="nav--link")= `${Pixel_Story.title}`
 
             if locals.authenticated && user.id === sessionUserId
                 .user--element
