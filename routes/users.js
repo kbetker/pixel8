@@ -74,35 +74,35 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 }));
 
 /* GET user edit page. */
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const user = await db.Pixel_User.findByPk(userId);
-  if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
-  } else {
-    res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
-  }
-}));
+// router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const user = await db.Pixel_User.findByPk(userId);
+//   if (res.locals.user) {
+//     const sessionUserId = res.locals.user.dataValues.id;
+//     res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
+//   } else {
+//     res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
+//   }
+// }));
 
-/* POST user edit page. */
-router.post('/:id(\\d+)/edit', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const userToEdit = await db.Pixel_User.findByPk(userId);
-  const { fullName, about } = req.body;
-  const updatedUserInfo = { fullName, about };
+// /* POST user edit page. */
+// router.post('/:id(\\d+)/edit', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const userToEdit = await db.Pixel_User.findByPk(userId);
+//   const { fullName, about } = req.body;
+//   const updatedUserInfo = { fullName, about };
 
-  let errors = [];
-  const validatorErrors = validationResult(req);
+//   let errors = [];
+//   const validatorErrors = validationResult(req);
 
-  if (validatorErrors.isEmpty()) {
-    await userToEdit.update(updatedUserInfo);
-    res.redirect(`/users/${userId}`);
-  } else {
-    errors = validatorErrors.array().map((error) => error.msg);
-    res.render('user-edit', { updatedUserInfo, errors, csrfToken: req.csrfToken() });
-  }
-}));
+//   if (validatorErrors.isEmpty()) {
+//     await userToEdit.update(updatedUserInfo);
+//     res.redirect(`/users/${userId}`);
+//   } else {
+//     errors = validatorErrors.array().map((error) => error.msg);
+//     res.render('user-edit', { updatedUserInfo, errors, csrfToken: req.csrfToken() });
+//   }
+// }));
 
 /* Change following page. */
 router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {

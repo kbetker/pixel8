@@ -8,7 +8,7 @@ block content
 		h1= title
 		.body--container
 			if locals.authenticated && user.id === sessionUserId
-				form(action=`/users/${user.id}/edit` method='post' id="userEditForm")
+				form(action=`/users/${user.id}/edit` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
 						.form--element
