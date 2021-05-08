@@ -10,12 +10,12 @@ const { asyncHandler } = require('../utils.js')
 
 
 /* GET home page. */
-router.get('/', asyncHandler(async(req, res) => {
-  if(res.locals.user){
-  // const userId = parseInt(req.params.id, 10);
-  const sessionUser = await db.Pixel_User.findByPk(res.locals.user.id)
-
-  res.render('index', { sessionUser, title: 'Pixel8: Your source for the latest Game info!' });
+router.get('/', asyncHandler(async (req, res) => {
+  if (res.locals.user) {
+    // const userId = parseInt(req.params.id, 10);
+    const sessionUser = res.locals.user;
+    console.log(sessionUser);
+    res.render('index', { sessionUser, title: 'Pixel8: Your source for the latest Game info!' });
   } else {
     res.render('index', { title: 'Pixel8: Your source for the latest Game info!' });
   }

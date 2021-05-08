@@ -61,11 +61,12 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     ]
   });
 
-  const following = user.followers.some(element => {
-    return element.id === res.locals.user.id
-  })
+
 
   if (res.locals.user) {
+    const following = user.followers.some(element => {
+      return element.id === res.locals.user.id
+    })
     const sessionUser = res.locals.user;
     res.render('user', { user, sessionUser, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {

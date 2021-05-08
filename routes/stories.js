@@ -31,7 +31,7 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 
 router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
-  const sessionUser = res.locals.user.dataValues.id;
+  const sessionUser = res.locals.user;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
