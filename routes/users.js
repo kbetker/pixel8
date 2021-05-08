@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
-const { loginUser, logoutUser} = require('../auth');
+const { loginUser, logoutUser } = require('../auth');
 const db = require('../db/models');
 
 const loginValidators = [
@@ -17,6 +17,30 @@ const loginValidators = [
     .withMessage('Please enter you password')
     .isLength({ max: 100 })
     .withMessage('Password must not be more than 100 characters long')
+];
+
+const userValidators = [
+  check('fullName')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for your full name.')
+    .isLength({ max: 255 })
+    .withMessage('Full name must not be more than 255 characters long'),
+  check('password')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Password')
+    .isLength({ max: 255 })
+    .withMessage('Password must not be more than 255 characters long'),
+  check('confirmPassword')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Confirm Password')
+    .isLength({ max: 255 })
+    .withMessage('Confirm Password must not be more than 255 characters long')
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error('Confirm Password does not match Password');
+      }
+      return true;
+    }),
 ];
 
 /* GET users listing. */
@@ -50,25 +74,37 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 }));
 
 /* GET user edit page. */
-router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const user = await db.Pixel_User.findByPk(userId);
-  if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
-  } else {
-    res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
-  }
-}));
+// router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const user = await db.Pixel_User.findByPk(userId);
+//   if (res.locals.user) {
+//     const sessionUserId = res.locals.user.dataValues.id;
+//     res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
+//   } else {
+//     res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
+//   }
+// }));
 
-/* POST user edit page. */
-router.post('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-  if (req.body.action && req.body.action === "edit") {
-    res.render('user-edit', { user, csrfToken: req.csrfToken() });
-  }
-}));
+// /* POST user edit page. */
+// router.post('/:id(\\d+)/edit', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const userToEdit = await db.Pixel_User.findByPk(userId);
+//   const { fullName, about } = req.body;
+//   const updatedUserInfo = { fullName, about };
 
-/* PATCH follow page. */
+//   let errors = [];
+//   const validatorErrors = validationResult(req);
+
+//   if (validatorErrors.isEmpty()) {
+//     await userToEdit.update(updatedUserInfo);
+//     res.redirect(`/users/${userId}`);
+//   } else {
+//     errors = validatorErrors.array().map((error) => error.msg);
+//     res.render('user-edit', { updatedUserInfo, errors, csrfToken: req.csrfToken() });
+//   }
+// }));
+
+/* Change following page. */
 router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
   const pixelFollowingId = parseInt(req.params.id, 10);
   const pixelFollowerId = res.locals.user.id;

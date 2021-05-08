@@ -8,11 +8,30 @@ block content
 		h1= title
 		.body--container
 			if locals.authenticated && user.id === sessionUserId
-				.form--container
-					div= `Username: ${user.username}`
-					div= `Joined on: ${user.createdAt}`
-					div= `About: ${user.about}`
-					div= `Stories Posted:`
-						button(class='btn' name='action' value= 'subscribe' type='submit') Update Info!
+				form(action=`/users/${user.id}/edit` method='post')
+					.form--element--container
+						input(type='hidden' name='_csrf' value=csrfToken)
+						.form--element
+							if errors
+								div(class='alert alert-danger' role='alert')
+									h2 The following error(s) occurred:
+									ul
+										each error in errors
+											li= error
+							else
+								h2 User Edit
+								div
+						.form--element
+							label(for="fullName")
+								p Full Name
+							input(type='text' name='fullName', value=`${user.fullName}`)
+
+						.form--element
+							label(for="about")
+								p About
+							textarea(name='about')=`${user.about}`
+
+						.form--element
+							button(type='submit' value='Edit User!') Edit info!
 			else
 				h2= `What are you doing here? You can't edit someone else's page!`
