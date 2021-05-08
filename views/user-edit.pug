@@ -1,0 +1,18 @@
+extends layout
+
+append head
+	link(rel="stylesheet" href="/stylesheets/user-edit.css")
+block content
+	.spacer
+	.container
+		h1= title
+		.body--container
+			if locals.authenticated && user.id === sessionUserId
+				.form--container
+					div= `Username: ${user.username}`
+					div= `Joined on: ${user.createdAt}`
+					div= `About: ${user.about}`
+					div= `Stories Posted:`
+						button(class='btn' name='action' value= 'subscribe' type='submit') Update Info!
+			else
+				h2= `What are you doing here? You can't edit someone else's page!`
