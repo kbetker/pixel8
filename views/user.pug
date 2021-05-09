@@ -43,8 +43,8 @@ block content
                 .button--container
                     a(href=`/users/${user.id}/edit`)
                         button(class='btn' name='action' value='edit' type='submit') Edit User Info
-                    a(href=`/users/${user.id}/delete`)
-                        button(class='btn' name='action' value='delete' type='submit') Delete your account
+                    //- a(href=`/users/${user.id}/delete`)
+                    //-     button(class='btn' name='action' value='delete' type='submit') Delete your account
             else if locals.authenticated && user.id !== sessionUser.id && !following
                 .user--element
                     form(action=`/users/${user.id}/follow` method='post')

@@ -111,14 +111,14 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
   }
 }));
 
-router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const userToDelete = await db.Pixel_User.findByPk(userId);
-  const sessionUser = res.locals.user;
+// router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+//   const userId = parseInt(req.params.id, 10);
+//   const userToDelete = await db.Pixel_User.findByPk(userId);
+//   const sessionUser = res.locals.user;
 
-  await db.Pixel_User.destroy({ where: { id: userId } })
-  res.redirec('/')
-}));
+//   await db.Pixel_User.destroy({ where: { id: userId } })
+//   res.redirec('/')
+// }));
 
 /* Change following page. */
 router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
