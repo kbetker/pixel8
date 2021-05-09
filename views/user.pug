@@ -46,7 +46,7 @@ block content
                     form(action=`/users/${user.id}/delete` method='post')
                         input(type='hidden' name='_csrf' value=csrfToken)
                         .form--element
-                            button(class='btn' type='submit') Delete yourself????
+                            button(class='btn' type='submit') Delete your account
             else if locals.authenticated && user.id !== sessionUser.id && !following
                 .user--element
                     form(action=`/users/${user.id}/follow` method='post')
