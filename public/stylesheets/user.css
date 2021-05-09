@@ -10,6 +10,16 @@
   padding: 88px 0px 108px;
 }
 
+.header--container {
+  background-color: rgba(0, 0, 0, 0.85);
+  width: auto;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 18px 0px;
+}
+
 .body--container {
   background-color: rgba(0, 0, 0, 0.85);
   width: auto;
@@ -21,7 +31,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 88px;
+  padding: 0px 88px;
+}
+
+.button--container {
+  width: 688px;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 38px 8px;
 }
 
 a:visited,
@@ -38,6 +57,7 @@ h1 {
   color: white;
   font-weight: bold;
   margin: 0;
+  justify-self: center;
 }
 
 th {

@@ -1,19 +1,21 @@
 extends layout
+append head
+	link(rel="stylesheet" href="/stylesheets/comment-edit.css")
 block content
-    .spacer
-    body
-        .form--container
-            //- +validationErrorSummary(errors)
-            form(action=`/stories/${comment.pixelStoryId}/comments/${comment.id}/edit` method='post')
-                input(type='hidden' name='_csrf' value=csrfToken)
-                .form--element
-                    if errors
-                        div(class='alert alert-danger' role='alert')
-                            h2 The following error(s) occurred:
-                            ul
-                                each error in errors
-                                    li= error
-                label(for='body') Edit Comment
-                textarea(id='body' name='body' class='form-control' rows='5') #{comment.body}
-                .form--element
-                button(type='submit' class='btn') Submit Changes
+	.spacer
+	.container
+		.title--container
+			h1= `Edit Comment`
+		.form--container
+			form(action=`/stories/${comment.pixelStoryId}/comments/${comment.id}/edit` method='post')
+				input(type='hidden' name='_csrf' value=csrfToken)
+				.form--element--container
+					if errors
+						div(class='alert alert-danger' role='alert')
+							h2 The following error(s) occurred:
+							ul
+							each error in errors
+								li= error
+					textarea(id='body' name='body' class='form-control' rows='5') #{comment.body}
+					.form--element
+						button(type='submit' class='btn') Submit Changes

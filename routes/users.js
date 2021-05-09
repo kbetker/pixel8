@@ -5,6 +5,12 @@ const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const db = require('../db/models');
+const { Op } = require("sequelize");
+const blueBird = require('bluebird');
+
+blueBird.config({
+    longStackTraces: true
+});
 
 const loginValidators = [
   check('username')
@@ -111,13 +117,59 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
   }
 }));
 
-router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
-  const userId = parseInt(req.params.id, 10);
-  const userToDelete = await db.Pixel_User.findByPk(userId);
-  const sessionUser = res.locals.user;
+router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, next) => {
+  try{
+    const userId = parseInt(req.params.id, 10);
 
-  await db.Pixel_User.destroy({ where: { id: userId } })
-  res.redirec('/')
+    const user = await db.Pixel_User.findByPk(userId);
+
+    await db.Pixel_Follower.destroy({
+      where:{
+        [Op.or]: [
+          {pixelFollowingId: userId},
+          {pixelFollowerId: userId},
+        ]
+      }
+    });
+    // const storyIds = await story.map(function(value) {
+    //   return value.id;
+    // });
+    await user.destroy({truncate: true}, {cascade: true});
+    // await db.Pixel_Story.destroy({
+    //   where:{
+    //       authorId: userId,
+    //     },
+    //   },
+    //   {truncate : true},);
+    // await db.Pixel_Comment.destroy({
+    //   where: {
+    //     [Op.or]: [
+    //       { pixelStoryId: storyIds },
+    //       { pixelUserId: userId }
+    //     ]
+    //   }
+    // });
+
+    // await db.Pixel_Like.destroy({
+    //   where: {
+    //     [Op.or]: [
+    //     {pixelStoryId: storyIds},
+    //     {pixelUserId: userId},
+    //     ]
+    //   }
+    // });
+
+
+
+
+
+    //   const deletedUser = await db.Pixel_User.destroy({ where: { id: userId } })
+    logoutUser(req, res);
+    res.redirect('/');
+
+  }catch(error){
+    console.error(error);
+  }
 }));
 
 /* Change following page. */

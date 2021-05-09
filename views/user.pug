@@ -5,7 +5,8 @@ append head
 block content
     .spacer
     .container
-        h1= title
+        .header--container
+            h1= title
         .body--container
             .user--element
                 table(class='table')
@@ -42,9 +43,10 @@ block content
                 .button--container
                     a(href=`/users/${user.id}/edit`)
                         button(class='btn' name='action' value='edit' type='submit') Edit User Info
-                .button--container
-                    a(href=`/users/${user.id}/delete`)
-                        button(class='btn' name='action' value='delete' type='submit') Delete your account
+                    form(action=`/users/${user.id}/delete` method='post')
+                        input(type='hidden' name='_csrf' value=csrfToken)
+                        .form--element
+                            button(class='btn' type='submit') Delete yourself????
             else if locals.authenticated && user.id !== sessionUser.id && !following
                 .user--element
                     form(action=`/users/${user.id}/follow` method='post')
