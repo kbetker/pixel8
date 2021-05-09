@@ -10,10 +10,10 @@ block content
 	.container
 		.title--container
 			h1= title
-			include genre-selector.pug
-			body
+
+
 		.form--container
-			if locals.authenticated
+			if locals.authenticated && sessionUser.id
 				form(action=`/stories/${story.id}/edited-story` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
@@ -47,6 +47,10 @@ block content
 								input(type='text' name='imageUrl' value= `${story.imageUrl}`)
 
 							.form--element
+								.form--genre
+									include genre-selector.pug
+
+							.form--element
 								label(for="categoryId")
 									p Category of Story Type
 								select(name='categoryId' required)
@@ -67,4 +71,4 @@ block content
 				a(href="/users/login" class="nav--link") Log In
 				|!{' '}or!{' '}
 				a(href="/users/register" class="nav--link") Register
-				|!{' '}to submit a story!
+				|!{' '}to edit a story!

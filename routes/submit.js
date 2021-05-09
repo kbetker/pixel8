@@ -34,12 +34,24 @@ const submitValidators = [
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     const categories = await db.Pixel_Category.findAll();
     const story = db.Pixel_Story.build();
-    res.render('story-new', {
-        title: 'Submit New Story',
-        categories,
-        story,
-        csrfToken: req.csrfToken(),
-    });
+    if (res.locals.user) {
+        const sessionUser = res.locals.user;
+        res.render('story-new', {
+            title: 'Submit New Story',
+            sessionUser,
+            categories,
+            story,
+            csrfToken: req.csrfToken(),
+        });
+    } else {
+        res.render('story-new', {
+            title: 'Submit New Story',
+            categories,
+            story,
+            csrfToken: req.csrfToken(),
+        });
+    }
+
 }));
 
 router.post('/new', csrfProtection, submitValidators, asyncHandler(async (req, res, next) => {

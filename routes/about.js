@@ -12,7 +12,14 @@ const db = require('../db/models');
 
 
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
-    res.render('about')
+    if (res.locals.user) {
+        // const userId = parseInt(req.params.id, 10);
+        const sessionUser = res.locals.user;
+
+        res.render('about', { sessionUser });
+    } else {
+        res.render('about');
+    }
 }));
 
 module.exports = router;

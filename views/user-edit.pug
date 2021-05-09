@@ -1,17 +1,18 @@
 extends layout
 
 append head
+
 	link(rel="stylesheet" href="/stylesheets/user-edit.css")
 block content
 	.spacer
 	.container
-		h1= title
-		.body--container
-			if locals.authenticated && user.id === sessionUserId
-				form(action=`/users/${user.id}/edit` method='post')
+		.title--container
+			h1= title
+		.form--container
+			if locals.authenticated && user.id === sessionUser.id
+				form(action=`/users/${user.id}/edit` method='post' id="usersEditForm")
 					.form--element--container
-						input(type='hidden' name='_csrf' value=csrfToken)
-						.form--element
+						.form--container-left
 							if errors
 								div(class='alert alert-danger' role='alert')
 									h2 The following error(s) occurred:
@@ -21,17 +22,35 @@ block content
 							else
 								h2 User Edit
 								div
-						.form--element
-							label(for="fullName")
-								p Full Name
-							input(type='text' name='fullName', value=`${user.fullName}`)
+							.form--element
+								label(for="fullName")
+									p Full Name
+								input(type='text' name='fullName', value=`${user.fullName}`)
 
-						.form--element
-							label(for="about")
-								p About
-							textarea(name='about')=`${user.about}`
+							.form--element
+								label(for="email")
+									p Email Address
+								input(type='text' name='email', value=`${user.email}`)
 
-						.form--element
-							button(type='submit' value='Edit User!') Edit info!
+							.form--element
+									label(for="Password")
+										p Password
+									input(type='password' name='password' id="password", value=`${user.password}`)
+
+							.form--element
+									label(for="confirmPassword")
+										p confirmPassword
+									input(type='password' name='confirmPassword', value=`${user.password}`)
+
+						.form--container-right
+							input(type='hidden' name='_csrf' value=csrfToken)
+							.form--element
+							.form--element
+								label(for="about")
+									p About
+								textarea(name='about')=`${user.about}`
+
+							.button--container
+								button(type='submit' value='Edit User!', class="login__button") Edit info!
 			else
 				h2= `What are you doing here? You can't edit someone else's page!`

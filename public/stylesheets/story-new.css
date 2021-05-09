@@ -45,6 +45,12 @@
 .form--element {
   width: 333px;
 }
+
+.form--genre {
+  display: flex;
+  flex-direction: row;
+}
+
 input {
   width: 500px;
   height: 20px;

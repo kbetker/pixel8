@@ -3,7 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt')
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
-const { loginUser, logoutUser } = require('../auth');
+const { loginUser, logoutUser, requireAuth } = require('../auth');
 const db = require('../db/models');
 
 const loginValidators = [
@@ -25,6 +25,13 @@ const userValidators = [
     .withMessage('Please provide a value for your full name.')
     .isLength({ max: 255 })
     .withMessage('Full name must not be more than 255 characters long'),
+  check('email')
+    .exists({ checkFalsy: true })
+    .withMessage('Please provide a value for Email Address')
+    .isLength({ max: 255 })
+    .withMessage('Email Address must not be more than 255 characters long')
+    .isEmail()
+    .withMessage('Email Address is not a valid email'),
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a value for Password')
@@ -61,48 +68,57 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
     ]
   });
 
-  const following = user.followers.some(element => {
-    return element.id === res.locals.user.id
-  })
-
   if (res.locals.user) {
-    const sessionUserId = res.locals.user.dataValues.id;
-    res.render('user', { user, sessionUserId, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
+    const sessionUser = res.locals.user;
+    const following = user.followers.some(element => {
+      return element.id === res.locals.user.id
+    })
+    res.render('user', { user, sessionUser, following, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   } else {
     res.render('user', { user, title: `Welcome to ${user.fullName}'s page!`, csrfToken: req.csrfToken() });
   }
 }));
 
 /* GET user edit page. */
-// router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
-//   const userId = parseInt(req.params.id, 10);
-//   const user = await db.Pixel_User.findByPk(userId);
-//   if (res.locals.user) {
-//     const sessionUserId = res.locals.user.dataValues.id;
-//     res.render('user-edit', { user, sessionUserId, title: `Update your info`, csrfToken: req.csrfToken() });
-//   } else {
-//     res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
-//   }
-// }));
+router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const user = await db.Pixel_User.findByPk(userId);
+  if (res.locals.user) {
+    const sessionUser = res.locals.user;
+    res.render('user-edit', { user, sessionUser, title: `Update your info`, csrfToken: req.csrfToken() });
+  } else {
+    res.render('user-edit', { user, title: `This is not your page lol`, csrfToken: req.csrfToken() });
+  }
+}));
 
 // /* POST user edit page. */
-// router.post('/:id(\\d+)/edit', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
-//   const userId = parseInt(req.params.id, 10);
-//   const userToEdit = await db.Pixel_User.findByPk(userId);
-//   const { fullName, about } = req.body;
-//   const updatedUserInfo = { fullName, about };
+router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const sessionUser = res.locals.user;
+  const userToEdit = await db.Pixel_User.findByPk(userId);
+  const { fullName, about, email } = req.body;
+  const updatedUserInfo = { fullName, about, email };
 
-//   let errors = [];
-//   const validatorErrors = validationResult(req);
+  let errors = [];
+  const validatorErrors = validationResult(req);
 
-//   if (validatorErrors.isEmpty()) {
-//     await userToEdit.update(updatedUserInfo);
-//     res.redirect(`/users/${userId}`);
-//   } else {
-//     errors = validatorErrors.array().map((error) => error.msg);
-//     res.render('user-edit', { updatedUserInfo, errors, csrfToken: req.csrfToken() });
-//   }
-// }));
+  if (validatorErrors.isEmpty()) {
+    await userToEdit.update(updatedUserInfo);
+    res.redirect(`/users/${userId}`);
+  } else {
+    errors = validatorErrors.array().map((error) => error.msg);
+    res.render('user-edit', { updatedUserInfo, errors, sessionUser, csrfToken: req.csrfToken() });
+  }
+}));
+
+router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
+  const userId = parseInt(req.params.id, 10);
+  const userToDelete = await db.Pixel_User.findByPk(userId);
+  const sessionUser = res.locals.user;
+
+  await db.Pixel_User.destroy({ where: { id: userId } })
+  res.redirec('/')
+}));
 
 /* Change following page. */
 router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
