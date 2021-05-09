@@ -172,6 +172,7 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, n
   }
 }));
 
+
 /* Change following page. */
 router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
   const pixelFollowingId = parseInt(req.params.id, 10);

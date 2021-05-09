@@ -8,9 +8,10 @@ Where good games find you
 [Pixel8 at a Glance](https://github.com/kbetker/pixel8#Pixel8-at-a-Glance)
 [Key Features](https://github.com/kbetker/pixel8#Key-Features)
 [Technologies Used](https://github.com/kbetker/pixel8#Technologies-Used)
-[StarTrader at a Glance](https://github.com/kbetker/pixel8#startrader-at-a-glance)
-[StarTrader at a Glance](https://github.com/kbetker/pixel8#startrader-at-a-glance)
-[StarTrader at a Glance](https://github.com/kbetker/pixel8#startrader-at-a-glance)
+[Application Architecture](https://github.com/kbetker/pixel8#Application-Architecture)
+[Frontend Overview](https://github.com/kbetker/pixel8#Frontend-Overview)
+[Backend Overview](https://github.com/kbetker/pixel8#Backend-Overview)
+[Conclusion](https://github.com/kbetker/pixel8#Conclusion)
 
 
 ## Pixel8 at a Glance
@@ -24,7 +25,7 @@ The application is made with a Pug/CSS frontend and all current stories are cont
 * Follow favorite users and game types populate feeds with only related stories
 * Like and comment on the various articles
 
-![Pixel8 mini-demo](/readme-assets/insert-gif-link-here.gif)
+![Pixel8 mini-demo](/readme-assets/mini-demo.gif)
 
 ## Technologies Used
 * Frontend
@@ -62,3 +63,7 @@ Seed data was hand coded by team effort to flesh out all articles, comments, and
 
 ## Conclusion
 Pixel8 was a lot of fun to make because our team worked very well together to delegate and spread out all tasks as equally as possible, with everyone on the team contributing to every portion of the project together. Every person on the team was able to contribute to every single task to create the website, including seeder data, CSS, front end mapping and design, as well as back end routing.
+
+We all had different strengths and weaknesses and was able to use these to our advantage to cover everything on the project. We think that the project has turned out great, we've hit all of the features that we wanted to hit and was able to implement a few extra features we had in mind as well. No major roadblocks were hit, and when we hit any minor problems, we were able to troubleshoot it together to help each other solve problems. We've learned a lot and were able to put our knowledge from the course into implementing the website.
+
+Let's go Pixel8 dream team!
