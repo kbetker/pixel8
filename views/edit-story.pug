@@ -11,9 +11,9 @@ block content
 		.title--container
 			h1= title
 
-			body
+
 		.form--container
-			if locals.authenticated
+			if locals.authenticated && sessionUser.id
 				form(action=`/stories/${story.id}/edited-story` method='post')
 					.form--element--container
 						input(type='hidden' name='_csrf' value=csrfToken)
@@ -71,4 +71,4 @@ block content
 				a(href="/users/login" class="nav--link") Log In
 				|!{' '}or!{' '}
 				a(href="/users/register" class="nav--link") Register
-				|!{' '}to submit a story!
+				|!{' '}to edit a story!
