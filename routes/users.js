@@ -96,8 +96,8 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
   const userId = parseInt(req.params.id, 10);
   const sessionUser = res.locals.user;
   const userToEdit = await db.Pixel_User.findByPk(userId);
-  const { fullName, about } = req.body;
-  const updatedUserInfo = { fullName, about };
+  const { fullName, about, email } = req.body;
+  const updatedUserInfo = { fullName, about, email };
 
   let errors = [];
   const validatorErrors = validationResult(req);
@@ -114,7 +114,7 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
 router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
   const userToDelete = await db.Pixel_User.findByPk(userId);
-  const sessionUserId = res.locals.user.dataValues.id;
+  const sessionUser = res.locals.user;
 
   await db.Pixel_User.destroy({ where: { id: userId } })
   res.redirec('/')

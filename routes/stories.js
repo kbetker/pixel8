@@ -62,7 +62,7 @@ router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async
 
 router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (req, res, next) => {
   const storyId = parseInt(req.params.id, 10);
-  const sessionUser = res.locals.user;
+  // const sessionUser = res.locals.user;
   const story = await db.Pixel_Story.findByPk(storyId, {
     include: [
       {
@@ -75,11 +75,14 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (
     ],
   });
   const categories = await db.Pixel_Category.findAll();
-    res.render('edit-story', {story, sessionUser, categories, csrfToken: req.csrfToken()});
+  if (res.locals.user) {
+    const sessionUser = res.locals.user;
+    res.render('edit-story', { story, sessionUser, categories, csrfToken: req.csrfToken() });;
+  } else {
+    res.render('edit-story', { story, categories, csrfToken: req.csrfToken() });;
+  }
+
 }));
-
-
-
 
 router.post('/:id(\\d+)/comment-new', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
@@ -150,18 +153,18 @@ router.post(`/:id(\\d+)/edited-story`, requireAuth, csrfProtection,
 router.post('/:id(\\d+)/likes', requireAuth, csrfProtection,
   asyncHandler(async (req, res) => {
     const storyId = parseInt(req.params.id, 10);
-    const sessionUserId = res.locals.user.dataValues.id;
+    const sessionUser = res.locals.user;
     const userLikesStory = await db.Pixel_Like.findOne({
       where: {
-        pixelUserId: sessionUserId,
+        pixelUserId: sessionUser.id,
         pixelStoryId: storyId
       }
     });
     if (userLikesStory) {
       await userLikesStory.destroy();
     } else {
-      const like = await db.Pixel_Like.create({
-        pixelUserId: sessionUserId,
+      await db.Pixel_Like.create({
+        pixelUserId: sessionUser.id,
         pixelStoryId: storyId
       });
     }

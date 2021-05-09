@@ -14,7 +14,7 @@ const db = require('../db/models');
 router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
     if (res.locals.user) {
         // const userId = parseInt(req.params.id, 10);
-        const sessionUser = await db.Pixel_User.findByPk(res.locals.user.id)
+        const sessionUser = res.locals.user;
 
         res.render('about', { sessionUser });
     } else {
