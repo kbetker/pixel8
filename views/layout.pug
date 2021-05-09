@@ -23,7 +23,7 @@ html(lang="en")
           img(src="/images/pixel8logo.svg", alt="" class="logo")
         .navvier
           .userLink--container
-            if locals.authenticated
+            if locals.authenticated && sessionUser
               .user--link
                 a(href=`/users/${sessionUser.id}` class="usernameLink")
                   .username= sessionUser.username
