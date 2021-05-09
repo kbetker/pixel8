@@ -1,0 +1,101 @@
+.container {
+    margin-top: -8px;
+    z-index: -88;
+    background-image: url("../images/animatedBackground3.gif");
+    image-rendering: pixelated;
+    background-size: 100%;
+    background-position-y: -388px;
+    height: 600px;
+    width: 100%;
+    padding-top: 88px;
+  }
+
+.title--container {
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 38px 40px 0 40px;
+    box-sizing: border-box
+}
+
+.form--container {
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 100%;
+    height: 250px;
+    color: #ffb43d;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    display: flex;
+    justify-content: flex-start;
+    align-items: top;
+    padding: 0 40px 0 20px;
+    box-sizing: border-box;
+}
+
+.form--element--container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 333px;
+    height: auto;
+    padding: 20px;
+}
+
+.form--element {
+    width: 333px;
+    padding-top: 20px;
+
+}
+
+input {
+    width: 500px;
+    height: 20px;
+}
+textarea {
+    width: 300px;
+    height: 100px;
+}
+button {
+    width: 238px;
+    color: white;
+    border-radius: 10px;
+    background-color: #ffb43d;
+    height: 40px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+a:visited,
+a:hover,
+a:active,
+a:link {
+    color: #ffb43d;
+    text-decoration: none;
+}
+a:hover {
+    color: #ffffff;
+}
+
+h1 {
+    color: white;
+    font-weight: bold;
+    margin: 0;
+}
+p {
+    margin: 0;
+}
+h2 {
+    color: white;
+    font-size: 24px;
+    margin: 0;
+}
+li {
+    color: red;
+}
+
+select:focus {
+outline: 0;
+}
