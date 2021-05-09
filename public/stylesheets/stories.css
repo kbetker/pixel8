@@ -36,6 +36,9 @@
 .text--column{
     /* background-color: red; */
 }
+a{
+    color: #FFB43D;
+}
 
 .image--column{
    justify-self: flex-end;

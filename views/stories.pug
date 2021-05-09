@@ -70,7 +70,8 @@ block content
                 each Pixel_Comment in story.Pixel_Comments
                     .comment
                         div
-                            .by #{Pixel_Comment.Pixel_User.username}
+                            .by
+                              a(href=`/users/${Pixel_Comment.Pixel_User.id}`) #{Pixel_Comment.Pixel_User.username}
                             .what -- "#{Pixel_Comment.body}"
                         .buttons
                             if locals.authenticated && Pixel_Comment.Pixel_User.id === locals.user.id
