@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { asyncHandler, csrfProtection } = require('../utils.js')
+const { asyncHandler, csrfProtection} = require('../utils.js')
 const { check, validationResult } = require('express-validator')
 const db = require('../db/models');
 const { requireAuth } = require('../auth');
@@ -18,6 +18,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Category }
     ],
   });
+  if(!story){
+    res.render('404');
+    return;
+  }
   if (res.locals.user) {
     // const userId = parseInt(req.params.id, 10);
     const sessionUser = res.locals.user;
@@ -42,6 +46,10 @@ router.post('/:id(\\d+)/delete', requireAuth, csrfProtection, asyncHandler(async
       { model: db.Pixel_Like }
     ],
   });
+  if(!story){
+    res.render('404');
+    return;
+  }
   await db.Pixel_Comment.destroy({
     where: {
       pixelStoryId: storyId
@@ -74,6 +82,10 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, asyncHandler(async (
       { model: db.Pixel_Category }
     ],
   });
+  if(!story){
+    res.render('404');
+    return;
+  }
   const categories = await db.Pixel_Category.findAll();
   if (res.locals.user) {
     const sessionUser = res.locals.user;
@@ -90,7 +102,10 @@ router.post('/:id(\\d+)/comment-new', requireAuth, csrfProtection,
     const user = res.locals.user.dataValues;
     const storyId = parseInt(req.params.id, 10);
     const currStory = await db.Pixel_Story.findByPk(storyId);
-
+    if(!currStory){
+      res.render('404');
+      return;
+    }
     const comment = await db.Pixel_Comment.create({
       pixelStoryId: storyId,
       pixelUserId: res.locals.user.id,
@@ -106,7 +121,10 @@ router.post(`/:id(\\d+)/comments/:comment_id(\\d+)`, requireAuth, csrfProtection
     const storyId = parseInt(req.params.id, 10);
     const commentId = parseInt(req.params.comment_id, 10);
     const comment = await db.Pixel_Comment.findByPk(commentId);
-
+    if(!comment){
+      res.render('404');
+      return;
+    }
     res.render('edit-comment', { comment, csrfToken: req.csrfToken() });
 
 
@@ -117,7 +135,10 @@ router.post('/:id(\\d+)/comments/:comment_id(\\d+)/edit', requireAuth, csrfProte
     const commentId = parseInt(req.params.comment_id, 10);
     const commentToUpdate = await db.Pixel_Comment.findByPk(commentId);
     const { body } = req.body;
-
+    if(!commentToUpdate){
+      res.render('404');
+      return;
+    }
     await commentToUpdate.update({ pixelStoryId: commentToUpdate.pixelStoryId, pixelUserId: commentToUpdate.pixelUserId, body });
     res.redirect(`/stories/${commentToUpdate.pixelStoryId}`);
 
@@ -131,6 +152,10 @@ router.post('/:id(\\d+)/comments/:comment_id(\\d+)/delete', requireAuth, csrfPro
     const storyId = parseInt(req.params.id, 10);
     const commentId = parseInt(req.params.comment_id, 10);
     const comment = await db.Pixel_Comment.findByPk(commentId);
+    if(!comment){
+      res.render('404');
+      return;
+    }
     const { body } = req.body;
     await comment.destroy();
     res.redirect(`/stories/${storyId}`)
