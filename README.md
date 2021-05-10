@@ -1,18 +1,18 @@
 # Pixel8
 
-\*By [Felipe Araujo](https://github.com/f-q-a), [Kevin Betker](https://github.com/kbetker), and [Zach Yu](https://github.com/zachmyu).
+*By [Felipe Araujo](https://github.com/f-q-a), [Kevin Betker](https://github.com/kbetker), and [Zach Yu](https://github.com/zachmyu).
 
 Where good games find you
-
+[Live site](https://bestpixel8.herokuapp.com/)
 **Table of Contents**
 
-[Pixel8 at a Glance](https://github.com/kbetker/pixel8#Pixel8-at-a-Glance)
-[Key Features](https://github.com/kbetker/pixel8#Key-Features)
-[Technologies Used](https://github.com/kbetker/pixel8#Technologies-Used)
-[Application Architecture](https://github.com/kbetker/pixel8#Application-Architecture)
-[Frontend Overview](https://github.com/kbetker/pixel8#Frontend-Overview)
-[Backend Overview](https://github.com/kbetker/pixel8#Backend-Overview)
-[Conclusion](https://github.com/kbetker/pixel8#Conclusion)
+* [Pixel8 at a Glance](https://github.com/kbetker/pixel8#Pixel8-at-a-Glance)
+* [Key Features](https://github.com/kbetker/pixel8#Key-Features)
+* [Technologies Used](https://github.com/kbetker/pixel8#Technologies-Used)
+* [Application Architecture](https://github.com/kbetker/pixel8#Application-Architecture)
+* [Frontend Overview](https://github.com/kbetker/pixel8#Frontend-Overview)
+* [Backend Overview](https://github.com/kbetker/pixel8#Backend-Overview)
+* [Conclusion](https://github.com/kbetker/pixel8#Conclusion)
 
 ## Pixel8 at a Glance
 
