@@ -15,53 +15,56 @@ block content
 		.form--container
 			if locals.authenticated
 				form(action='/submit/new' method='post')
-					.form--element--container
-						input(type='hidden' name='_csrf' value=csrfToken)
-						div
-							.form--element
-								if errors
-									div(class='alert alert-danger' role='alert')
-										h2 The following error(s) occurred:
-										ul
-											each error in errors
-												li= error
-								else
-							.form--element
-								label(for="title")
-									p Story Title
-								input(type='text' name='title')
+					input(type='hidden' name='_csrf' value=csrfToken)
+					if errors
+						div(class='alert alert-danger' role='alert')
+							h2 The following error(s) occurred:
+							ul
+								each error in errors
+									li= error
+					else
+						.columns
+							.leftColumn
 
-							.form--element
-								label(for="summary")
-									p Story Summary
-								input(type='text' name='summary')
+								.form--element
+									label(for="title")
+										p Story Title
+									input(type='text' name='title')
 
-							.form--element
-								label(for="body")
-									p Tell us your story
-								textarea(name='body')
+								.form--element
+									label(for="summary")
+										p Story Summary
+									input(type='text' name='summary')
 
-							.form--element
-								label(for="imageUrl")
-									p Image Url
-								input(type='text' name='imageUrl')
+								.form--element
+									label(for="imageUrl")
+										p Image Url
+									input(type='text' name='imageUrl')
 
-							.form--element
-								.form--genre
-									include genre-selector.pug
+								.form--element
+									label(for="categoryId")
+										p Category of Story Type
+									select(name='categoryId' required)
+											each category in categories
+												option(value=category.id)= category.name
+									input(type='hidden' name='authorId' value=locals.user.id)
+									input(type='hidden' name='viewCount' value=0)
+									input(type="hidden" name="genre" id="genre" value="Null")
 
-							.form--element
-								label(for="categoryId")
-									p Category of Story Type
-								select(name='categoryId' required)
-										each category in categories
-											option(value=category.id)= category.name
-								input(type='hidden' name='authorId' value=locals.user.id)
-								input(type='hidden' name='viewCount' value=0)
-								input(type="hidden" name="genre" id="genre" value="Null")
+								.form--element
+									label(for="categoryId")
+										p Select Genre
+									.form--genre
+										include genre-selector.pug
 
-							.form--element
-								button(type='submit' value='Create Story') Submit Story
+							.rightColumn
+								.form--element
+									label(for="body")
+										p Tell us your story
+									textarea(name='body')
+
+								.form--element
+									button(type='submit' value='Create Story') Submit Story
 			else
 				p
 				| Please!{' '}
