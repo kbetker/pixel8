@@ -1,4 +1,21 @@
 extends layout
+
+
+append head
+	link(rel="stylesheet" href="/stylesheets/404.css")
+//Zach
+block content
+	.spacer
+	.container
+		.container--empty
+		.title--container
+			h1 Your webpage has fallen into the void
+		.four--container
+			img(src="../images/pixel8logo.svg", alt="" class="logo")
+		.message--container
+			p How did you get here? You must be lost!
+		.footer--container
+//Felipe
 append head
 
     link(rel="stylesheet" href="/stylesheets/not-found.css")
@@ -12,3 +29,4 @@ block content
         .title--container
             div=''
             h1='Page Not Found!'
+
