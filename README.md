@@ -3,7 +3,9 @@
 *By [Felipe Araujo](https://github.com/f-q-a), [Kevin Betker](https://github.com/kbetker), and [Zach Yu](https://github.com/zachmyu).
 
 Where good games find you
+
 [Live site](https://bestpixel8.herokuapp.com/)
+
 **Table of Contents**
 
 * [Pixel8 at a Glance](https://github.com/kbetker/pixel8#Pixel8-at-a-Glance)
