@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt')
-const { asyncHandler, csrfProtection } = require('../utils.js')
+const { asyncHandler, csrfProtection, notFound } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
 const { loginUser, logoutUser, requireAuth } = require('../auth');
 const db = require('../db/models');
@@ -73,7 +73,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Comment },
     ]
   });
-
+  if(!user){
+    res.render('404');
+    return;
+  }
   if (res.locals.user) {
     const sessionUser = res.locals.user;
     const following = user.followers.some(element => {
@@ -89,6 +92,10 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
 router.get('/:id(\\d+)/edit', csrfProtection, asyncHandler(async (req, res, next) => {
   const userId = parseInt(req.params.id, 10);
   const user = await db.Pixel_User.findByPk(userId);
+  if(!user){
+    res.render('404');
+    return;
+  }
   if (res.locals.user) {
     const sessionUser = res.locals.user;
     res.render('user-edit', { user, sessionUser, title: `Update your info`, csrfToken: req.csrfToken() });
@@ -102,6 +109,11 @@ router.post('/:id(\\d+)/edit', requireAuth, csrfProtection, userValidators, asyn
   const userId = parseInt(req.params.id, 10);
   const sessionUser = res.locals.user;
   const userToEdit = await db.Pixel_User.findByPk(userId);
+  if(!userToEdit){
+    res.render('404');
+    return;
+  }
+
   const { fullName, about, email } = req.body;
   const updatedUserInfo = { fullName, about, email };
 
@@ -122,7 +134,10 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, n
     const userId = parseInt(req.params.id, 10);
 
     const user = await db.Pixel_User.findByPk(userId);
-
+    if(!user){
+      res.render('404');
+      return;
+    }
     await db.Pixel_Follower.destroy({
       where:{
         [Op.or]: [
@@ -174,7 +189,7 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, n
 
 
 /* Change following page. */
-router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/follow', notFound, csrfProtection, asyncHandler(async (req, res, next) => {
   const pixelFollowingId = parseInt(req.params.id, 10);
   const pixelFollowerId = res.locals.user.id;
   const follow = await db.Pixel_Follower.findOne({

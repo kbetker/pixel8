@@ -1,0 +1,29 @@
+.container {
+    margin-top: -8px;
+    z-index: -88;
+    background-image: url("../images/animatedBackground3.gif");
+    image-rendering: pixelated;
+    background-size: 100%;
+    background-position-y: -388px;
+    height: 600px;
+    width: 100%;
+    padding-top: 88px;
+  }
+
+.title--container {
+    background-color: rgba(0, 0, 0, 0.0);
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 38px 40px 0 40px;
+    box-sizing: border-box;
+    color: #FFB43D;
+}
+
+.dancers{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
