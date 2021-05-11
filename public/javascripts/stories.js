@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
             if(mustLogin !== null){
                 mustLogin.addEventListener("click", (e)=>{
-                    alert("You must be logged in to like this page")
+                    alert("You must be logged in to comment on this page")
                 })
             }
 
