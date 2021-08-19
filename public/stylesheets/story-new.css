@@ -5,7 +5,7 @@
   image-rendering: pixelated;
   background-size: 100%;
   background-position-y: -388px;
-  height: 1000px;
+  min-height: 88vh;
   width: 100%;
   padding-top: 88px;
 }
@@ -13,18 +13,18 @@
 .title--container {
   background-color: rgba(0, 0, 0, 0.85);
   width: 100%;
-  height: 128px;
+  height: 25px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   padding-top: 38px;
 }
 
 .form--container {
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(0, 0, 0, 0.7);
   width: 100%;
-  height: 638px;
+  height: 438px;
   color: #ffb43d;
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bolder;
@@ -33,7 +33,29 @@
   align-items: top;
   padding-top: 38px;
 }
+.columns {
+  display: flex;
+  width: 1108px;
+  height: 388px;
+  justify-content: space-evenly;
+  /* background-color: red; */
+}
 
+.leftColumn {
+  /* background-color: red; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 500px;
+  /* background-color: blueviolet; */
+}
+.rightColumn {
+  /* background-color: blue; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 500px;
+}
 .form--element--container {
   display: flex;
   flex-direction: column;
@@ -57,7 +79,7 @@ input {
 }
 textarea {
   width: 500px;
-  height: 300px;
+  height: 250px;
 }
 button {
   width: 238px;

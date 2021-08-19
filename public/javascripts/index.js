@@ -47,8 +47,7 @@ window.addEventListener("load", (event)=>{
             let id = trending[i].id
             sortedList.push({"title": title, "likes": likes, "imageUrl": imageUrl, "id": id})
         }
-        sortedList = trending.sort((a,b) => (a.likes > b.likes) ? -1 : 1)
-
+        sortedList.sort((a,b) => (a.likes > b.likes) ? -1 : 1)
         for(let i = 0; i < 5; i++){
               let title = sortedList[i].title
               let likes = sortedList[i].likes
