@@ -189,7 +189,7 @@ router.post('/:id(\\d+)/delete', csrfProtection, asyncHandler(async (req, res, n
 
 
 /* Change following page. */
-router.post('/:id(\\d+)/follow', notFound, csrfProtection, asyncHandler(async (req, res, next) => {
+router.post('/:id(\\d+)/follow', csrfProtection, asyncHandler(async (req, res, next) => {
   const pixelFollowingId = parseInt(req.params.id, 10);
   const pixelFollowerId = res.locals.user.id;
   const follow = await db.Pixel_Follower.findOne({
