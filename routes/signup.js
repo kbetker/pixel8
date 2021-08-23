@@ -3,7 +3,7 @@ const router = express.Router();
 const { asyncHandler, csrfProtection } = require('../utils.js')
 const { check, validationResult } = require('express-validator')
 const db = require('../db/models');
-const { loginUser } = require('../auth');
+const { loginUser, restoreUser } = require('../auth');
 const bcrypt = require('bcrypt')
 
 
@@ -69,8 +69,16 @@ router.get('/', csrfProtection, asyncHandler(async (req, res, next) => {
 
 router.post('/new', csrfProtection, userValidators, asyncHandler(async (req, res, next) => {
     const { fullName, email, password, username, about } = req.body;
+    console.log(req.body.reg__button)
+    if(req.body.reg__button && req.body.reg__button === 'demo-login'){
+        console.log('Hello are we reaching this?')
+        let user_name = 'demomcdemiface';
+        const user = await db.Pixel_User.findOne({ where: {username: user_name} });
+        console.log('Hello is anyone home=====>', user)
+        loginUser(req, res, user);
+        return res.redirect('/');
 
-    let errors = [];
+    }
     const validatorErrors = validationResult(req);
     const newUser = await db.Pixel_User.build({
         fullName, email, username, about
