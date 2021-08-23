@@ -64,7 +64,7 @@ router.post('/new', csrfProtection, submitValidators, asyncHandler(async (req, r
     })
     if (validatorErrors.isEmpty()) {
         await newStory.save();
-        res.redirect('/');
+        res.redirect(`/stories/${newStory.id}`);
     } else {
         errors = validatorErrors.array().map((error) => error.msg);
         res.render('story-new', { title, summary, body, imageUrl, categoryId, genre, errors, authorId, viewCount, csrfToken: req.csrfToken() });
