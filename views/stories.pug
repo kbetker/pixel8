@@ -15,10 +15,14 @@ block content
                     h1 #{story.Pixel_Category.name} |
                     h2 #{story.title}
                     .heartButtonContainer
-                        if locals.authenticated && story.authorId !== locals.user.id
+                        if locals.authenticated && story.authorId !== locals.user.id && likeStatus
                             form(action=`/stories/${story.id}/likes` method='post' class="heartForm")
                                 input(type='hidden' name='_csrf' value=csrfToken)
                                 button(class='heartBtn' type='submit')
+                        else if locals.authenticated && story.authorId !== locals.user.id
+                            form(action=`/stories/${story.id}/likes` method='post' class="heartForm")
+                                input(type='hidden' name='_csrf' value=csrfToken)
+                                button(class='heartBtnGrey' type='submit')
                         else if locals.authenticated && story.authorId === locals.user.id
                             #noSelfHeart
                         else

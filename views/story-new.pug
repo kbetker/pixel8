@@ -29,17 +29,17 @@ block content
 								.form--element
 									label(for="title")
 										p Story Title
-									input(type='text' name='title')
+									input(type='text' name='title' required)
 
 								.form--element
 									label(for="summary")
 										p Story Summary
-									input(type='text' name='summary')
+									input(type='text' name='summary' required)
 
 								.form--element
 									label(for="imageUrl")
 										p Image Url
-									input(type='text' name='imageUrl')
+									input(type='text' name='imageUrl' required)
 
 								.form--element
 									label(for="categoryId")
@@ -61,7 +61,7 @@ block content
 								.form--element
 									label(for="body")
 										p Tell us your story
-									textarea(name='body')
+									textarea(name='body' required)
 
 								.form--element
 									button(type='submit' value='Create Story') Submit Story
