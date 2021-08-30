@@ -23,8 +23,9 @@ router.get('/', asyncHandler(async (req, res) => {
 
 router.get('/homepage-stories', async (req, res) => {
   const pixel_stories = await db.Pixel_Story.findAll({
-    include: [db.Pixel_Category, db.Pixel_User],
     limit: 10,
+    order: [['createdAt', 'DESC']],
+    include: [db.Pixel_Category, db.Pixel_User],
   })
 
   res.send(pixel_stories);

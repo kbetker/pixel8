@@ -18,15 +18,18 @@ router.get('/:id(\\d+)', csrfProtection, asyncHandler(async (req, res, next) => 
       { model: db.Pixel_Category }
     ],
   });
+  console.log(story.Pixel_Likes)
   if(!story){
     res.render('404');
     return;
   }
   if (res.locals.user) {
-    // const userId = parseInt(req.params.id, 10);
+
     const sessionUser = res.locals.user;
 
-    res.render('stories', { story, sessionUser, csrfToken: req.csrfToken() });
+    const likeStatus = story.Pixel_Likes.some((like) =>  like.pixelUserId === sessionUser.id)
+
+    res.render('stories', { story, sessionUser, likeStatus,  csrfToken: req.csrfToken() });
   } else {
     res.render('stories', { story, csrfToken: req.csrfToken() });
   }

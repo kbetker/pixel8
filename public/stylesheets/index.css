@@ -277,6 +277,7 @@ a {
     align-items: center;
     text-shadow: 0 0 5px black;
     font-size: 14px;
+    cursor: pointer;
 }
 .discoverMoreLinks:hover {
     background-color: rgb(144, 144, 144);

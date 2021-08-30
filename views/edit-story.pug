@@ -29,18 +29,18 @@ block content
 								.form--element
 									label(for="title")
 										p Story Title
-									input(type='text' name='title' value= `${story.title}`)
+									input(type='text' name='title' value= `${story.title}` required)
 
 								.form--element
 									label(for="summary")
 										p Story Summary
-									input(type='text' name='summary' value= `${story.summary}`)
+									input(type='text' name='summary' value= `${story.summary}` required)
 
 
 								.form--element
 									label(for="imageUrl")
 										p Image Url
-									input(type='text' name='imageUrl' value= `${story.imageUrl}`)
+									input(type='text' name='imageUrl' value= `${story.imageUrl}` required)
 
 								.form--element
 									label(for="categoryId")
@@ -61,7 +61,7 @@ block content
 								.form--element
 									label(for="body")
 										p Tell us your story
-									textarea(name='body')= `${story.body}`
+									textarea(name='body' required)= `${story.body}`
 
 
 									input(type='hidden' name='authorId' value=locals.user.id)
