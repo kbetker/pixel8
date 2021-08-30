@@ -226,7 +226,8 @@ h3 {
     font-weight: bold;
     background-color: rgb(179, 179, 179);
     box-shadow: inset 4px 4px 4px rgba(0, 0, 0, 0.6);
-    padding: 10px 0 0 10px;
+    padding: 0px 0px 0px 6px;
+    /*Padding was previously 10px 0 0 10px */
 
 }
 .newCommentFormButton {
