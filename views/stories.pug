@@ -64,7 +64,7 @@ block content
                         form(action=`/stories/${story.id}/comment-new` method='post' class="newCommentForm")
                             input(type='hidden' name='_csrf' value=csrfToken)
                             div
-                                textarea(id='body' name='body' class='newCommentTextArea' rows='5')
+                                input(type='text' id='body' name='body' class='newCommentTextArea' rows='5')
                             button(type='submit' class='newCommentFormButton') Submit Comment
 
                 else

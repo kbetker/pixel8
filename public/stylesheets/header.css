@@ -175,6 +175,25 @@ body {
     opacity: 1;
 }
 
+.devicon-linkedin-plain{
+    font-size: 1.4em;
+    display: inline-block;
+    margin: 0 7px;
+    opacity: 0.5;
+    -webkit-transition: all 0.5s ease-in-out;
+    -moz-transition: all 0.5s ease-in-out;
+    -o-transition: all 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
+}
+
+.devicon-linkedin-plain:hover{
+    opacity: 1;
+}
+
+.footer-link{
+    color: #ffffff;
+}
+
 .site {
     width: 150px;
     height: 38px;
@@ -211,7 +230,7 @@ body {
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
 }
-.linkedIn{
+/* .linkedIn{
     height: 22px;
     display: inline-block;
     margin: 0 7px;
@@ -220,14 +239,14 @@ body {
     -moz-transition: all 0.5s ease-in-out;
     -o-transition: all 0.5s ease-in-out;
     transition: all 0.5s ease-in-out;
-}
+} */
 
 .githubLogo:hover{
     opacity: 1;
 }
-.linkedIn:hover{
+/* .linkedIn:hover{
     opacity: 1;
-}
+} */
 
 .footerFont{
     height: 38px;
